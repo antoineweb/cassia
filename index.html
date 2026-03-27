@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassia Co-op — Design Proposals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cinnamon: #C47A3A;
+  --cinnamon-dark: #5C2E0E;
+  --bark: #1A0E06;
+  --cream: #F5EDE4;
+  --cream-soft: #FAF6F1;
+  --forest: #2D4A2D;
+  --gold: #C9A84C;
+  --white: #FFFCF8;
+  --text: #1A0E06;
+  --text-muted: #7A6A5A;
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--bark);
+  color: var(--cream);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ---- HEADER ---- */
+.hub-header {
+  padding: 2.5rem 3rem;
+  border-bottom: 1px solid rgba(196, 122, 58, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hub-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.04em;
+}
+.hub-logo strong { font-weight: 600; color: var(--cinnamon); }
+
+.hub-meta {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  opacity: 0.7;
+}
+
+/* ---- HERO COPY ---- */
+.hub-intro {
+  padding: 5rem 3rem 3.5rem;
+  max-width: 780px;
+}
+
+.hub-intro .eyebrow {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.hub-intro .eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 1px;
+  background: var(--cinnamon);
+}
+
+.hub-intro h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+}
+.hub-intro h1 em {
+  font-style: italic;
+  color: var(--cinnamon);
+}
+
+.hub-intro p {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(245, 237, 228, 0.55);
+  max-width: 520px;
+}
+
+/* ---- VERSION GRID ---- */
+.versions-grid {
+  padding: 0 3rem 5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 2px;
+  flex: 1;
+}
+
+.version-card {
+  position: relative;
+  text-decoration: none;
+  display: block;
+  overflow: hidden;
+  background: #221208;
+  transition: background 0.5s;
+  cursor: pointer;
+}
+.version-card:hover { background: #2D1A0D; }
+
+/* Preview area */
+.version-preview {
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Version 1 preview — dark moody */
+.v1-preview {
+  background: linear-gradient(145deg, #1A0E06 0%, #2D1A0D 45%, #5C2E0E 100%);
+}
+.v1-preview .preview-deco-circle {
+  position: absolute;
+  top: 5%;
+  right: -8%;
+  width: 55%;
+  height: 55%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #8B4513, #5C2E0E 60%, transparent 70%);
+  opacity: 0.2;
+}
+.v1-preview .preview-lines::before,
+.v1-preview .preview-lines::after {
+  content: '';
+  position: absolute;
+  background: #C47A3A;
+  opacity: 0.05;
+  width: 1px;
+  height: 100%;
+  top: 0;
+}
+.v1-preview .preview-lines::before { left: 25%; }
+.v1-preview .preview-lines::after { left: 75%; }
+.v1-preview .preview-text-mock {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 2.5rem;
+}
+.v1-preview .preview-text-mock .pm-eyebrow {
+  width: 120px;
+  height: 6px;
+  background: #C47A3A;
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+  opacity: 0.6;
+}
+.v1-preview .preview-text-mock .pm-h1 {
+  width: 220px;
+  height: 16px;
+  background: #F5EDE4;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+.v1-preview .preview-text-mock .pm-h1-2 {
+  width: 160px;
+  height: 16px;
+  background: #C47A3A;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+.v1-preview .preview-text-mock .pm-sub {
+  width: 280px;
+  height: 7px;
+  background: #D4A574;
+  border-radius: 2px;
+  opacity: 0.35;
+}
+.v1-preview .preview-text-mock .pm-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  width: 100px;
+  height: 28px;
+  background: #C47A3A;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+
+/* Version 2 preview — light botanical */
+.v2-preview {
+  background: #FAF6F1;
+}
+.v2-preview .preview-nav-mock {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.v2-preview .preview-nav-mock .pn-logo {
+  width: 80px;
+  height: 8px;
+  background: #2D4A2D;
+  border-radius: 2px;
+  opacity: 0.7;
+}
+.v2-preview .preview-nav-mock .pn-links {
+  display: flex;
+  gap: 10px;
+}
+.v2-preview .preview-nav-mock .pn-link {
+  width: 36px;
+  height: 6px;
+  background: #2D4A2D;
+  border-radius: 2px;
+  opacity: 0.3;
+}
+.v2-preview .preview-hero-mock {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+.v2-preview .preview-hero-mock .ph-text {
+  flex: 1;
+}
+.v2-preview .preview-hero-mock .ph-tag {
+  width: 80px;
+  height: 5px;
+  background: #C47A3A;
+  border-radius: 2px;
+  margin-bottom: 0.7rem;
+  opacity: 0.7;
+}
+.v2-preview .preview-hero-mock .ph-h {
+  width: 140px;
+  height: 12px;
+  background: #2D4A2D;
+  border-radius: 2px;
+  margin-bottom: 0.4rem;
+  opacity: 0.85;
+}
+.v2-preview .preview-hero-mock .ph-h2 {
+  width: 100px;
+  height: 12px;
+  background: #2D4A2D;
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+  opacity: 0.5;
+}
+.v2-preview .preview-hero-mock .ph-p {
+  width: 160px;
+  height: 5px;
+  background: #5C4A3A;
+  border-radius: 2px;
+  margin-bottom: 0.4rem;
+  opacity: 0.3;
+}
+.v2-preview .preview-hero-mock .ph-p2 {
+  width: 130px;
+  height: 5px;
+  background: #5C4A3A;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+  opacity: 0.2;
+}
+.v2-preview .preview-hero-mock .ph-btn {
+  width: 90px;
+  height: 24px;
+  background: #2D4A2D;
+  border-radius: 3px;
+  opacity: 0.75;
+}
+.v2-preview .preview-hero-mock .ph-img {
+  width: 130px;
+  height: 160px;
+  background: linear-gradient(135deg, #2D4A2D 0%, #4A6B4A 60%, #C47A3A 100%);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+/* Hover overlay */
+.version-card .card-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(196, 122, 58, 0.0);
+  transition: background 0.4s;
+  pointer-events: none;
+}
+.version-card:hover .card-hover-overlay {
+  background: rgba(196, 122, 58, 0.04);
+}
+
+/* Card content */
+.version-info {
+  padding: 2rem 2.5rem;
+  border-top: 1px solid rgba(196, 122, 58, 0.1);
+  position: relative;
+}
+
+.version-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 0.75rem;
+}
+.version-badge .badge-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--cinnamon);
+  border-radius: 50%;
+  font-size: 0.55rem;
+}
+
+.version-card h2 {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.version-card .version-desc {
+  font-size: 0.85rem;
+  line-height: 1.65;
+  color: rgba(245, 237, 228, 0.45);
+  margin-bottom: 1.5rem;
+}
+
+.version-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+.tag {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  border: 1px solid rgba(196, 122, 58, 0.3);
+  padding: 0.3rem 0.7rem;
+  border-radius: 2px;
+}
+
+.version-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.5;
+  transition: opacity 0.3s, gap 0.3s;
+}
+.version-card:hover .version-link {
+  opacity: 1;
+  gap: 1rem;
+}
+.version-link svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.3s;
+}
+.version-card:hover .version-link svg {
+  transform: translateX(3px);
+}
+
+/* ---- FOOTER ---- */
+.hub-footer {
+  padding: 1.5rem 3rem;
+  border-top: 1px solid rgba(196, 122, 58, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.hub-footer p {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  color: rgba(245, 237, 228, 0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .hub-header { padding: 1.5rem; }
+  .hub-intro { padding: 3rem 1.5rem 2.5rem; }
+  .versions-grid { padding: 0 1.5rem 3rem; grid-template-columns: 1fr; }
+  .hub-footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hub-header">
+  <div class="hub-logo"><strong>Cassia</strong> Co-op</div>
+  <span class="hub-meta">Design Proposals &mdash; 2026</span>
+</header>
+
+<!-- INTRO -->
+<div class="hub-intro">
+  <p class="eyebrow">Client Presentation</p>
+  <h1>Choose your <em>direction</em></h1>
+  <p>Two visual directions for the Cassia Co-op landing page. Review each proposal and select the aesthetic that best fits the brand before we move into development.</p>
+</div>
+
+<!-- VERSION GRID -->
+<div class="versions-grid">
+
+  <!-- VERSION 1 -->
+  <a href="cassia-coop-landing.html" class="version-card">
+    <div class="version-preview v1-preview">
+      <div class="preview-deco-circle"></div>
+      <div class="preview-lines"></div>
+      <div class="preview-text-mock">
+        <div class="pm-eyebrow"></div>
+        <div class="pm-h1"></div>
+        <div class="pm-h1-2"></div>
+        <div class="pm-sub"></div>
+        <div class="pm-btn"></div>
+      </div>
+    </div>
+    <div class="card-hover-overlay"></div>
+    <div class="version-info">
+      <div class="version-badge">
+        <span class="badge-num">1</span>
+        Version 01
+      </div>
+      <h2>Earthy Cinematic<br>Luxury</h2>
+      <p class="version-desc">Dark, moody atmosphere anchored in deep bark tones and warm cinnamon accents. Editorial typography, dramatic spacing, and a premium feel inspired by high-end spirits and fragrance brands.</p>
+      <div class="version-tags">
+        <span class="tag">Dark mode</span>
+        <span class="tag">Cinematic</span>
+        <span class="tag">Luxury editorial</span>
+        <span class="tag">Cormorant + DM Sans</span>
+      </div>
+      <span class="version-link">
+        View Version 01
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+
+  <!-- VERSION 2 -->
+  <a href="v2.html" class="version-card">
+    <div class="version-preview v2-preview">
+      <div class="preview-nav-mock">
+        <div class="pn-logo"></div>
+        <div class="pn-links">
+          <div class="pn-link"></div>
+          <div class="pn-link"></div>
+          <div class="pn-link"></div>
+          <div class="pn-link"></div>
+        </div>
+      </div>
+      <div class="preview-hero-mock">
+        <div class="ph-text">
+          <div class="ph-tag"></div>
+          <div class="ph-h"></div>
+          <div class="ph-h2"></div>
+          <div class="ph-p"></div>
+          <div class="ph-p2"></div>
+          <div class="ph-btn"></div>
+        </div>
+        <div class="ph-img"></div>
+      </div>
+    </div>
+    <div class="card-hover-overlay"></div>
+    <div class="version-info">
+      <div class="version-badge">
+        <span class="badge-num">2</span>
+        Version 02
+      </div>
+      <h2>Fresh Botanical<br>Modern</h2>
+      <p class="version-desc">Light, clean, and nature-forward. Deep forest greens with warm cinnamon highlights on a bright cream canvas. Structured sections, generous imagery placeholders, and full navigation with About / Promises / Products / Story / Contact.</p>
+      <div class="version-tags">
+        <span class="tag">Light mode</span>
+        <span class="tag">Botanical</span>
+        <span class="tag">Modern clean</span>
+        <span class="tag">Playfair + Inter</span>
+      </div>
+      <span class="version-link">
+        View Version 02
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+
+</div>
+
+<!-- FOOTER -->
+<footer class="hub-footer">
+  <p>&copy; 2026 Cassia Co-op — Internal design review, not for distribution.</p>
+  <p>2 versions available</p>
+</footer>
+
+</body>
+</html>
