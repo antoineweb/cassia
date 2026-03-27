@@ -396,21 +396,14 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 }
 .hero-img-fill {
   width: 100%; height: 100%;
-  background: linear-gradient(165deg, #2D1A0D 0%, #5C2E0E 35%, #8B4513 65%, #C47A3A 100%);
   position: relative;
+  background: #1A0E06;
 }
-.hero-img-fill::after {
-  content: 'Hero image — Kerinci Valley, Sumatra\AReplace with high-res photography';
-  white-space: pre;
-  position: absolute;
-  bottom: 2rem; right: 2rem;
-  font-size: 0.6rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(245,237,228,0.3);
-  text-align: right;
-  line-height: 1.7;
-  z-index: 2;
+.hero-img-fill img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 .hero-cert-badge {
   position: absolute;
@@ -1175,22 +1168,17 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 }
 
 .factory-img {
-  aspect-ratio: 4/3;
-  background: linear-gradient(135deg, #3D2510 0%, #8B4513 40%, #C47A3A 75%, #E8A060 100%);
+  aspect-ratio: 16/9;
   border-radius: var(--r-lg);
   position: relative;
   overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
 }
-.factory-img::after {
-  content: 'Photo — Cassia Co-op processing facility, Kerinci';
+.factory-img iframe {
   position: absolute;
-  bottom: 1rem; left: 1rem; right: 1rem;
-  font-size: 0.58rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(245,237,228,0.3);
-  border-top: 1px solid rgba(245,237,228,0.1);
-  padding-top: 0.65rem;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
 }
 
 /* Factory process steps */
@@ -1685,13 +1673,8 @@ h4 { font-family: var(--font-body); font-weight: 600; }
   <div class="hero-lines-v"></div>
 
   <div class="hero-image-panel">
-    <div class="hero-img-fill"></div>
-    <div class="hero-cert-badge">
-      <span class="cert-icon">🌿</span>
-      <div class="cert-text">
-        Rainforest Alliance
-        <div class="cert-sub">Certified Sustainable</div>
-      </div>
+    <div class="hero-img-fill">
+      <img src="asset/photo/Trees (b).JPG" alt="Cassia trees — Kerinci, Sumatra">
     </div>
   </div>
 
@@ -1992,7 +1975,15 @@ h4 { font-family: var(--font-body); font-weight: 600; }
         <p class="reveal d2">Our facility is FSSC 22000 certified and continuously upgraded based on customer requirements and technology advances in spice processing.</p>
         <a href="#contact" class="btn-dark reveal d3" style="margin-top:1rem; display:inline-block;">Visit the Factory</a>
       </div>
-      <div class="factory-img reveal d2"></div>
+      <div class="factory-img reveal d2">
+        <iframe
+          src="https://www.youtube.com/embed/xsHEqD3DYl0?rel=0&modestbranding=1"
+          title="Cassia Co-op — Processing at the Source"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        </iframe>
+      </div>
     </div>
 
     <div class="factory-process">
