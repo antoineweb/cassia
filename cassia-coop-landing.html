@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassia Co-op | From the Heart of Kerinci, Sumatra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CASSIA CO-OP - Landing Page
+   Aesthetic: Earthy Cinematic Luxury
+   ============================================ */
+
+:root {
+  --cinnamon-deep: #5C2E0E;
+  --cinnamon-warm: #8B4513;
+  --cinnamon-glow: #C47A3A;
+  --cinnamon-light: #D4A574;
+  --bark-dark: #1A0E06;
+  --bark-medium: #2D1A0D;
+  --cream: #F5EDE4;
+  --cream-soft: #FAF6F1;
+  --gold: #C9A84C;
+  --gold-light: #E8D5A0;
+  --forest: #2D4A2D;
+  --forest-light: #4A6B4A;
+  --white: #FFFCF8;
+  --text-primary: #1A0E06;
+  --text-secondary: #5C4A3A;
+  
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'DM Sans', sans-serif;
+  
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-xxl: 12rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bark-dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- GRAIN OVERLAY ---- */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+}
+
+/* ---- SCROLLBAR ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bark-dark); }
+::-webkit-scrollbar-thumb { background: var(--cinnamon-warm); border-radius: 3px; }
+
+/* ---- TYPOGRAPHY ---- */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
+
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cinnamon-glow);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--cinnamon-glow);
+}
+
+/* ---- ANIMATIONS ---- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes slideRight {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+.reveal-delay-4 { transition-delay: 0.6s; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+}
+.nav.scrolled {
+  background: rgba(26, 14, 6, 0.85);
+  backdrop-filter: blur(20px);
+  padding: 1rem 3rem;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.nav-logo strong {
+  font-weight: 700;
+}
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+  position: relative;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--cinnamon-glow);
+  transition: width 0.3s;
+}
+.nav-links a:hover { opacity: 1; }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--bark-dark);
+  background: var(--cinnamon-glow);
+  border: none;
+  padding: 0.7rem 1.8rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+.nav-cta:hover {
+  background: var(--gold);
+  transform: translateY(-1px);
+}
+
+/* Mobile nav toggle */
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+  position: relative;
+}
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: var(--cream);
+  position: absolute;
+  left: 0;
+  transition: all 0.3s;
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 50%; transform: translateY(-50%); }
+.nav-toggle span:nth-child(3) { bottom: 0; }
+
+/* ============================================
+   HERO SECTION
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--space-xl) 3rem var(--space-lg);
+  background: linear-gradient(
+    145deg,
+    var(--bark-dark) 0%,
+    var(--bark-medium) 40%,
+    var(--cinnamon-deep) 100%
+  );
+  overflow: hidden;
+}
+
+/* Decorative circle */
+.hero-circle {
+  position: absolute;
+  top: 10%;
+  right: -10%;
+  width: 60vw;
+  height: 60vw;
+  max-width: 800px;
+  max-height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, var(--cinnamon-warm), var(--cinnamon-deep) 60%, transparent 70%);
+  opacity: 0.15;
+  animation: float 8s ease-in-out infinite;
+}
+
+/* Decorative lines */
+.hero-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+.hero-lines::before,
+.hero-lines::after {
+  content: '';
+  position: absolute;
+  background: var(--cinnamon-glow);
+  opacity: 0.06;
+}
+.hero-lines::before {
+  width: 1px;
+  height: 100%;
+  left: 25%;
+}
+.hero-lines::after {
+  width: 1px;
+  height: 100%;
+  left: 75%;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cinnamon-glow);
+  margin-bottom: var(--space-md);
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.95;
+  color: var(--cream);
+  font-weight: 300;
+  margin-bottom: var(--space-md);
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--cinnamon-glow);
+}
+
+.hero-sub {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--cinnamon-light);
+  font-weight: 300;
+  line-height: 1.6;
+  max-width: 550px;
+  margin-bottom: var(--space-lg);
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.7s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.9s both;
+}
+
+.btn-primary {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--bark-dark);
+  background: var(--cinnamon-glow);
+  border: none;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-primary:hover {
+  background: var(--gold);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(196, 122, 58, 0.3);
+}
+
+.btn-ghost {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: none;
+  border: 1px solid rgba(245, 237, 228, 0.2);
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.btn-ghost:hover {
+  border-color: var(--cinnamon-glow);
+  color: var(--cinnamon-glow);
+}
+
+/* Hero scroll indicator */
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  right: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  animation: fadeIn 1s 1.5s both;
+}
+.hero-scroll span {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.4;
+  writing-mode: vertical-rl;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 60px;
+  background: linear-gradient(to bottom, var(--cinnamon-glow), transparent);
+  animation: slideRight 1.5s ease-in-out infinite;
+  transform-origin: top;
+}
+
+/* ============================================
+   MANIFESTO / INTRO
+   ============================================ */
+.manifesto {
+  background: var(--cream);
+  padding: var(--space-xxl) 3rem;
+  position: relative;
+}
+
+.manifesto-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+}
+
+.manifesto-text h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.15;
+  color: var(--bark-dark);
+  margin-bottom: var(--space-md);
+}
+.manifesto-text h2 em {
+  font-style: italic;
+  color: var(--cinnamon-warm);
+}
+
+.manifesto-text p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  max-width: 500px;
+}
+
+.manifesto-visual {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+}
+
+.manifesto-img-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--cinnamon-deep) 0%, var(--bark-medium) 100%);
+  position: relative;
+  overflow: hidden;
+}
+.manifesto-img-placeholder::before {
+  content: '🌿';
+  position: absolute;
+  font-size: 8rem;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.3;
+}
+.manifesto-img-placeholder .placeholder-text {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.6;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding-top: 1rem;
+}
+
+.manifesto-stats {
+  display: flex;
+  gap: var(--space-lg);
+  margin-top: var(--space-lg);
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(26, 14, 6, 0.1);
+}
+.stat {
+  text-align: left;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: var(--cinnamon-deep);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+}
+
+/* ============================================
+   WHY DIFFERENT / BLAH BLAH SECTION
+   ============================================ */
+.different {
+  background: var(--bark-dark);
+  padding: var(--space-xxl) 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.different-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.different .section-label {
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+.different .section-label::before { display: none; }
+
+.blah-text {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  line-height: 1.5;
+  color: var(--cream);
+  max-width: 800px;
+  margin: 0 auto var(--space-lg);
+  font-weight: 300;
+}
+.blah-text .strikethrough {
+  text-decoration: line-through;
+  opacity: 0.3;
+  color: var(--cinnamon-light);
+}
+.blah-text em {
+  font-style: italic;
+  color: var(--cinnamon-glow);
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: var(--space-xl);
+}
+
+.pillar {
+  background: var(--bark-medium);
+  padding: var(--space-lg) var(--space-md);
+  text-align: left;
+  position: relative;
+  transition: background 0.4s;
+}
+.pillar:hover {
+  background: var(--cinnamon-deep);
+}
+
+.pillar-number {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  font-weight: 300;
+  color: var(--cinnamon-glow);
+  opacity: 0.2;
+  line-height: 1;
+  margin-bottom: var(--space-sm);
+}
+
+.pillar h3 {
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: var(--space-sm);
+  font-weight: 400;
+}
+
+.pillar p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--cinnamon-light);
+  opacity: 0.7;
+}
+
+/* ============================================
+   VIDEO SECTION
+   ============================================ */
+.video-section {
+  background: var(--cream-soft);
+  padding: var(--space-xxl) 3rem;
+  text-align: center;
+}
+
+.video-section .section-label {
+  justify-content: center;
+  margin-bottom: var(--space-md);
+}
+.video-section .section-label::before { display: none; }
+
+.video-section h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--bark-dark);
+  margin-bottom: var(--space-sm);
+}
+.video-section h2 em {
+  font-style: italic;
+  color: var(--cinnamon-warm);
+}
+
+.video-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-lg);
+  line-height: 1.7;
+}
+
+.video-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  position: relative;
+  aspect-ratio: 16/9;
+  background: var(--bark-dark);
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.video-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bark-dark), var(--cinnamon-deep));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  transition: transform 0.6s;
+}
+.video-container:hover .video-placeholder {
+  transform: scale(1.02);
+}
+
+.play-btn {
+  width: 80px;
+  height: 80px;
+  border: 2px solid var(--cinnamon-glow);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.play-btn::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 0 12px 22px;
+  border-color: transparent transparent transparent var(--cinnamon-glow);
+  margin-left: 4px;
+}
+.video-container:hover .play-btn {
+  background: var(--cinnamon-glow);
+  transform: scale(1.1);
+}
+.video-container:hover .play-btn::after {
+  border-color: transparent transparent transparent var(--bark-dark);
+}
+
+.video-caption {
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: 0.5;
+}
+
+/* ============================================
+   SUPPLY CHAIN
+   ============================================ */
+.supply-chain {
+  background: var(--white);
+  padding: var(--space-xxl) 3rem;
+  position: relative;
+}
+
+.supply-chain-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.supply-chain h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--bark-dark);
+  margin-bottom: var(--space-xl);
+  max-width: 600px;
+}
+.supply-chain h2 em {
+  font-style: italic;
+  color: var(--cinnamon-warm);
+}
+
+.chain-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+
+.chain-steps::before {
+  content: '';
+  position: absolute;
+  top: 3rem;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(to right, var(--cinnamon-light), var(--cinnamon-glow), var(--cinnamon-light));
+  opacity: 0.3;
+}
+
+.chain-step {
+  text-align: center;
+  padding: 0 var(--space-sm);
+  position: relative;
+}
+
+.chain-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-md);
+  border-radius: 50%;
+  background: var(--cream);
+  border: 2px solid var(--cinnamon-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.chain-step:hover .chain-icon {
+  background: var(--cinnamon-glow);
+  border-color: var(--cinnamon-glow);
+  transform: scale(1.1);
+}
+
+.chain-step h4 {
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--bark-dark);
+  margin-bottom: 0.5rem;
+}
+
+.chain-step p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ============================================
+   PRODUCTS
+   ============================================ */
+.products {
+  background: var(--bark-dark);
+  padding: var(--space-xxl) 3rem;
+}
+
+.products-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--space-xl);
+}
+
+.products h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--cream);
+}
+.products h2 em {
+  font-style: italic;
+  color: var(--cinnamon-glow);
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+}
+
+.product-card {
+  background: var(--bark-medium);
+  padding: var(--space-lg) var(--space-md);
+  position: relative;
+  overflow: hidden;
+  transition: background 0.4s;
+}
+.product-card:hover {
+  background: var(--cinnamon-deep);
+}
+
+.product-icon {
+  font-size: 3rem;
+  margin-bottom: var(--space-md);
+  display: block;
+  transition: transform 0.4s;
+}
+.product-card:hover .product-icon {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.product-card h3 {
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: var(--space-xs);
+  font-weight: 400;
+}
+
+.product-card .product-type {
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cinnamon-glow);
+  margin-bottom: var(--space-sm);
+}
+
+.product-card p {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: var(--cinnamon-light);
+  opacity: 0.7;
+}
+
+/* ============================================
+   CERTIFICATIONS
+   ============================================ */
+.certifications {
+  background: var(--cream);
+  padding: var(--space-xl) 3rem;
+}
+
+.cert-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.cert-text {
+  flex: 1;
+}
+.cert-text h3 {
+  font-size: 1.8rem;
+  color: var(--bark-dark);
+  margin-bottom: var(--space-sm);
+}
+.cert-text p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+.cert-badges {
+  display: flex;
+  gap: var(--space-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cert-badge {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 2px solid rgba(26, 14, 6, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.55rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cinnamon-deep);
+  text-align: center;
+  line-height: 1.3;
+  padding: 0.5rem;
+  transition: all 0.3s;
+}
+.cert-badge:hover {
+  border-color: var(--cinnamon-glow);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 20px rgba(196, 122, 58, 0.15);
+}
+.cert-badge-icon {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+}
+
+/* ============================================
+   MAP / ORIGIN
+   ============================================ */
+.origin {
+  background: var(--forest);
+  padding: var(--space-xxl) 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.origin::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 50%, rgba(74, 107, 74, 0.3), transparent 60%);
+}
+
+.origin-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+.origin h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--cream);
+  margin-bottom: var(--space-md);
+}
+.origin h2 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.origin p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(245, 237, 228, 0.7);
+  margin-bottom: var(--space-sm);
+}
+
+.origin-highlight {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-style: italic;
+  color: var(--gold-light);
+  border-left: 2px solid var(--gold);
+  padding-left: var(--space-sm);
+  margin: var(--space-md) 0;
+}
+
+.origin-map {
+  position: relative;
+  background: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.map-placeholder {
+  text-align: center;
+  color: var(--cream);
+  opacity: 0.5;
+}
+.map-placeholder .map-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+}
+.map-placeholder p {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+/* Ping dot on map */
+.map-ping {
+  position: absolute;
+  top: 55%;
+  left: 60%;
+  width: 12px;
+  height: 12px;
+  background: var(--cinnamon-glow);
+  border-radius: 50%;
+}
+.map-ping::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border: 2px solid var(--cinnamon-glow);
+  border-radius: 50%;
+  animation: ping 2s ease-out infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* ============================================
+   CTA SECTION
+   ============================================ */
+.cta-section {
+  background: var(--bark-dark);
+  padding: var(--space-xxl) 3rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--cinnamon-deep), transparent 70%);
+  opacity: 0.2;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.cta-section h2 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  color: var(--cream);
+  line-height: 1.1;
+  margin-bottom: var(--space-md);
+}
+.cta-section h2 em {
+  font-style: italic;
+  color: var(--cinnamon-glow);
+}
+
+.cta-section p {
+  font-size: 1.1rem;
+  color: var(--cinnamon-light);
+  margin-bottom: var(--space-lg);
+  line-height: 1.7;
+}
+
+.cta-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--bark-dark);
+  border-top: 1px solid rgba(196, 122, 58, 0.1);
+  padding: var(--space-lg) 3rem var(--space-md);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+.footer-brand {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-tagline {
+  font-size: 0.85rem;
+  color: var(--cinnamon-light);
+  opacity: 0.6;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cinnamon-glow);
+  margin-bottom: var(--space-sm);
+}
+
+.footer-col a {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--cinnamon-light);
+  text-decoration: none;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+  transition: opacity 0.3s;
+}
+.footer-col a:hover { opacity: 1; }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: var(--space-lg) auto 0;
+  padding-top: var(--space-md);
+  border-top: 1px solid rgba(196, 122, 58, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p {
+  font-size: 0.7rem;
+  color: var(--cinnamon-light);
+  opacity: 0.3;
+  letter-spacing: 0.05em;
+}
+
+.footer-flags {
+  display: flex;
+  gap: 0.8rem;
+}
+.footer-flags span {
+  font-size: 1.2rem;
+  opacity: 0.5;
+  transition: opacity 0.3s;
+}
+.footer-flags span:hover { opacity: 1; }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1024px) {
+  .manifesto-inner { grid-template-columns: 1fr; gap: var(--space-lg); }
+  .manifesto-visual { max-height: 500px; }
+  .origin-inner { grid-template-columns: 1fr; }
+  .chain-steps { grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+  .chain-steps::before { display: none; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .nav-toggle { display: block; }
+  .nav-cta { display: none; }
+  
+  .hero { padding: var(--space-xl) 1.5rem var(--space-lg); }
+  .hero-scroll { display: none; }
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  
+  section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
+  
+  .pillars { grid-template-columns: 1fr; }
+  .chain-steps { grid-template-columns: 1fr; }
+  .products-grid { grid-template-columns: 1fr; }
+  .products-header { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  
+  .cert-inner { flex-direction: column; text-align: center; }
+  .cert-badges { justify-content: center; }
+  
+  .manifesto-stats { flex-direction: column; gap: var(--space-md); }
+  
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: var(--space-sm); text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==========================================
+     NAVIGATION
+     ========================================== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><strong>Cassia</strong> Co-op</a>
+  <ul class="nav-links">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#origin">Origin</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ==========================================
+     HERO
+     ========================================== -->
+<section class="hero" id="hero">
+  <div class="hero-circle"></div>
+  <div class="hero-lines"></div>
+  
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kerinci Valley, Sumatra &mdash; Est. at the Source</p>
+    <h1>Where <em>cinnamon</em><br>begins.</h1>
+    <p class="hero-sub">The first and only cassia processor established in Kerinci, the heart of the world's largest cinnamon plantation.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Request a Sample</a>
+      <a href="#story" class="btn-ghost">Discover Our Story</a>
+    </div>
+  </div>
+  
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- ==========================================
+     MANIFESTO
+     ========================================== -->
+<section class="manifesto" id="story">
+  <div class="manifesto-inner">
+    <div class="manifesto-text">
+      <p class="section-label reveal">Our Story</p>
+      <h2 class="reveal reveal-delay-1">Built with <em>sustainability</em> at its core.</h2>
+      <p class="reveal reveal-delay-2">50% of the world's cinnamon originates from Indonesia. Most of it grows in one unique area on the island of Sumatra, called Kerinci. Cassia Co-op is the first cinnamon processing and exporting company to set up right here, at the heart of the plantations.</p>
+      <p class="reveal reveal-delay-3">We created a fair and efficient supply chain while having a sustainable positive impact. No middlemen. No guesswork. Just a direct line from the farmers to your facility.</p>
+      
+      <div class="manifesto-stats reveal reveal-delay-4">
+        <div class="stat">
+          <div class="stat-number">1,000+</div>
+          <div class="stat-label">Partner farmers</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">100%</div>
+          <div class="stat-label">Kerinci origin</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">1st</div>
+          <div class="stat-label">Processor in Kerinci</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="manifesto-visual reveal reveal-delay-2">
+      <div class="manifesto-img-placeholder">
+        <div class="placeholder-text">Photo: Cinnamon harvest in Kerinci Valley &mdash; replace with Patrick's content</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     WHY DIFFERENT
+     ========================================== -->
+<section class="different" id="process">
+  <div class="different-inner">
+    <p class="section-label reveal">Why Cassia Co-op</p>
+    
+    <p class="blah-text reveal reveal-delay-1">
+      We could share the usual keywords on <span class="strikethrough">sustainability, quality & traceability</span>... 
+      Instead, we prefer to <em>invite you to Kerinci</em>, at the source, to see for yourself.
+    </p>
+    
+    <div class="pillars">
+      <div class="pillar reveal">
+        <div class="pillar-number">01</div>
+        <h3>Vertical Integration</h3>
+        <p>From tree to container, everything happens in Kerinci. We control every step of the supply chain, eliminating intermediaries and ensuring consistent quality.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-1">
+        <div class="pillar-number">02</div>
+        <h3>Certified Quality</h3>
+        <p>Rainforest Alliance, FSSC 22000, Organic certified. Our QC, SOP and ICS protocols meet the highest international standards for food safety and sustainability.</p>
+      </div>
+      <div class="pillar reveal reveal-delay-2">
+        <div class="pillar-number">03</div>
+        <h3>Farmer First</h3>
+        <p>Working with over 1,000 local farmers, our CSR program improves livelihoods while preserving the biodiversity of the Kerinci ecosystem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     VIDEO
+     ========================================== -->
+<section class="video-section" id="video">
+  <p class="section-label reveal">See For Yourself</p>
+  <h2 class="reveal reveal-delay-1">A journey to the <em>source</em></h2>
+  <p class="video-subtitle reveal reveal-delay-2">From the volcanic slopes of Mount Kerinci to your production line. Follow the bark from harvest to export.</p>
+  
+  <div class="video-container reveal reveal-delay-3">
+    <div class="video-placeholder">
+      <div class="play-btn"></div>
+      <span class="video-caption">Watch our story &mdash; 3 min</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     SUPPLY CHAIN
+     ========================================== -->
+<section class="supply-chain">
+  <div class="supply-chain-inner">
+    <p class="section-label reveal">Our Process</p>
+    <h2 class="reveal reveal-delay-1">From bark to <em>your facility</em></h2>
+    
+    <div class="chain-steps">
+      <div class="chain-step reveal">
+        <div class="chain-icon">🌳</div>
+        <h4>Harvest</h4>
+        <p>Trees sustainably harvested in Kerinci plantations, bark stripped on location for maximum freshness.</p>
+      </div>
+      <div class="chain-step reveal reveal-delay-1">
+        <div class="chain-icon">⚙️</div>
+        <h4>Process</h4>
+        <p>Cleaned, sorted and processed in our FSSC 22000 certified facility, right at the source.</p>
+      </div>
+      <div class="chain-step reveal reveal-delay-2">
+        <div class="chain-icon">✓</div>
+        <h4>Quality Control</h4>
+        <p>Rigorous testing for oil content, moisture, and purity. Full traceability from farmer to batch.</p>
+      </div>
+      <div class="chain-step reveal reveal-delay-3">
+        <div class="chain-icon">🚢</div>
+        <h4>Export</h4>
+        <p>Direct export to Europe, USA and beyond. Shorter chain, better quality, competitive pricing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     PRODUCTS
+     ========================================== -->
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="products-header">
+      <div>
+        <p class="section-label reveal" style="color: var(--cinnamon-glow);">Our Products</p>
+        <h2 class="reveal reveal-delay-1">Premium <em>Cassia</em> &amp; more</h2>
+      </div>
+    </div>
+    
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <span class="product-icon">🪵</span>
+        <div class="product-type">Cassia / Cinnamon</div>
+        <h3>Broken &amp; Cleaned</h3>
+        <p>Sorted and cleaned cassia bark, ready for further processing or grinding. Available in various grades to match your specifications.</p>
+      </div>
+      <div class="product-card reveal reveal-delay-1">
+        <span class="product-icon">📏</span>
+        <div class="product-type">Cassia / Cinnamon</div>
+        <h3>Short &amp; Long Sticks</h3>
+        <p>Premium cassia sticks, hand-selected for consistency. Perfect for retail packaging, food service, and specialty markets.</p>
+      </div>
+      <div class="product-card reveal reveal-delay-2">
+        <span class="product-icon">🌿</span>
+        <div class="product-type">Essential Oils</div>
+        <h3>Patchouli Oil</h3>
+        <p>Kerinci is also the world's largest producer of high-quality patchouli. Pure essential oil, distilled locally.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     CERTIFICATIONS
+     ========================================== -->
+<section class="certifications">
+  <div class="cert-inner">
+    <div class="cert-text reveal">
+      <h3>Certified at every level</h3>
+      <p>Our certifications reflect our commitment to quality, sustainability, and ethical sourcing. Independently verified, consistently maintained.</p>
+    </div>
+    <div class="cert-badges">
+      <div class="cert-badge reveal reveal-delay-1">
+        <span class="cert-badge-icon">🌿</span>
+        Rainforest<br>Alliance
+      </div>
+      <div class="cert-badge reveal reveal-delay-2">
+        <span class="cert-badge-icon">🔒</span>
+        FSSC<br>22000
+      </div>
+      <div class="cert-badge reveal reveal-delay-3">
+        <span class="cert-badge-icon">🌱</span>
+        Organic<br>Certified
+      </div>
+      <div class="cert-badge reveal reveal-delay-4">
+        <span class="cert-badge-icon">🤝</span>
+        SSI<br>Member
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     ORIGIN
+     ========================================== -->
+<section class="origin" id="origin">
+  <div class="origin-inner">
+    <div>
+      <p class="section-label reveal" style="color: var(--gold-light);">Our Origin</p>
+      <h2 class="reveal reveal-delay-1">Kerinci, <em>Sumatra</em></h2>
+      <p class="reveal reveal-delay-2">The world's largest cassia plantation sits in the Kerinci Valley of Jambi Province, Sumatra. Volcanic soil, tropical climate, and generations of farming expertise create the perfect conditions for the finest cinnamon on earth.</p>
+      <div class="origin-highlight reveal reveal-delay-3">
+        "We didn't choose the location. The cinnamon chose it, thousands of years ago. We just set up where it makes sense."
+      </div>
+      <p class="reveal reveal-delay-4">We export directly to Europe, the United States, and markets worldwide. Our proximity to the source means shorter lead times, fresher product, and full traceability from tree to shipment.</p>
+    </div>
+    
+    <div class="origin-map reveal reveal-delay-2">
+      <div class="map-ping"></div>
+      <div class="map-placeholder">
+        <div class="map-icon">🗺️</div>
+        <p>Kerinci Valley, Jambi Province<br>Sumatra, Indonesia</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     CTA
+     ========================================== -->
+<section class="cta-section" id="contact">
+  <div class="cta-inner">
+    <p class="section-label reveal" style="justify-content: center; color: var(--cinnamon-glow);">Let's Talk</p>
+    <h2 class="reveal reveal-delay-1">Ready to source <em>differently</em>?</h2>
+    <p class="reveal reveal-delay-2">Whether you need a sample, a quote, or simply want to learn more about our operations in Kerinci, our team is here.</p>
+    <div class="cta-actions reveal reveal-delay-3">
+      <a href="mailto:sales@cassia.coop" class="btn-primary">sales@cassia.coop</a>
+      <a href="mailto:contact@cassia.coop" class="btn-ghost">General Inquiry</a>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand"><strong>Cassia</strong> Co-op</div>
+      <p class="footer-tagline">The first and only cassia processor established in Kerinci, the heart of the world's largest cinnamon plantation. Built with sustainability at its core.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <a href="#story">Our Story</a>
+      <a href="#process">Process</a>
+      <a href="#products">Products</a>
+      <a href="#origin">Origin</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="mailto:sales@cassia.coop">sales@cassia.coop</a>
+      <a href="mailto:contact@cassia.coop">contact@cassia.coop</a>
+      <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="footer-col">
+      <h4>Markets</h4>
+      <a href="#">Europe</a>
+      <a href="#">United States</a>
+      <a href="#">Asia Pacific</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Cassia Co-op. All rights reserved.</p>
+    <div class="footer-flags">
+      <span title="Indonesia">🇮🇩</span>
+      <span title="European Union">🇪🇺</span>
+      <span title="United States">🇺🇸</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==========================================
+     SCRIPTS
+     ========================================== -->
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // Close mobile nav if open
+      document.querySelector('.nav-links').classList.remove('mobile-open');
+    }
+  });
+});
+
+// Mobile nav styles (inject dynamically)
+const style = document.createElement('style');
+style.textContent = `
+  .nav-links.mobile-open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bark-dark);
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 999;
+  }
+  .nav-links.mobile-open a {
+    font-size: 1.2rem;
+    opacity: 1;
+  }
+`;
+document.head.appendChild(style);
+</script>
+
+</body>
+</html>
