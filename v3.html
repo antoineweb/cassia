@@ -1,0 +1,2243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cassia Co-op – Kerinci, Sumatra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================
+   CASSIA CO-OP — Version 3
+   Aesthetic: Dark Cinematic Hero + Clean B2B
+   Inspired by Nedspice.com structure
+   ============================================ */
+
+:root {
+  /* Dark palette (V1 hero) */
+  --bark-deep:      #110A04;
+  --bark-dark:      #1A0E06;
+  --bark-mid:       #2D1A0D;
+  --cinnamon-deep:  #5C2E0E;
+  --cinnamon:       #C47A3A;
+  --cinnamon-light: #D4A574;
+  --gold:           #C9A84C;
+
+  /* Light palette (V2 sections) */
+  --cream:          #FAF7F2;
+  --cream-warm:     #F3EDE4;
+  --cream-border:   #E5DDD4;
+  --white:          #FFFFFF;
+
+  /* Forest (sustainability) */
+  --forest:         #1F3B23;
+  --forest-mid:     #2D4A2D;
+  --forest-light:   #4A6B4A;
+  --forest-pale:    #D6E5D0;
+  --mint:           #A8D5A2;
+
+  /* Text */
+  --text:           #1A1A1A;
+  --text-muted:     #6B6B6B;
+  --text-light:     #9A9A9A;
+
+  /* Fonts */
+  --font-display:   'Cormorant Garamond', Georgia, serif;
+  --font-body:      'Inter', system-ui, sans-serif;
+
+  /* Spacing */
+  --s-xs:  0.5rem;
+  --s-sm:  1rem;
+  --s-md:  2rem;
+  --s-lg:  4rem;
+  --s-xl:  7rem;
+  --s-xxl: 10rem;
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 16px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bark-deep);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bark-dark); }
+::-webkit-scrollbar-thumb { background: var(--cinnamon); border-radius: 3px; }
+
+/* ---- HELPERS ---- */
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; }
+h4 { font-family: var(--font-body); font-weight: 600; }
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+}
+.section-tag::before {
+  content: '';
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: var(--cinnamon);
+  flex-shrink: 0;
+}
+.section-tag.light { color: var(--cinnamon-light); }
+.section-tag.light::before { background: var(--cinnamon-light); }
+.section-tag.green { color: var(--mint); }
+.section-tag.green::before { background: var(--mint); }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; }
+
+/* ---- BUTTONS ---- */
+.btn-dark {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--bark-dark);
+  background: var(--cinnamon);
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-dark:hover { background: var(--gold); transform: translateY(-2px); }
+
+.btn-ghost-light {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  background: none;
+  border: 1.5px solid rgba(245,237,228,0.25);
+  padding: 0.85rem 2rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.3s, color 0.3s;
+}
+.btn-ghost-light:hover { border-color: var(--cinnamon); color: var(--cinnamon); }
+
+.btn-forest {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--forest);
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
+.btn-forest:hover { background: var(--forest-mid); transform: translateY(-2px); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--forest);
+  background: transparent;
+  border: 1.5px solid var(--cream-border);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-color 0.3s, background 0.3s, color 0.3s;
+}
+.btn-outline:hover { border-color: var(--forest); background: var(--forest); color: var(--white); }
+.btn-outline svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  background: rgba(196,122,58,0.08);
+  border: 1.5px solid rgba(196,122,58,0.2);
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, border-color 0.3s;
+}
+.btn-download:hover { background: rgba(196,122,58,0.16); border-color: var(--cinnamon); }
+.btn-download svg { width: 13px; height: 13px; stroke: currentColor; fill: none; stroke-width: 2.5; }
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  height: 68px;
+  padding: 0 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(17,10,4,0);
+  transition: background 0.45s, border-color 0.45s, box-shadow 0.45s;
+  border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+  background: rgba(17,10,4,0.94);
+  backdrop-filter: blur(18px);
+  border-color: rgba(196,122,58,0.1);
+  box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 300;
+  color: var(--cream);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+.nav-logo strong { font-weight: 700; color: var(--cinnamon); }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 0;
+}
+.nav-links > li {
+  position: relative;
+}
+.nav-links > li > a {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.73rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.65);
+  text-decoration: none;
+  padding: 0 1.1rem;
+  height: 68px;
+  transition: color 0.25s;
+}
+.nav-links > li > a:hover,
+.nav-links > li > a.active { color: var(--cream); }
+.nav-links > li > a .nav-arrow {
+  width: 10px; height: 10px;
+  stroke: currentColor; fill: none;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+  transition: transform 0.25s;
+}
+.nav-links > li:hover > a .nav-arrow { transform: rotate(180deg); }
+
+/* Dropdown */
+.nav-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%; left: 0;
+  min-width: 220px;
+  background: rgba(17,10,4,0.97);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(196,122,58,0.12);
+  border-top: 2px solid var(--cinnamon);
+  padding: 0.75rem 0;
+}
+.nav-links > li:hover .nav-dropdown { display: block; }
+.nav-dropdown a {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: rgba(245,237,228,0.55);
+  text-decoration: none;
+  padding: 0.55rem 1.25rem;
+  transition: color 0.2s, padding-left 0.2s;
+}
+.nav-dropdown a:hover { color: var(--cinnamon); padding-left: 1.6rem; }
+
+.nav-cta {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bark-dark);
+  background: var(--cinnamon);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--gold); }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+  padding: 4px;
+}
+.nav-toggle span {
+  display: block;
+  width: 22px; height: 1.5px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+/* ============================================
+   HERO — Dark Cinematic (V1 feel)
+   ============================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: linear-gradient(150deg, var(--bark-deep) 0%, var(--bark-mid) 50%, var(--cinnamon-deep) 100%);
+}
+
+.hero-bg-shape {
+  position: absolute;
+  top: 5%;
+  right: -8%;
+  width: 65vw;
+  height: 65vw;
+  max-width: 900px;
+  max-height: 900px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(139,69,19,0.18), rgba(92,46,14,0.1) 55%, transparent 70%);
+  animation: drift 10s ease-in-out infinite;
+}
+@keyframes drift {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.02); }
+}
+
+.hero-lines-v {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hero-lines-v::before, .hero-lines-v::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(196,122,58,0.07) 30%, rgba(196,122,58,0.07) 70%, transparent);
+}
+.hero-lines-v::before { left: 33%; }
+.hero-lines-v::after { left: 66%; }
+
+/* Right image panel */
+.hero-image-panel {
+  position: absolute;
+  top: 0; right: 0;
+  width: 45%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-image-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, var(--bark-deep) 0%, transparent 35%),
+              linear-gradient(to top, var(--bark-deep) 0%, transparent 25%);
+  z-index: 1;
+}
+.hero-img-fill {
+  width: 100%; height: 100%;
+  background: linear-gradient(165deg, #2D1A0D 0%, #5C2E0E 35%, #8B4513 65%, #C47A3A 100%);
+  position: relative;
+}
+.hero-img-fill::after {
+  content: 'Hero image — Kerinci Valley, Sumatra\AReplace with high-res photography';
+  white-space: pre;
+  position: absolute;
+  bottom: 2rem; right: 2rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.3);
+  text-align: right;
+  line-height: 1.7;
+  z-index: 2;
+}
+.hero-cert-badge {
+  position: absolute;
+  top: 2.5rem; right: 2.5rem;
+  z-index: 3;
+  background: rgba(17,10,4,0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196,122,58,0.2);
+  border-radius: var(--r-md);
+  padding: 0.75rem 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.hero-cert-badge .cert-icon { font-size: 1.3rem; }
+.hero-cert-badge .cert-text {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.5;
+}
+.hero-cert-badge .cert-sub {
+  font-size: 0.58rem;
+  color: var(--cinnamon-light);
+  font-weight: 400;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 8rem 3rem 5rem;
+  max-width: 60%;
+}
+
+.hero-eyebrow {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.3s both;
+}
+.hero-eyebrow::before {
+  content: '';
+  display: block;
+  width: 32px; height: 1.5px;
+  background: var(--cinnamon);
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
+  color: var(--cream);
+  margin-bottom: 1.2rem;
+  animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.5s both;
+}
+.hero h1 em { font-style: italic; color: var(--cinnamon); }
+
+.hero-tagline {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 1.8vw, 1.35rem);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--cinnamon-light);
+  margin-bottom: 1rem;
+  animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.65s both;
+}
+
+.hero-desc {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(245,237,228,0.5);
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.8s both;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  animation: fadeUp 1s cubic-bezier(0.16,1,0.3,1) 0.95s both;
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 2rem;
+  left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(245,237,228,0.3);
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: fadeUp 1s 1.4s both;
+}
+.scroll-line {
+  width: 40px; height: 1px;
+  background: linear-gradient(to right, rgba(196,122,58,0.6), transparent);
+}
+
+/* Hero stats bar */
+.hero-stats-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 3;
+  background: rgba(17,10,4,0.6);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid rgba(196,122,58,0.08);
+  padding: 1.25rem 3rem;
+  display: flex;
+  gap: 3rem;
+  align-items: center;
+}
+.hstat {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.hstat-num {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: var(--cream);
+}
+.hstat-lbl {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.35);
+}
+.hstat-divider {
+  width: 1px;
+  height: 28px;
+  background: rgba(196,122,58,0.15);
+}
+
+/* ============================================
+   ABOUT — Light clean
+   ============================================ */
+.about {
+  background: var(--white);
+  padding: var(--s-xxl) 3rem;
+}
+.about-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* Image stack */
+.about-photos {
+  position: relative;
+  padding-bottom: 3rem;
+}
+.about-photo-main {
+  width: 100%;
+  aspect-ratio: 3/4;
+  background: linear-gradient(150deg, #2D1A0D 0%, #5C2E0E 45%, var(--cinnamon) 100%);
+  border-radius: var(--r-lg);
+  position: relative;
+  overflow: hidden;
+}
+.about-photo-main::after {
+  content: 'Photo — Kerinci Valley, Sumatra';
+  position: absolute;
+  bottom: 1.25rem; left: 1.25rem; right: 1.25rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 0.65rem;
+}
+.about-photo-sec {
+  position: absolute;
+  bottom: 0; right: -2rem;
+  width: 52%;
+  aspect-ratio: 1/1;
+  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 60%, #7A9C5A 100%);
+  border-radius: var(--r-md);
+  border: 4px solid var(--white);
+  overflow: hidden;
+}
+.about-photo-sec::after {
+  content: 'Cinnamon harvest, Kerinci';
+  position: absolute;
+  bottom: 0.75rem; left: 0.75rem; right: 0.75rem;
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 0.5rem;
+}
+
+/* Location breadcrumb */
+.location-crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  background: var(--cream);
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  border: 1px solid var(--cream-border);
+}
+.location-crumb .sep { opacity: 0.35; }
+.location-crumb .current { color: var(--cinnamon); font-weight: 600; }
+
+.about-text h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  line-height: 1.2;
+  color: var(--bark-dark);
+  margin: 1rem 0 1.5rem;
+}
+.about-text h2 em { font-style: italic; color: var(--cinnamon); }
+
+.about-text .lead {
+  font-size: 1rem;
+  line-height: 1.78;
+  color: var(--text-muted);
+  margin-bottom: 1.25rem;
+}
+.about-text p {
+  font-size: 0.9rem;
+  line-height: 1.82;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.about-keypoints {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.akp {
+  padding: 0.9rem 1.1rem;
+  background: var(--cream);
+  border-radius: var(--r-md);
+  border-left: 3px solid var(--cream-border);
+  transition: border-color 0.3s;
+}
+.akp:hover { border-color: var(--cinnamon); }
+.akp .akp-lbl {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 0.25rem;
+}
+.akp .akp-val {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--bark-dark);
+  font-weight: 400;
+}
+
+/* Newsletter */
+.newsletter-box {
+  background: linear-gradient(135deg, var(--bark-dark) 0%, var(--cinnamon-deep) 100%);
+  border-radius: var(--r-lg);
+  padding: 1.75rem;
+  margin-top: 2rem;
+}
+.newsletter-box h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 0.4rem;
+}
+.newsletter-box p {
+  font-size: 0.8rem;
+  color: rgba(245,237,228,0.45);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+.newsletter-form {
+  display: flex;
+  gap: 0.5rem;
+}
+.newsletter-form input {
+  flex: 1;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  padding: 0.65rem 1rem;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(196,122,58,0.25);
+  border-radius: var(--r-sm);
+  color: var(--cream);
+  outline: none;
+  transition: border-color 0.25s;
+}
+.newsletter-form input::placeholder { color: rgba(245,237,228,0.25); }
+.newsletter-form input:focus { border-color: var(--cinnamon); }
+.newsletter-form button {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bark-dark);
+  background: var(--cinnamon);
+  border: none;
+  padding: 0.65rem 1.2rem;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.3s;
+}
+.newsletter-form button:hover { background: var(--gold); }
+
+.linkedin-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--white);
+  background: #0A66C2;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--r-sm);
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: background 0.3s;
+}
+.linkedin-btn:hover { background: #004182; }
+.linkedin-btn svg { width: 14px; height: 14px; fill: currentColor; }
+
+/* ============================================
+   PRODUCTS
+   ============================================ */
+.products {
+  background: var(--cream);
+  padding: var(--s-xxl) 3rem;
+}
+.products-inner { max-width: 1200px; margin: 0 auto; }
+
+/* Rainforest intro */
+.rainforest-intro {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+  margin-bottom: var(--s-xl);
+  padding-bottom: var(--s-xl);
+  border-bottom: 1px solid var(--cream-border);
+}
+.rf-image {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, var(--forest) 0%, #3D6640 40%, #7A9C5A 80%, #C4D9A0 100%);
+  border-radius: var(--r-lg);
+  position: relative;
+  overflow: hidden;
+}
+.rf-image::after {
+  content: 'Rainforest origin — Kerinci ecosystem';
+  position: absolute;
+  bottom: 1rem; left: 1rem; right: 1rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  border-top: 1px solid rgba(255,255,255,0.12);
+  padding-top: 0.6rem;
+}
+.rf-text h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--forest);
+  margin: 1rem 0 1.25rem;
+}
+.rf-text h2 em { font-style: italic; color: var(--cinnamon); }
+.rf-text p {
+  font-size: 0.9rem;
+  line-height: 1.82;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.products-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: var(--s-lg);
+}
+.products-heading h2 {
+  font-size: clamp(2rem, 3vw, 2.6rem);
+  color: var(--bark-dark);
+}
+.products-heading h2 em { font-style: italic; color: var(--cinnamon); }
+.products-heading p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  max-width: 280px;
+  text-align: right;
+  line-height: 1.65;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+.product-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--cream-border);
+  transition: transform 0.35s, box-shadow 0.35s;
+}
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 44px rgba(26,14,6,0.1);
+}
+.pc-img {
+  aspect-ratio: 3/2;
+  position: relative;
+  overflow: hidden;
+}
+.pc-img-1 { background: linear-gradient(135deg, #3D2510 0%, #8B4513 55%, #C47A3A 100%); }
+.pc-img-2 { background: linear-gradient(135deg, #5C3A20 0%, #A0522D 55%, #D4956A 100%); }
+.pc-img-3 { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, #7A9C5A 100%); }
+.pc-img::after {
+  content: attr(data-ph);
+  position: absolute;
+  bottom: 0.75rem; left: 0.75rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  background: rgba(0,0,0,0.2);
+  backdrop-filter: blur(4px);
+  padding: 0.2rem 0.55rem;
+  border-radius: 20px;
+}
+.pc-body { padding: 1.4rem 1.5rem; }
+.pc-type {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 0.4rem;
+}
+.product-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+}
+.product-card p {
+  font-size: 0.83rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 1.1rem;
+}
+.pc-link {
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: color 0.3s, gap 0.3s;
+}
+.pc-link:hover { color: var(--cinnamon); gap: 0.75rem; }
+.pc-link svg { width: 12px; height: 12px; stroke: currentColor; fill: none; stroke-width: 2; }
+
+/* ============================================
+   SUSTAINABILITY — Dark forest
+   ============================================ */
+.sustainability {
+  background: var(--forest);
+  padding: var(--s-xxl) 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.sustainability::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  right: -5%;
+  width: 50vw;
+  height: 50vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(74,107,74,0.35), transparent 70%);
+  pointer-events: none;
+}
+.sust-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+.sust-header {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 5rem;
+  align-items: end;
+  margin-bottom: var(--s-xl);
+  padding-bottom: var(--s-xl);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.sust-header h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--white);
+  line-height: 1.15;
+  margin-top: 1rem;
+}
+.sust-header h2 em { font-style: italic; color: var(--mint); }
+.sust-header p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.45);
+}
+
+.sust-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5px;
+  margin-bottom: var(--s-lg);
+}
+.sust-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.05);
+  padding: 2.2rem 1.8rem;
+  transition: background 0.35s;
+}
+.sust-card:hover { background: rgba(255,255,255,0.08); }
+.sust-icon {
+  font-size: 2rem;
+  margin-bottom: 1.1rem;
+  display: block;
+}
+.sust-card h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.65rem;
+}
+.sust-card p {
+  font-size: 0.83rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.4);
+}
+
+/* SSI badges */
+.ssi-strip {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding-top: var(--s-lg);
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.ssi-label {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  flex-shrink: 0;
+}
+.ssi-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(168,213,162,0.2);
+  border-radius: 30px;
+  transition: border-color 0.3s;
+}
+.ssi-badge:hover { border-color: rgba(168,213,162,0.5); }
+.ssi-badge .si { font-size: 1rem; }
+.ssi-badge .sn {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--mint);
+  letter-spacing: 0.04em;
+}
+
+/* ============================================
+   QUALITY — Light cream sections
+   ============================================ */
+.quality {
+  background: var(--white);
+  padding: var(--s-xxl) 3rem;
+}
+.quality-inner { max-width: 1200px; margin: 0 auto; }
+
+.quality-header {
+  max-width: 640px;
+  margin-bottom: var(--s-xl);
+}
+.quality-header h2 {
+  font-size: clamp(2rem, 3.2vw, 2.8rem);
+  color: var(--forest);
+  line-height: 1.2;
+  margin: 1rem 0 1.25rem;
+}
+.quality-header h2 em { font-style: italic; color: var(--cinnamon); }
+.quality-header p {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+
+/* Quality steps */
+.quality-steps {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: var(--s-xl);
+}
+.qs-card {
+  padding: 2rem;
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--r-lg);
+  transition: border-color 0.3s, box-shadow 0.3s;
+  position: relative;
+}
+.qs-card:hover {
+  border-color: var(--cinnamon);
+  box-shadow: 0 8px 28px rgba(196,122,58,0.08);
+}
+.qs-num {
+  font-family: var(--font-display);
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--cinnamon);
+  opacity: 0.12;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.qs-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+.qs-card h4 {
+  font-size: 1rem;
+  color: var(--forest);
+  margin-bottom: 0.6rem;
+  font-weight: 600;
+}
+.qs-card p {
+  font-size: 0.85rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+/* Downloads */
+.quality-downloads {
+  background: var(--cream);
+  border-radius: var(--r-lg);
+  padding: 2.5rem;
+  border: 1px solid var(--cream-border);
+}
+.quality-downloads h4 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.5rem;
+}
+.quality-downloads p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.65;
+}
+.downloads-list {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* ============================================
+   FACTORY — Dark section
+   ============================================ */
+.factory {
+  background: var(--bark-dark);
+  padding: var(--s-xxl) 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.factory::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: -5%;
+  width: 45vw;
+  height: 45vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(92,46,14,0.25), transparent 65%);
+  pointer-events: none;
+}
+.factory-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+
+.factory-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: start;
+  margin-bottom: var(--s-xl);
+  padding-bottom: var(--s-xl);
+  border-bottom: 1px solid rgba(196,122,58,0.1);
+}
+.factory-header h2 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  color: var(--cream);
+  line-height: 1.15;
+  margin: 1rem 0 1.25rem;
+}
+.factory-header h2 em { font-style: italic; color: var(--cinnamon); }
+.factory-history-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cinnamon);
+  margin-bottom: 1rem;
+}
+.factory-history-label::after {
+  content: '2009';
+  font-size: 1.8rem;
+  font-family: var(--font-display);
+  font-weight: 300;
+  letter-spacing: 0;
+  color: var(--cinnamon-light);
+  opacity: 0.5;
+}
+.factory-header p {
+  font-size: 0.9rem;
+  line-height: 1.82;
+  color: rgba(245,237,228,0.45);
+  margin-bottom: 1rem;
+}
+
+.factory-img {
+  aspect-ratio: 4/3;
+  background: linear-gradient(135deg, #3D2510 0%, #8B4513 40%, #C47A3A 75%, #E8A060 100%);
+  border-radius: var(--r-lg);
+  position: relative;
+  overflow: hidden;
+}
+.factory-img::after {
+  content: 'Photo — Cassia Co-op processing facility, Kerinci';
+  position: absolute;
+  bottom: 1rem; left: 1rem; right: 1rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.3);
+  border-top: 1px solid rgba(245,237,228,0.1);
+  padding-top: 0.65rem;
+}
+
+/* Factory process steps */
+.factory-process {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.factory-process::before {
+  content: '';
+  position: absolute;
+  top: 2.5rem;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(196,122,58,0.2), var(--cinnamon), rgba(196,122,58,0.2), transparent);
+}
+.fp-step {
+  text-align: center;
+  padding: 0 1.5rem 2rem;
+  position: relative;
+}
+.fp-icon-wrap {
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background: var(--bark-mid);
+  border: 1.5px solid rgba(196,122,58,0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s;
+}
+.fp-step:hover .fp-icon-wrap {
+  background: var(--cinnamon-deep);
+  border-color: var(--cinnamon);
+}
+.fp-step h4 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--cream);
+  margin-bottom: 0.5rem;
+}
+.fp-step p {
+  font-size: 0.8rem;
+  line-height: 1.7;
+  color: rgba(245,237,228,0.35);
+}
+
+/* ============================================
+   CONTACT — Nedspice-inspired clean B2B
+   ============================================ */
+.contact {
+  background: var(--cream);
+  padding: var(--s-xxl) 3rem;
+}
+.contact-inner { max-width: 1200px; margin: 0 auto; }
+
+.contact-top {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  line-height: 1.2;
+  color: var(--forest);
+  margin: 1rem 0 1.25rem;
+}
+.contact-info h2 em { font-style: italic; color: var(--cinnamon); }
+.contact-info .ci-desc {
+  font-size: 0.92rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.ci-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.ci-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.9rem 1.1rem;
+  background: var(--white);
+  border-radius: var(--r-md);
+  border: 1px solid var(--cream-border);
+  transition: border-color 0.25s;
+}
+.ci-row:hover { border-color: var(--cinnamon); }
+.ci-ico {
+  width: 34px; height: 34px;
+  border-radius: 7px;
+  background: var(--cream);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.ci-lbl {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  margin-bottom: 0.2rem;
+}
+.ci-val {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.ci-val a { color: inherit; text-decoration: none; transition: color 0.25s; }
+.ci-val a:hover { color: var(--cinnamon); }
+
+.ci-socials {
+  display: flex;
+  gap: 0.6rem;
+}
+.ci-soc {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--forest);
+  text-decoration: none;
+  padding: 0.5rem 0.9rem;
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--r-sm);
+  transition: all 0.25s;
+}
+.ci-soc:hover { background: var(--forest); color: var(--white); border-color: var(--forest); }
+.ci-soc.linkedin { color: #0A66C2; border-color: #0A66C2; }
+.ci-soc.linkedin:hover { background: #0A66C2; color: var(--white); }
+.ci-soc svg { width: 12px; height: 12px; fill: currentColor; }
+
+/* Contact form */
+.contact-form-wrap {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 2.5rem;
+  border: 1px solid var(--cream-border);
+  box-shadow: 0 8px 40px rgba(26,14,6,0.06);
+}
+.cf-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 400;
+  color: var(--forest);
+  margin-bottom: 0.35rem;
+}
+.cf-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1.75rem;
+  line-height: 1.6;
+}
+
+.form-2col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.fg {
+  margin-bottom: 1.1rem;
+}
+.fg label {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.45rem;
+}
+.fg input,
+.fg select,
+.fg textarea {
+  width: 100%;
+  padding: 0.72rem 1rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--text);
+  background: var(--cream);
+  border: 1.5px solid var(--cream-border);
+  border-radius: var(--r-sm);
+  outline: none;
+  appearance: none;
+  transition: border-color 0.25s, background 0.25s;
+}
+.fg input:focus,
+.fg select:focus,
+.fg textarea:focus {
+  border-color: var(--forest-light);
+  background: var(--white);
+}
+.fg textarea { resize: vertical; min-height: 100px; }
+.fg select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B6B6B' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+.form-submit {
+  width: 100%;
+  padding: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--forest);
+  border: none;
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+  margin-top: 0.5rem;
+}
+.form-submit:hover { background: var(--forest-light); transform: translateY(-1px); }
+.form-privacy {
+  font-size: 0.68rem;
+  color: var(--text-light);
+  text-align: center;
+  margin-top: 0.75rem;
+  line-height: 1.5;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer {
+  background: var(--bark-deep);
+  padding: 4.5rem 3rem 2rem;
+  border-top: 1px solid rgba(196,122,58,0.08);
+}
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand .f-logo {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 300;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+}
+.footer-brand .f-logo strong { font-weight: 700; color: var(--cinnamon); }
+.footer-brand .f-tagline {
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: rgba(245,237,228,0.3);
+  max-width: 280px;
+  margin-bottom: 1.5rem;
+}
+.f-socials {
+  display: flex;
+  gap: 0.5rem;
+}
+.f-socials a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  border: 1px solid rgba(245,237,228,0.1);
+  color: rgba(245,237,228,0.4);
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+.f-socials a:hover { background: rgba(255,255,255,0.08); color: var(--cream); border-color: rgba(196,122,58,0.3); }
+
+.footer-col h5 {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.25);
+  margin-bottom: 1rem;
+}
+.footer-col a {
+  display: block;
+  font-size: 0.85rem;
+  color: rgba(245,237,228,0.5);
+  text-decoration: none;
+  margin-bottom: 0.55rem;
+  transition: color 0.25s;
+}
+.footer-col a:hover { color: var(--cream); }
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(196,122,58,0.07);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.footer-bottom p { font-size: 0.68rem; color: rgba(245,237,228,0.2); }
+.footer-flags { display: flex; gap: 0.5rem; font-size: 1rem; opacity: 0.35; }
+
+/* ============================================
+   VERSION SWITCHER
+   ============================================ */
+.version-banner {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2000;
+  background: rgba(17,10,4,0.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(196,122,58,0.15);
+  border-radius: 10px;
+  padding: 0.6rem 0.8rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.vb-label { font-size: 0.58rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(245,237,228,0.25); margin-right: 0.2rem; }
+.vb-link {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  padding: 0.28rem 0.6rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: rgba(245,237,228,0.4);
+  transition: all 0.2s;
+}
+.vb-link.active { background: var(--cinnamon); color: var(--bark-dark); }
+.vb-link:not(.active):hover { color: var(--cream); background: rgba(255,255,255,0.07); }
+.vb-sep { width: 1px; height: 14px; background: rgba(196,122,58,0.15); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 1100px) {
+  .rainforest-intro { grid-template-columns: 1fr; gap: var(--s-lg); }
+  .hero-content { max-width: 70%; }
+  .hero-image-panel { width: 40%; }
+  .sust-grid { grid-template-columns: repeat(2, 1fr); }
+  .factory-process { grid-template-columns: repeat(2, 1fr); gap: var(--s-md); }
+  .factory-process::before { display: none; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-inner { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-content { max-width: 100%; padding-right: 3rem; }
+  .hero-image-panel { display: none; }
+  .hero-stats-bar { gap: 1.5rem; flex-wrap: wrap; }
+  .about-inner, .sust-header, .factory-header, .contact-top { grid-template-columns: 1fr; gap: var(--s-lg); }
+  .about-photos { max-width: 420px; }
+  .quality-steps { grid-template-columns: 1fr; }
+  .products-heading { flex-direction: column; gap: 0.75rem; }
+  .products-heading p { text-align: left; max-width: 100%; }
+  .contact-top { gap: var(--s-lg); }
+}
+
+@media (max-width: 768px) {
+  .nav { padding: 0 1.5rem; }
+  .nav-links, .nav-cta { display: none; }
+  .nav-toggle { display: flex; }
+  .about, .products, .sustainability, .quality, .factory, .contact { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+  .hero-content { padding: 6rem 1.5rem 4rem; }
+  .hero-stats-bar { padding: 1rem 1.5rem; gap: 1rem; }
+  .products-grid, .sust-grid { grid-template-columns: 1fr; }
+  .factory-process { grid-template-columns: 1fr 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 0.75rem; text-align: center; }
+  .form-2col { grid-template-columns: 1fr; }
+  .version-banner { bottom: 1rem; right: 1rem; left: 1rem; justify-content: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- VERSION SWITCHER -->
+<div class="version-banner">
+  <span class="vb-label">Version</span>
+  <a href="cassia-coop-landing.html" class="vb-link">01</a>
+  <div class="vb-sep"></div>
+  <a href="v2.html" class="vb-link">02</a>
+  <div class="vb-sep"></div>
+  <a href="v3.html" class="vb-link active">03</a>
+  <div class="vb-sep"></div>
+  <a href="index.html" class="vb-link">All</a>
+</div>
+
+<!-- ==========================================
+     NAVIGATION
+     ========================================== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo"><strong>Cassia</strong> Co-op</a>
+
+  <ul class="nav-links">
+    <li>
+      <a href="#about">About
+        <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="#about">Sumatra &rarr; Kerinci</a>
+        <a href="#about">Our Mission</a>
+        <a href="#about">Newsletter</a>
+      </div>
+    </li>
+    <li>
+      <a href="#products">Products
+        <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="#products">From the Rainforest</a>
+        <a href="#products">Product Portfolio</a>
+      </div>
+    </li>
+    <li>
+      <a href="#sustainability">Sustainability
+        <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="#sustainability">Meet our Farmers</a>
+        <a href="#sustainability">Traceability</a>
+        <a href="#sustainability">Collecting &amp; Seedlings</a>
+        <a href="#sustainability">SSI &amp; ISSI Member</a>
+      </div>
+    </li>
+    <li>
+      <a href="#quality">Quality
+        <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="#quality">Starts in the Field</a>
+        <a href="#quality">Own Laboratory</a>
+        <a href="#quality">External Testing</a>
+        <a href="#quality">Customer Feedback</a>
+        <a href="#quality">Certifications</a>
+      </div>
+    </li>
+    <li>
+      <a href="#factory">Factory
+        <svg class="nav-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown">
+        <a href="#factory">History &mdash; Since 2009</a>
+        <a href="#factory">Drying</a>
+        <a href="#factory">Crushing &amp; Grinding</a>
+        <a href="#factory">Production Sticks</a>
+      </div>
+    </li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ==========================================
+     HERO
+     ========================================== -->
+<section class="hero" id="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-lines-v"></div>
+
+  <div class="hero-image-panel">
+    <div class="hero-img-fill"></div>
+    <div class="hero-cert-badge">
+      <span class="cert-icon">🌿</span>
+      <div class="cert-text">
+        Rainforest Alliance
+        <div class="cert-sub">Certified Sustainable</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <p class="hero-eyebrow">Kerinci Valley &mdash; Sumatra, Indonesia</p>
+    <h1>Grown at<br>the <em>source</em>.</h1>
+    <p class="hero-tagline">Rooted in Fairness. Committed to Quality.</p>
+    <p class="hero-desc">Cassia Co-op is the first cinnamon processor established directly in Kerinci, one of Sumatra's most exceptional spice-growing regions. A cooperative built on transparency, from tree to shipment.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-dark">Request a Sample</a>
+      <a href="#about" class="btn-ghost-light">Discover More</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+
+  <div class="hero-stats-bar">
+    <div class="hstat">
+      <span class="hstat-num">1,000+</span>
+      <span class="hstat-lbl">Partner Farmers</span>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <span class="hstat-num">100%</span>
+      <span class="hstat-lbl">Kerinci Origin</span>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <span class="hstat-num">2009</span>
+      <span class="hstat-lbl">Founded at Source</span>
+    </div>
+    <div class="hstat-divider"></div>
+    <div class="hstat">
+      <span class="hstat-num">3</span>
+      <span class="hstat-lbl">Certifications</span>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     ABOUT US
+     ========================================== -->
+<section class="about" id="about">
+  <div class="about-inner">
+
+    <div class="about-photos reveal">
+      <div class="about-photo-main"></div>
+      <div class="about-photo-sec"></div>
+    </div>
+
+    <div class="about-text">
+      <div class="location-crumb reveal">
+        <span>Indonesia</span>
+        <span class="sep">/</span>
+        <span>Sumatra</span>
+        <span class="sep">/</span>
+        <span class="current">Kerinci Valley</span>
+      </div>
+      <p class="section-tag reveal">About Us</p>
+      <h2 class="reveal d1">Where exceptional<br><em>cinnamon</em> begins</h2>
+      <p class="lead reveal d2">Deep within the volcanic highlands of Sumatra lies the Kerinci Valley — a place where altitude, climate, and centuries of farming tradition converge to produce some of the world's most prized cassia cinnamon.</p>
+      <p class="reveal d3">Cassia Co-op was founded with a singular conviction: the best way to guarantee quality, fairness, and sustainability is to be present at the very origin. We set up our processing facility directly in Kerinci — making us the first operator of our kind in the region.</p>
+      <p class="reveal d3">Our cooperative model creates a direct, transparent link between over 1,000 local farming families and international buyers. No unnecessary intermediaries. Full traceability. A supply chain built on mutual trust.</p>
+
+      <div class="about-keypoints reveal d4">
+        <div class="akp">
+          <div class="akp-lbl">Region</div>
+          <div class="akp-val">Kerinci, Jambi</div>
+        </div>
+        <div class="akp">
+          <div class="akp-lbl">Established</div>
+          <div class="akp-val">Since 2009</div>
+        </div>
+        <div class="akp">
+          <div class="akp-lbl">Model</div>
+          <div class="akp-val">Cooperative</div>
+        </div>
+        <div class="akp">
+          <div class="akp-lbl">Export</div>
+          <div class="akp-val">Europe &amp; USA</div>
+        </div>
+      </div>
+
+      <div class="newsletter-box reveal d5">
+        <h4>Stay informed</h4>
+        <p>Receive our harvest updates, sustainability reports and market insights.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="your@email.com">
+          <button type="button">Subscribe</button>
+        </div>
+        <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener" class="linkedin-btn">
+          <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          Follow us on LinkedIn
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     PRODUCTS
+     ========================================== -->
+<section class="products" id="products">
+  <div class="products-inner">
+
+    <!-- Rainforest intro -->
+    <div class="rainforest-intro">
+      <div class="rf-image reveal"></div>
+      <div class="rf-text">
+        <p class="section-tag reveal">Products</p>
+        <h2 class="reveal d1">It all starts<br>with the <em>rainforest</em></h2>
+        <p class="reveal d2">The extraordinary quality of Kerinci cinnamon begins long before the harvest. Volcanic soils enriched by rainforest ecosystems, precise altitude, and a microclimate unique to this corner of Sumatra create the ideal conditions for cassia of exceptional character.</p>
+        <p class="reveal d2">Our partner farmers cultivate their plots within and around Kerinci's protected forest areas, following agroforestry practices that preserve biodiversity while producing cinnamon of the highest grade.</p>
+      </div>
+    </div>
+
+    <!-- Portfolio -->
+    <div class="products-heading">
+      <div>
+        <p class="section-tag reveal">Portfolio</p>
+        <h2 class="reveal d1">Our <em>Product Range</em></h2>
+      </div>
+      <p class="reveal d2">All products processed on-site in Kerinci and exported to your specifications.</p>
+    </div>
+
+    <div class="products-grid">
+      <div class="product-card reveal">
+        <div class="pc-img pc-img-1" data-ph="Broken &amp; Cleaned Cassia"></div>
+        <div class="pc-body">
+          <div class="pc-type">Cassia / Cinnamon</div>
+          <h3>Broken &amp; Cleaned</h3>
+          <p>Sorted and cleaned cassia bark ready for processing or grinding. Available in multiple grades.</p>
+          <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+      <div class="product-card reveal d1">
+        <div class="pc-img pc-img-2" data-ph="Cassia Sticks"></div>
+        <div class="pc-body">
+          <div class="pc-type">Cassia / Cinnamon</div>
+          <h3>Short &amp; Long Sticks</h3>
+          <p>Hand-selected premium sticks for retail, food service, and specialty markets worldwide.</p>
+          <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+      <div class="product-card reveal d2">
+        <div class="pc-img pc-img-3" data-ph="Patchouli Oil"></div>
+        <div class="pc-body">
+          <div class="pc-type">Essential Oils</div>
+          <h3>Patchouli Oil</h3>
+          <p>Pure essential oil distilled locally in Kerinci, capturing the richest aroma profiles of the region.</p>
+          <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     SUSTAINABILITY
+     ========================================== -->
+<section class="sustainability" id="sustainability">
+  <div class="sust-inner">
+    <div class="sust-header">
+      <div>
+        <p class="section-tag green reveal">Sustainability</p>
+        <h2 class="reveal d1">Built for<br><em>generations</em></h2>
+      </div>
+      <p class="reveal d2">Our approach to sustainability isn't a side programme — it is the operating model. From the seedlings in the ground to the certifications on our export documents, every decision reflects our commitment to the Kerinci ecosystem and the communities who depend on it.</p>
+    </div>
+
+    <div class="sust-grid">
+      <div class="sust-card reveal">
+        <span class="sust-icon">👨‍🌾</span>
+        <h4>Meet our Farmers</h4>
+        <p>We partner directly with over 1,000 farming families in Kerinci. Long-term relationships, fair prices, and shared knowledge — no anonymous middlemen in our chain.</p>
+      </div>
+      <div class="sust-card reveal d1">
+        <span class="sust-icon">🔍</span>
+        <h4>Traceability</h4>
+        <p>Every batch is traceable to the individual farmer who harvested it. QR-coded documentation accompanies each shipment, giving buyers complete visibility from field to facility.</p>
+      </div>
+      <div class="sust-card reveal d2">
+        <span class="sust-icon">🧺</span>
+        <h4>Collecting</h4>
+        <p>We manage our own collection network directly in Kerinci villages, cutting transit time and ensuring bark freshness. Controlled collection points with consistent grading on-site.</p>
+      </div>
+      <div class="sust-card reveal d1">
+        <span class="sust-icon">🌱</span>
+        <h4>Seedlings Programme</h4>
+        <p>Our cooperative distributes certified cassia seedlings to partner farmers — maintaining genetic quality, supporting replanting cycles, and protecting the long-term productivity of Kerinci's plantations.</p>
+      </div>
+      <div class="sust-card reveal d2">
+        <span class="sust-icon">🌍</span>
+        <h4>Community Impact</h4>
+        <p>Through our CSR programme we invest in local infrastructure, education initiatives, and health access — because a thriving cooperative depends on a thriving community.</p>
+      </div>
+      <div class="sust-card reveal d3">
+        <span class="sust-icon">🌲</span>
+        <h4>Ecosystem Protection</h4>
+        <p>We work within the boundaries of Kerinci's protected landscapes, applying agroforestry principles that enhance rather than deplete biodiversity across the valley.</p>
+      </div>
+    </div>
+
+    <div class="ssi-strip reveal">
+      <span class="ssi-label">Member of</span>
+      <div class="ssi-badge">
+        <span class="si">🌿</span>
+        <span class="sn">Sustainable Spices Initiative (SSI)</span>
+      </div>
+      <div class="ssi-badge">
+        <span class="si">🇮🇩</span>
+        <span class="sn">Indonesia Sustainable Spice Initiative (ISSI)</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
+     QUALITY
+     ========================================== -->
+<section class="quality" id="quality">
+  <div class="quality-inner">
+
+    <div class="quality-header">
+      <p class="section-tag reveal">Quality</p>
+      <h2 class="reveal d1">Quality that starts<br>in the <em>field</em></h2>
+      <p class="reveal d2">Our quality system is not limited to the factory floor. It begins the moment a seedling is planted and continues through every step of the supply chain — with independent verification at each stage.</p>
+    </div>
+
+    <div class="quality-steps">
+      <div class="qs-card reveal">
+        <div class="qs-num">01</div>
+        <span class="qs-icon">🌾</span>
+        <h4>Starts in the Field</h4>
+        <p>Our field agronomists work alongside farmers to ensure correct harvesting techniques, bark thickness standards, and moisture management at source — before the product ever reaches our facility.</p>
+      </div>
+      <div class="qs-card reveal d1">
+        <div class="qs-num">02</div>
+        <span class="qs-icon">🔬</span>
+        <h4>Own Laboratory</h4>
+        <p>Our on-site laboratory in Kerinci runs incoming inspections and in-process controls: oil content, moisture levels, microbiology, foreign matter, and organoleptic assessment at every production stage.</p>
+      </div>
+      <div class="qs-card reveal d1">
+        <div class="qs-num">03</div>
+        <span class="qs-icon">🏛️</span>
+        <h4>External Testing</h4>
+        <p>All export batches are independently tested by accredited third-party laboratories. Results are shared proactively with buyers as part of our shipment documentation package.</p>
+      </div>
+      <div class="qs-card reveal d2">
+        <div class="qs-num">04</div>
+        <span class="qs-icon">💬</span>
+        <h4>Improving by Customer Feedback</h4>
+        <p>Customer feedback is systematically reviewed by our quality team. We operate a closed-loop improvement process — complaints, suggestions and specifications are logged, acted upon, and reported back.</p>
+      </div>
+    </div>
+
+    <div class="quality-downloads reveal d1">
+      <h4>Certification Documents</h4>
+      <p>Download our current certification documents. Verified copies available on request.</p>
+      <div class="downloads-list">
+        <a href="#" class="btn-download">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          FSSC 22000 Certificate
+        </a>
+        <a href="#" class="btn-download">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Code of Conduct
+        </a>
+        <a href="#" class="btn-download">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Rainforest Alliance Cert.
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     FACTORY
+     ========================================== -->
+<section class="factory" id="factory">
+  <div class="factory-inner">
+
+    <div class="factory-header">
+      <div>
+        <div class="factory-history-label">
+          <span style="width:24px;height:1.5px;background:var(--cinnamon);display:block;"></span>
+          Factory — Since
+        </div>
+        <h2 class="reveal d1">Processing<br>at the <em>source</em></h2>
+        <p class="reveal d2">Since 2009, our processing facility has operated directly in Kerinci — the only one of its kind in the region. This proximity to origin is not a convenience; it is the foundation of everything we offer: freshness, speed, and an unbroken chain of custody.</p>
+        <p class="reveal d2">Our facility is FSSC 22000 certified and continuously upgraded based on customer requirements and technology advances in spice processing.</p>
+        <a href="#contact" class="btn-dark reveal d3" style="margin-top:1rem; display:inline-block;">Visit the Factory</a>
+      </div>
+      <div class="factory-img reveal d2"></div>
+    </div>
+
+    <div class="factory-process">
+      <div class="fp-step reveal">
+        <div class="fp-icon-wrap">☀️</div>
+        <h4>Drying</h4>
+        <p>Controlled solar and mechanical drying processes reduce moisture to precise levels, preserving volatile oils and preventing microbial growth.</p>
+      </div>
+      <div class="fp-step reveal d1">
+        <div class="fp-icon-wrap">⚙️</div>
+        <h4>Crushing</h4>
+        <p>Multi-stage crushing equipment breaks bark into consistent grades. Dust-free environment, calibrated to customer specifications.</p>
+      </div>
+      <div class="fp-step reveal d2">
+        <div class="fp-icon-wrap">🌀</div>
+        <h4>Grinding</h4>
+        <p>Precision grinding lines produce powder of specified particle size. In-line testing ensures oil content and colour standards are maintained throughout.</p>
+      </div>
+      <div class="fp-step reveal d3">
+        <div class="fp-icon-wrap">📏</div>
+        <h4>Production Sticks</h4>
+        <p>Hand and machine-rolled sticks produced in short and long formats to retail and food service specifications. Consistent diameter, tight curl, clean cuts.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     CONTACT
+     ========================================== -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+
+    <div class="contact-top">
+      <div class="contact-info">
+        <p class="section-tag reveal">Contact</p>
+        <h2 class="reveal d1">Let's work<br><em>together</em></h2>
+        <p class="ci-desc reveal d2">Whether you need samples, specifications, a price indication, or want to visit our facility in Kerinci — we're here. We respond within one business day.</p>
+
+        <div class="ci-details reveal d3">
+          <div class="ci-row">
+            <div class="ci-ico">📧</div>
+            <div>
+              <div class="ci-lbl">Sales &amp; Samples</div>
+              <div class="ci-val"><a href="mailto:sales@cassia.coop">sales@cassia.coop</a></div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">💬</div>
+            <div>
+              <div class="ci-lbl">General Inquiry</div>
+              <div class="ci-val"><a href="mailto:contact@cassia.coop">contact@cassia.coop</a></div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">📍</div>
+            <div>
+              <div class="ci-lbl">Processing Facility</div>
+              <div class="ci-val">Kerinci Valley, Jambi Province, Sumatra, Indonesia</div>
+            </div>
+          </div>
+          <div class="ci-row">
+            <div class="ci-ico">📞</div>
+            <div>
+              <div class="ci-lbl">Phone</div>
+              <div class="ci-val"><a href="tel:+62">+62 [to provide]</a></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ci-socials reveal d4">
+          <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener" class="ci-soc linkedin">
+            <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="#" class="ci-soc">
+            <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap reveal d2">
+        <div class="cf-title">Send us a message</div>
+        <p class="cf-sub">Fill in the form and our team will get back to you within one business day.</p>
+        <form>
+          <div class="form-2col">
+            <div class="fg">
+              <label>First Name</label>
+              <input type="text" placeholder="John">
+            </div>
+            <div class="fg">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Company</label>
+            <input type="text" placeholder="Your company name">
+          </div>
+          <div class="fg">
+            <label>Email Address</label>
+            <input type="email" placeholder="john@company.com">
+          </div>
+          <div class="form-2col">
+            <div class="fg">
+              <label>Phone (optional)</label>
+              <input type="tel" placeholder="+1 234 567 890">
+            </div>
+            <div class="fg">
+              <label>Country</label>
+              <input type="text" placeholder="Netherlands">
+            </div>
+          </div>
+          <div class="fg">
+            <label>Subject</label>
+            <select>
+              <option value="" disabled selected>Select a topic…</option>
+              <option>Request a Sample</option>
+              <option>Price Quotation</option>
+              <option>Visit the Factory</option>
+              <option>Sustainability Partnership</option>
+              <option>Quality Documentation</option>
+              <option>General Inquiry</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Message</label>
+            <textarea placeholder="Describe your enquiry, volume requirements, product specifications, or any questions you have…"></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message</button>
+          <p class="form-privacy">Your data is treated confidentially and will not be shared with third parties.</p>
+        </form>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     FOOTER
+     ========================================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="f-logo"><strong>Cassia</strong> Co-op</div>
+      <p class="f-tagline">The first cinnamon processor established directly in Kerinci, Sumatra. Committed to quality, fairness, and the communities that make it possible.</p>
+      <div class="f-socials">
+        <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+        <a href="#" title="Instagram">ig</a>
+        <a href="mailto:contact@cassia.coop" title="Email">@</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#about">About Us</a>
+      <a href="#sustainability">Sustainability</a>
+      <a href="#quality">Quality</a>
+      <a href="#factory">Factory</a>
+    </div>
+    <div class="footer-col">
+      <h5>Products</h5>
+      <a href="#products">Broken &amp; Cleaned</a>
+      <a href="#products">Cassia Sticks</a>
+      <a href="#products">Patchouli Oil</a>
+      <a href="#products">Full Portfolio</a>
+    </div>
+    <div class="footer-col">
+      <h5>Contact</h5>
+      <a href="mailto:sales@cassia.coop">sales@cassia.coop</a>
+      <a href="mailto:contact@cassia.coop">contact@cassia.coop</a>
+      <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="#contact">Contact Form</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Cassia Co-op. All rights reserved.</p>
+    <div class="footer-flags">
+      <span title="Indonesia">🇮🇩</span>
+      <span title="European Union">🇪🇺</span>
+      <span title="United States">🇺🇸</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ==========================================
+     SCRIPTS
+     ========================================== -->
+<script>
+// Reveal on scroll
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+// Smooth scroll (offset for fixed nav)
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const href = a.getAttribute('href');
+    if (href === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(href);
+    if (target) {
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 68, behavior: 'smooth' });
+    }
+  });
+});
+
+// Mobile nav
+const toggle = document.getElementById('navToggle');
+const mobileCSS = document.createElement('style');
+mobileCSS.textContent = `
+  .nav-links.open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    background: rgba(17,10,4,0.97);
+    backdrop-filter: blur(20px);
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    z-index: 999;
+    padding: 2rem;
+  }
+  .nav-links.open > li > a {
+    font-size: 1.1rem;
+    height: auto;
+    padding: 0.8rem 0;
+    opacity: 1;
+    color: rgba(245,237,228,0.7);
+  }
+  .nav-links.open .nav-dropdown { display: none !important; }
+`;
+document.head.appendChild(mobileCSS);
+toggle.addEventListener('click', () => {
+  document.querySelector('.nav-links').classList.toggle('open');
+});
+</script>
+</body>
+</html>

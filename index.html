@@ -435,6 +435,98 @@ body::after {
   color: rgba(245, 237, 228, 0.2);
 }
 
+/* Version 3 preview — dark cinematic + clean hybrid */
+.v3-preview {
+  background: linear-gradient(150deg, #110A04 0%, #2D1A0D 50%, #5C2E0E 100%);
+  position: relative;
+}
+.v3-preview .v3-nav {
+  position: absolute;
+  top: 1.5rem; left: 1.5rem; right: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.v3-preview .v3-nav .vn-logo {
+  width: 70px; height: 7px;
+  background: #C47A3A;
+  border-radius: 2px;
+  opacity: 0.8;
+}
+.v3-preview .v3-nav .vn-links {
+  display: flex;
+  gap: 8px;
+}
+.v3-preview .v3-nav .vn-link {
+  width: 30px; height: 5px;
+  background: #F5EDE4;
+  border-radius: 2px;
+  opacity: 0.2;
+}
+.v3-preview .v3-hero-left {
+  position: absolute;
+  bottom: 3rem; left: 1.5rem;
+  width: 50%;
+}
+.v3-preview .v3-hero-left .vhl-tag {
+  width: 80px; height: 5px;
+  background: #C47A3A;
+  border-radius: 2px;
+  margin-bottom: 0.7rem;
+  opacity: 0.7;
+}
+.v3-preview .v3-hero-left .vhl-h1 {
+  width: 160px; height: 14px;
+  background: #F5EDE4;
+  border-radius: 2px;
+  margin-bottom: 0.4rem;
+  opacity: 0.9;
+}
+.v3-preview .v3-hero-left .vhl-h2 {
+  width: 120px; height: 14px;
+  background: #C47A3A;
+  border-radius: 2px;
+  margin-bottom: 0.9rem;
+  opacity: 0.7;
+}
+.v3-preview .v3-hero-left .vhl-p {
+  width: 180px; height: 5px;
+  background: #D4A574;
+  border-radius: 2px;
+  margin-bottom: 0.4rem;
+  opacity: 0.25;
+}
+.v3-preview .v3-hero-left .vhl-btn {
+  margin-top: 0.7rem;
+  width: 80px; height: 22px;
+  background: #C47A3A;
+  border-radius: 3px;
+  opacity: 0.85;
+}
+.v3-preview .v3-hero-right {
+  position: absolute;
+  top: 0; right: 0;
+  width: 38%; height: 100%;
+  background: linear-gradient(165deg, #2D1A0D 0%, #8B4513 50%, #C47A3A 100%);
+  opacity: 0.45;
+}
+.v3-preview .v3-stats-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 32px;
+  background: rgba(17,10,4,0.6);
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+  gap: 1rem;
+}
+.v3-preview .v3-stats-bar .vsb {
+  width: 40px; height: 5px;
+  background: #F5EDE4;
+  border-radius: 2px;
+  opacity: 0.15;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hub-header { padding: 1.5rem; }
@@ -497,7 +589,7 @@ body::after {
   </a>
 
   <!-- VERSION 2 -->
-  <a href="v2.html" class="version-card">
+  <a href="v2.html" class="version-card" style="min-width:0">
     <div class="version-preview v2-preview">
       <div class="preview-nav-mock">
         <div class="pn-logo"></div>
@@ -541,12 +633,62 @@ body::after {
     </div>
   </a>
 
+  <!-- VERSION 3 -->
+  <a href="v3.html" class="version-card">
+    <div class="version-preview v3-preview">
+      <div class="v3-nav">
+        <div class="vn-logo"></div>
+        <div class="vn-links">
+          <div class="vn-link"></div>
+          <div class="vn-link"></div>
+          <div class="vn-link"></div>
+          <div class="vn-link"></div>
+          <div class="vn-link"></div>
+        </div>
+      </div>
+      <div class="v3-hero-right"></div>
+      <div class="v3-hero-left">
+        <div class="vhl-tag"></div>
+        <div class="vhl-h1"></div>
+        <div class="vhl-h2"></div>
+        <div class="vhl-p"></div>
+        <div class="vhl-p"></div>
+        <div class="vhl-btn"></div>
+      </div>
+      <div class="v3-stats-bar">
+        <div class="vsb"></div>
+        <div class="vsb"></div>
+        <div class="vsb"></div>
+        <div class="vsb"></div>
+      </div>
+    </div>
+    <div class="card-hover-overlay"></div>
+    <div class="version-info">
+      <div class="version-badge">
+        <span class="badge-num">3</span>
+        Version 03
+      </div>
+      <h2>Dark Cinematic<br>+ B2B Structure</h2>
+      <p class="version-desc">The best of both worlds: V1's dark cinematic hero meets V2's clean sectioned layout. Full nav with dropdowns (About / Product / Sustainability / Quality / Factory / Contact), detailed content architecture inspired by Nedspice.com, and downloadable certificates.</p>
+      <div class="version-tags">
+        <span class="tag">Hybrid dark/light</span>
+        <span class="tag">Dropdown nav</span>
+        <span class="tag">B2B structure</span>
+        <span class="tag">Cormorant + Inter</span>
+      </div>
+      <span class="version-link">
+        View Version 03
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </span>
+    </div>
+  </a>
+
 </div>
 
 <!-- FOOTER -->
 <footer class="hub-footer">
   <p>&copy; 2026 Cassia Co-op — Internal design review, not for distribution.</p>
-  <p>2 versions available</p>
+  <p>3 versions available</p>
 </footer>
 
 </body>
