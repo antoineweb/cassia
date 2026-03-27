@@ -635,6 +635,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   aspect-ratio: 16/9;
   background: var(--bark-dark);
   overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
   cursor: pointer;
 }
 
@@ -1363,7 +1365,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   <h2 class="reveal reveal-delay-1">A journey to the <em>source</em></h2>
   <p class="video-subtitle reveal reveal-delay-2">From the volcanic slopes of Mount Kerinci to your production line. Follow the bark from harvest to export.</p>
   
-  <div class="video-container reveal reveal-delay-3">
+  <div class="video-container reveal reveal-delay-3" onclick="window.open('https://youtu.be/xsHEqD3DYl0','_blank')" role="button" aria-label="Watch video on YouTube">
     <div class="video-placeholder">
       <div class="play-btn"></div>
       <span class="video-caption">Watch our story &mdash; 3 min</span>

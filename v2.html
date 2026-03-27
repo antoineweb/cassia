@@ -798,11 +798,61 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   margin-bottom: 1.1rem;
 }
 
-.story-gallery {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 1rem;
+.story-video {
+  position: relative;
+  aspect-ratio: 16/9;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(26,14,6,0.15);
+  align-self: start;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--forest) 0%, #3D6640 55%, #8FB87A 100%);
+}
+.story-video .sv-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: linear-gradient(135deg, rgba(26,14,6,0.72) 0%, rgba(45,74,45,0.55) 100%);
+  transition: background 0.35s;
+}
+.story-video:hover .sv-overlay {
+  background: linear-gradient(135deg, rgba(26,14,6,0.55) 0%, rgba(45,74,45,0.4) 100%);
+}
+.sv-play {
+  width: 68px; height: 68px;
+  border: 2px solid var(--cinnamon);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+}
+.sv-play::after {
+  content: '';
+  display: block;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 10px 0 10px 18px;
+  border-color: transparent transparent transparent var(--cinnamon);
+  margin-left: 4px;
+}
+.story-video:hover .sv-play {
+  background: var(--cinnamon);
+  transform: scale(1.1);
+}
+.story-video:hover .sv-play::after {
+  border-left-color: var(--white);
+}
+.sv-caption {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(245,237,228,0.5);
 }
 
 .gallery-img {
@@ -1540,10 +1590,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
 
-      <div class="story-gallery">
-        <div class="gallery-img gallery-img-1 reveal reveal-d1" data-label="Kerinci plantation aerial view"></div>
-        <div class="gallery-img gallery-img-2 reveal reveal-d2" data-label="Bark processing"></div>
-        <div class="gallery-img gallery-img-3 reveal reveal-d3" data-label="Farmer co-op meeting"></div>
+      <div class="story-video reveal reveal-d1" onclick="window.open('https://youtu.be/xsHEqD3DYl0','_blank')" role="button" aria-label="Watch on YouTube">
+        <div class="sv-overlay">
+          <div class="sv-play"></div>
+          <span class="sv-caption">Watch our story &mdash; Cassia Co-op</span>
+        </div>
       </div>
 
     </div>
