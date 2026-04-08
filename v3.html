@@ -578,10 +578,17 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 .about-photo-main {
   width: 100%;
   aspect-ratio: 3/4;
-  background: linear-gradient(150deg, #2D1A0D 0%, #5C2E0E 45%, var(--cinnamon) 100%);
+  background: url('asset/Map 1.png') center top/80% no-repeat;
+  border: 1px solid var(--cream-border);
   border-radius: var(--r-lg);
   position: relative;
   overflow: hidden;
+}
+.about-photo-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .about-photo-main::after {
   content: 'Photo — Kerinci Valley, Sumatra';
@@ -599,21 +606,13 @@ h4 { font-family: var(--font-body); font-weight: 600; }
   bottom: 0; right: -2rem;
   width: 52%;
   aspect-ratio: 1/1;
-  background: linear-gradient(135deg, var(--forest) 0%, var(--forest-light) 60%, #7A9C5A 100%);
+  background: url('asset/photo/Raw material (c).jpg') center/cover;
   border-radius: var(--r-md);
   border: 4px solid var(--white);
   overflow: hidden;
 }
 .about-photo-sec::after {
-  content: 'Cinnamon harvest, Kerinci';
-  position: absolute;
-  bottom: 0.75rem; left: 0.75rem; right: 0.75rem;
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  border-top: 1px solid rgba(255,255,255,0.15);
-  padding-top: 0.5rem;
+  content: none;
 }
 
 /* Location breadcrumb */
@@ -778,21 +777,25 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 }
 .rf-image {
   aspect-ratio: 4/3;
-  background: linear-gradient(135deg, var(--forest) 0%, #3D6640 40%, #7A9C5A 80%, #C4D9A0 100%);
+  background: url('asset/photo/Products multi (b).jpg') center/cover;
+  border: 1px solid var(--cream-border);
   border-radius: var(--r-lg);
   position: relative;
   overflow: hidden;
 }
 .rf-image::after {
-  content: 'Rainforest origin — Kerinci ecosystem';
+  content: 'Premium cinnamon products — Kerinci selection';
   position: absolute;
   bottom: 1rem; left: 1rem; right: 1rem;
   font-size: 0.58rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.45);
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 0.6rem;
+  color: var(--white);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(4px);
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 0.6rem 0.8rem;
+  border-radius: var(--r-sm);
 }
 .rf-text h2 {
   font-size: clamp(1.8rem, 3vw, 2.6rem);
@@ -848,9 +851,9 @@ h4 { font-family: var(--font-body); font-weight: 600; }
   position: relative;
   overflow: hidden;
 }
-.pc-img-1 { background: linear-gradient(135deg, #3D2510 0%, #8B4513 55%, #C47A3A 100%); }
-.pc-img-2 { background: linear-gradient(135deg, #5C3A20 0%, #A0522D 55%, #D4956A 100%); }
-.pc-img-3 { background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 55%, #7A9C5A 100%); }
+.pc-img-1 { background: url('asset/photo/Product Cut & Sifted (a).jpg') center/cover; }
+.pc-img-2 { background: url('asset/photo/Product Cut & Sifted (b).jpg') center/cover; }
+.pc-img-3 { background: url('asset/photo/Product powder (a).jpg') center/cover; }
 .pc-img::after {
   content: attr(data-ph);
   position: absolute;
@@ -1642,7 +1645,7 @@ h4 { font-family: var(--font-body); font-weight: 600; }
      NAVIGATION
      ========================================== -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo"><strong>Cassia</strong> Co-op</a>
+  <a href="#" class="nav-logo"><img src="asset/newlogo-black-background.png" alt="Cassia Co-op" style="height: 36px;"></a>
 
   <ul class="nav-links">
     <li>
@@ -1848,29 +1851,29 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 
     <div class="products-grid">
       <div class="product-card reveal">
-        <div class="pc-img pc-img-1" data-ph="Broken &amp; Cleaned Cassia"></div>
+        <div class="pc-img pc-img-1" data-ph="Cut & Sifted Cassia"></div>
         <div class="pc-body">
           <div class="pc-type">Cassia / Cinnamon</div>
-          <h3>Broken &amp; Cleaned</h3>
-          <p>Sorted and cleaned cassia bark ready for processing or grinding. Available in multiple grades.</p>
+          <h3>Cut & Sifted</h3>
+          <p>Premium cassia bark cut and sifted to optimal size for spice blends, teas, and food manufacturing.</p>
           <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
       <div class="product-card reveal d1">
-        <div class="pc-img pc-img-2" data-ph="Cassia Sticks"></div>
+        <div class="pc-img pc-img-2" data-ph="Premium Cassia Pieces"></div>
         <div class="pc-body">
           <div class="pc-type">Cassia / Cinnamon</div>
-          <h3>Short &amp; Long Sticks</h3>
-          <p>Hand-selected premium sticks for retail, food service, and specialty markets worldwide.</p>
+          <h3>Premium Pieces</h3>
+          <p>High-quality cassia bark pieces selected for consistent flavor and aroma, ideal for bulk processing.</p>
           <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
       <div class="product-card reveal d2">
-        <div class="pc-img pc-img-3" data-ph="Patchouli Oil"></div>
+        <div class="pc-img pc-img-3" data-ph="Cinnamon Powder"></div>
         <div class="pc-body">
-          <div class="pc-type">Essential Oils</div>
-          <h3>Patchouli Oil</h3>
-          <p>Pure essential oil distilled locally in Kerinci, capturing the richest aroma profiles of the region.</p>
+          <div class="pc-type">Ground Spices</div>
+          <h3>Fine Cinnamon Powder</h3>
+          <p>Finely ground cinnamon powder milled from premium Kerinci cassia bark for consistent quality.</p>
           <a href="#contact" class="pc-link">Request Sample <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
         </div>
       </div>
@@ -2017,8 +2020,12 @@ h4 { font-family: var(--font-body); font-weight: 600; }
         <p class="reveal d2">Our facility is FSSC 22000 certified and continuously upgraded based on customer requirements and technology advances in spice processing.</p>
         <a href="#contact" class="btn-dark reveal d3" style="margin-top:1rem; display:inline-block;">Visit the Factory</a>
       </div>
-      <div class="factory-img reveal d2" onclick="window.open('https://youtu.be/xsHEqD3DYl0','_blank')" role="button" aria-label="Watch video on YouTube">
-        <div class="fv-overlay">
+      <div class="factory-img reveal d2" id="factory-video-container" role="button" aria-label="Watch factory video">
+        <video id="factory-video" style="width: 100%; height: 100%; object-fit: cover; display: none;" controls>
+          <source src="https://www.youtube.com/watch?v=xsHEqD3DYl0" type="video/youtube">
+          Your browser does not support the video tag.
+        </video>
+        <div class="fv-overlay" id="video-overlay">
           <div class="fv-play"></div>
           <span class="fv-caption">Cassia Co-op &mdash; Processing at the Source</span>
         </div>
@@ -2169,7 +2176,7 @@ h4 { font-family: var(--font-body); font-weight: 600; }
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="f-logo"><strong>Cassia</strong> Co-op</div>
+      <div class="f-logo"><img src="asset/newlogo-black-background.png" alt="Cassia Co-op" style="height: 28px;"></div>
       <p class="f-tagline">The first cinnamon processor established directly in Kerinci, Sumatra. Committed to quality, fairness, and the communities that make it possible.</p>
       <div class="f-socials">
         <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener" title="LinkedIn">in</a>
@@ -2265,6 +2272,32 @@ mobileCSS.textContent = `
   .nav-links.open .nav-dropdown { display: none !important; }
 `;
 document.head.appendChild(mobileCSS);
+// Factory video playback
+const videoContainer = document.getElementById('factory-video-container');
+const video = document.getElementById('factory-video');
+const videoOverlay = document.getElementById('video-overlay');
+
+if (videoContainer && video && videoOverlay) {
+  videoContainer.addEventListener('click', function() {
+    if (video.style.display === 'none') {
+      // Show video and hide overlay
+      video.style.display = 'block';
+      videoOverlay.style.display = 'none';
+      
+      // For YouTube video, we need to use iframe embed
+      video.innerHTML = `
+        <iframe 
+          src="https://www.youtube.com/embed/xsHEqD3DYl0?autoplay=1&rel=0" 
+          style="width: 100%; height: 100%; border: none;"
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      `;
+    }
+  });
+}
+
 toggle.addEventListener('click', () => {
   document.querySelector('.nav-links').classList.toggle('open');
 });

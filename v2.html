@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -197,6 +197,19 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   height: 1.5px;
   background: var(--forest);
   transition: all 0.3s;
+  transform-origin: center;
+}
+
+.nav-toggle.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.nav-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(7px, -6px);
 }
 
 /* ============================================
@@ -330,7 +343,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .hero-img-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(160deg, var(--forest) 0%, var(--forest-mid) 40%, #3D6640 70%, #6B8F50 100%);
+  background-image: url('asset/photo/Trees (b).JPG');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
   overflow: hidden;
 }
@@ -338,8 +354,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   content: '';
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 30%;
-  background: linear-gradient(to top, rgba(31,59,35,0.5), transparent);
+  height: 70%;
+  background: linear-gradient(to top, rgba(31,59,35,0.9), rgba(31,59,35,0.6), transparent);
 }
 
 .hero-img-overlay {
@@ -426,19 +442,22 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .about-img-main {
   width: 100%;
   aspect-ratio: 3/4;
-  background: linear-gradient(150deg, var(--forest-pale) 0%, var(--forest-mid) 60%, var(--forest) 100%);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('asset/photo/Production Crushing (a).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   border-radius: var(--radius-lg);
   position: relative;
   overflow: hidden;
 }
 .about-img-main::after {
-  content: 'Photo: Team in Kerinci Valley';
+  content: 'Photo: Production Crushing Process';
   position: absolute;
   bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
+  color: #fff;
   border-top: 1px solid rgba(255,255,255,0.15);
   padding-top: 0.7rem;
 }
@@ -447,12 +466,15 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   position: absolute;
   bottom: -2rem;
   right: -2rem;
-  width: 55%;
-  aspect-ratio: 1/1;
-  background: linear-gradient(135deg, var(--cinnamon-pale) 0%, #D4956A 60%, var(--cinnamon) 100%);
+  width: 180px;
+  height: 180px;
   border-radius: var(--radius-md);
   border: 4px solid var(--white);
   overflow: hidden;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('asset/photo/Raw material (c).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 .about-img-secondary::after {
   content: 'Photo: Cinnamon bark';
@@ -461,8 +483,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   font-size: 0.6rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: rgba(61,37,16,0.5);
-  border-top: 1px solid rgba(61,37,16,0.1);
+  color: #fff;
+  border-top: 1px solid rgba(255,255,255,0.15);
   padding-top: 0.5rem;
 }
 
@@ -693,6 +715,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   background: linear-gradient(135deg, var(--forest) 0%, var(--forest-mid) 50%, #7A9C5A 100%);
 }
 
+.product-img-cut-sifted {
+  background-image: url('asset/photo/Product Cut & Sifted (a).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.product-img-powder {
+  background-image: url('asset/photo/Product powder (a).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.product-img-tea-bag {
+  background-image: url('asset/photo/Product Tea Bag Cut (a).jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .product-img::after {
   content: attr(data-label);
   position: absolute;
@@ -700,8 +743,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   font-size: 0.6rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-  background: rgba(0,0,0,0.2);
+  color: #fff;
+  background: rgba(0,0,0,0.7);
   backdrop-filter: blur(4px);
   padding: 0.25rem 0.6rem;
   border-radius: 20px;
@@ -765,94 +808,175 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   margin: 0 auto;
 }
 
-.story-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: start;
+.story-layout-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-.story-text h2 {
-  font-size: clamp(2rem, 3.5vw, 3rem);
-  line-height: 1.2;
+.story-headline {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  line-height: 1.1;
   color: var(--forest);
-  margin: 1.2rem 0 1.8rem;
+  margin: 3rem 0 4rem;
+  max-width: 800px;
 }
-.story-text h2 em { font-style: italic; color: var(--cinnamon); }
 
-.story-text .story-lead {
+.story-headline em { 
+  font-style: italic; 
+  color: var(--cinnamon); 
+}
+
+.story-supporting {
   font-family: var(--font-display);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-style: italic;
-  line-height: 1.65;
+  line-height: 1.6;
   color: var(--text);
-  margin-bottom: 1.5rem;
-  border-left: 3px solid var(--cinnamon);
-  padding-left: 1.2rem;
+  margin: 0 0 5rem;
+  max-width: 600px;
+  border-left: none;
+  padding-left: 0;
+  position: relative;
 }
 
-.story-text p {
-  font-size: 0.92rem;
-  line-height: 1.85;
-  color: var(--text-muted);
-  margin-bottom: 1.1rem;
-}
-
-.story-video {
+.story-video-centered {
   position: relative;
   aspect-ratio: 16/9;
-  border-radius: var(--radius-md);
+  width: 85%;
+  max-width: 900px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(26,14,6,0.15);
-  align-self: start;
+  box-shadow: 0 25px 80px rgba(26,14,6,0.2);
   cursor: pointer;
   background: linear-gradient(135deg, var(--forest) 0%, #3D6640 55%, #8FB87A 100%);
+  margin: 0 0 2rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.story-video .sv-overlay {
+
+.story-video-centered:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 35px 100px rgba(26,14,6,0.25);
+}
+
+.sv-overlay-centered {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 1.25rem;
-  background: linear-gradient(135deg, rgba(26,14,6,0.72) 0%, rgba(45,74,45,0.55) 100%);
-  transition: background 0.35s;
+  gap: 1.5rem;
+  background: linear-gradient(135deg, rgba(26,14,6,0.75) 0%, rgba(45,74,45,0.6) 100%);
+  transition: background 0.3s ease;
 }
-.story-video:hover .sv-overlay {
-  background: linear-gradient(135deg, rgba(26,14,6,0.55) 0%, rgba(45,74,45,0.4) 100%);
+
+.story-video-centered:hover .sv-overlay-centered {
+  background: linear-gradient(135deg, rgba(26,14,6,0.85) 0%, rgba(45,74,45,0.7) 100%);
 }
-.sv-play {
-  width: 68px; height: 68px;
-  border: 2px solid var(--cinnamon);
+
+.sv-play-centered {
+  width: 80px;
+  height: 80px;
+  background: var(--cinnamon);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 25px rgba(196,122,58,0.3);
 }
-.sv-play::after {
+
+.sv-play-centered::after {
   content: '';
   display: block;
   width: 0; height: 0;
   border-style: solid;
-  border-width: 10px 0 10px 18px;
-  border-color: transparent transparent transparent var(--cinnamon);
-  margin-left: 4px;
+  border-width: 12px 0 12px 20px;
+  border-color: transparent transparent transparent var(--white);
+  margin-left: 5px;
 }
-.story-video:hover .sv-play {
+
+.story-video-centered:hover .sv-play-centered {
   background: var(--cinnamon);
-  transform: scale(1.1);
+  transform: scale(1.15);
+  box-shadow: 0 12px 35px rgba(196,122,58,0.4), 0 0 30px rgba(196,122,58,0.2);
 }
-.story-video:hover .sv-play::after {
+
+.story-video-centered:hover .sv-play-centered::after {
   border-left-color: var(--white);
 }
-.sv-caption {
+
+.story-video-caption {
   font-family: var(--font-body);
-  font-size: 0.65rem;
-  letter-spacing: 0.22em;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(245,237,228,0.5);
+  color: var(--text-muted);
+  margin: 0 0 4rem;
+}
+
+.story-cta-centered {
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .story {
+    padding: var(--space-xl) 2rem;
+  }
+  
+  .story-layout-centered {
+    max-width: 100%;
+  }
+  
+  .story-headline {
+    font-size: clamp(2rem, 6vw, 3rem);
+    margin: 2rem 0 3rem;
+  }
+  
+  .story-supporting {
+    font-size: 1.1rem;
+    margin: 0 0 3rem;
+  }
+  
+  .story-video-centered {
+    width: 95%;
+    margin: 0 0 1.5rem;
+  }
+  
+  .sv-play-centered {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .sv-play-centered::after {
+    border-width: 10px 0 10px 16px;
+    margin-left: 4px;
+  }
+  
+  .story-video-caption {
+    font-size: 0.75rem;
+    margin: 0 0 3rem;
+  }
+  
+  .story-cta-centered {
+    gap: 1rem;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .story-cta-centered .btn-primary,
+  .story-cta-centered .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+  }
 }
 
 .gallery-img {
@@ -922,35 +1046,150 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--text-light);
-  flex-shrink: 0;
+  text-align: center;
+  display: block;
+  margin: 0 auto 2.5rem auto;
 }
 
 .certs-list {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
   flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .cert-item {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  padding: 0.6rem 1.1rem;
-  border: 1px solid var(--cream-border);
-  border-radius: 30px;
-  transition: border-color 0.3s, box-shadow 0.3s;
+  gap: 0.8rem;
+  padding: 0.8rem 1.2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(31, 59, 35, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(31, 59, 35, 0.04);
 }
 .cert-item:hover {
-  border-color: var(--forest-pale);
-  box-shadow: 0 3px 12px rgba(31,59,35,0.07);
+  border-color: rgba(31, 59, 35, 0.2);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 24px rgba(31, 59, 35, 0.08);
+  transform: translateY(-2px) scale(1.02);
 }
-.cert-item .cert-icon { font-size: 1.1rem; }
-.cert-item .cert-name {
-  font-size: 0.72rem;
+.cert-thumbnail {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 4px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 3px rgba(31, 59, 35, 0.08);
+}
+.cert-name {
+  font-size: 0.75rem;
   font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.cert-item:hover .cert-thumbnail {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(31, 59, 35, 0.12);
+}
+
+.cert-item:hover .cert-name {
   color: var(--forest);
-  letter-spacing: 0.05em;
+}
+
+/* Certificate Modal */
+.cert-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.cert-modal-content {
+  position: relative;
+  background-color: var(--white);
+  margin: 4% auto;
+  padding: 0;
+  border-radius: 20px;
+  width: 90%;
+  max-width: 900px;
+  max-height: 92vh;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+}
+
+.cert-modal-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 2rem;
+  color: var(--text-light);
+  font-size: 2.5rem;
+  font-weight: 300;
+  cursor: pointer;
+  z-index: 1001;
+  transition: color 0.3s, transform 0.3s;
+  background: rgba(255, 255, 255, 0.9);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+}
+
+.cert-modal-close:hover {
+  color: var(--text);
+  transform: scale(1.1);
+}
+
+#cert-modal-image {
+  width: 100%;
+  height: auto;
+  max-height: 65vh;
+  object-fit: contain;
+  background: linear-gradient(135deg, #fafcf9 0%, #f5f8f3 100%);
+  padding: 3rem;
+  box-sizing: border-box;
+}
+
+.cert-modal-info {
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--white);
+}
+
+.cert-modal-info h3 {
+  font-size: 1.75rem;
+  color: var(--forest);
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.cert-modal-info p {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* ============================================
@@ -1322,6 +1561,56 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   .certs { padding: 2rem 1.5rem; }
   .footer { padding: 3rem 1.5rem 1.5rem; }
 
+  .certs-list {
+    gap: 1rem;
+    max-width: 100%;
+  }
+  
+  .cert-item {
+    padding: 0.6rem 1rem;
+    gap: 0.6rem;
+  }
+  
+  .cert-thumbnail {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .cert-name {
+    font-size: 0.7rem;
+  }
+  
+  .cert-modal-content {
+    width: 95%;
+    margin: 10% auto;
+    max-height: 85vh;
+  }
+  
+  .cert-modal-close {
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    width: 40px;
+    height: 40px;
+  }
+  
+  #cert-modal-image {
+    padding: 2rem;
+    max-height: 50vh;
+  }
+  
+  .cert-modal-info {
+    padding: 2rem;
+  }
+  
+  .cert-modal-info h3 {
+    font-size: 1.5rem;
+  }
+  
+  .cert-modal-info p {
+    font-size: 0.9rem;
+  }
+
   .products-header { flex-direction: column; gap: 1rem; }
   .products-header .ph-right { text-align: left; max-width: 100%; }
   .products-grid { grid-template-columns: 1fr; }
@@ -1354,7 +1643,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
      NAVIGATION
      ========================================== -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo"><em>Cassia</em> Co-op</a>
+  <a href="#" class="nav-logo">
+    <img src="asset/newlogo-white-background.png" alt="Cassia Co-op" style="height: 40px; width: auto;">
+  </a>
   <ul class="nav-links">
     <li><a href="#about">About Us</a></li>
     <li><a href="#promises">Promises</a></li>
@@ -1410,7 +1701,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
       <div class="hero-img-overlay">
-        <p class="hero-img-caption">Hero image — Cinnamon plantation, Kerinci Valley, Sumatra</p>
+        <p class="hero-img-caption">Cinnamon plantation, Kerinci Valley, Sumatra</p>
       </div>
     </div>
   </div>
@@ -1527,11 +1818,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
     <div class="products-grid">
       <div class="product-card reveal">
-        <div class="product-img product-img-v1" data-label="Broken &amp; Cleaned Cassia"></div>
+        <div class="product-img product-img-cut-sifted" data-label="Cut &amp; Sifted Cassia"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
-          <h3>Broken &amp; Cleaned</h3>
-          <p>Sorted and cleaned cassia bark, ready for further processing or grinding. Available in various grades to match your exact specifications.</p>
+          <h3>Cut &amp; Sifted</h3>
+          <p>Premium cut and sifted cassia bark, perfectly sized for consistent flavor extraction. Ideal for spice blends, food manufacturing, and culinary applications.</p>
           <a href="#contact" class="product-link">
             Request Sample
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1539,11 +1830,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
       <div class="product-card reveal reveal-d1">
-        <div class="product-img product-img-v2" data-label="Cassia Sticks"></div>
+        <div class="product-img product-img-powder" data-label="Cassia Powder"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
-          <h3>Short &amp; Long Sticks</h3>
-          <p>Premium cassia sticks, hand-selected for consistency. Perfect for retail packaging, food service, and specialty markets worldwide.</p>
+          <h3>Powder</h3>
+          <p>Fine-ground cassia powder with consistent particle size and rich aroma. Perfect for baking, beverages, confectionery, and food manufacturing applications.</p>
           <a href="#contact" class="product-link">
             Request Sample
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1551,11 +1842,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
       <div class="product-card reveal reveal-d2">
-        <div class="product-img product-img-v3" data-label="Patchouli Essential Oil"></div>
+        <div class="product-img product-img-tea-bag" data-label="Tea Bag Cut Cassia"></div>
         <div class="product-info">
-          <div class="product-type">Essential Oils</div>
-          <h3>Patchouli Oil</h3>
-          <p>Kerinci is the world's largest producer of high-quality patchouli. Our pure essential oil is distilled locally, capturing the richest aroma profiles.</p>
+          <div class="product-type">Cassia / Cinnamon</div>
+          <h3>Tea Bag Cut</h3>
+          <p>Specially cut cassia pieces optimized for tea bag applications. Consistent size ensures perfect infusion rate and flavor release for beverage manufacturers.</p>
           <a href="#contact" class="product-link">
             Request Sample
             <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -1572,29 +1863,42 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
      ========================================== -->
 <section class="story" id="story">
   <div class="story-inner">
-    <div class="story-layout">
+    <div class="story-layout-centered">
 
-      <div class="story-text">
-        <p class="section-tag reveal">Our Story</p>
-        <h2 class="reveal reveal-d1">Born in Kerinci,<br>built for the <em>world</em></h2>
-        <p class="story-lead reveal reveal-d2">"We didn't choose the location. The cinnamon chose it, thousands of years ago. We just set up where it makes sense."</p>
-        <p class="reveal reveal-d3">The Kerinci Valley in Jambi Province, Sumatra, is home to the world's most extensive cassia cinnamon plantations. Blessed with volcanic soil, a tropical climate, and generations of farming expertise, this region produces cinnamon unlike anywhere else on earth.</p>
-        <p class="reveal reveal-d3">Cassia Co-op was founded on a simple but radical idea: what if the processor, the quality controller, and the exporter were all based right here, at the source? What if the farmers and the company shared the same land, the same community, and the same future?</p>
-        <p class="reveal reveal-d4">Today, we partner with over 1,000 local farming families, manage our own FSSC 22000 certified processing facility, and export directly to clients in Europe, the United States, and across Asia Pacific — all without a single unnecessary intermediary.</p>
-        <div class="story-cta reveal reveal-d4">
-          <a href="#contact" class="btn-primary">Get in Touch</a>
-          <a href="#products" class="btn-secondary">
-            View Products
-            <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
+      <!-- Label -->
+      <p class="section-tag reveal">Our Story</p>
+      
+      <!-- Headline -->
+      <h2 class="story-headline reveal reveal-d1">Born in Kerinci,<br>built for the <em>world</em></h2>
+      
+      <!-- Supporting Text -->
+      <p class="story-supporting reveal reveal-d2">"We didn't choose the location. The cinnamon chose it, thousands of years ago. We just set up where it makes sense."</p>
+      
+      <!-- Video Container -->
+      <div class="story-video-centered reveal reveal-d3" id="video-container">
+        <iframe 
+          id="youtube-embed"
+          src="https://www.youtube.com/embed/xsHEqD3DYl0?enablejsapi=1&rel=0&showinfo=0&modestbranding=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen
+          style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: var(--radius-lg); display: none;">
+        </iframe>
+        <div class="sv-overlay-centered" id="video-overlay" onclick="playVideo()">
+          <div class="sv-play-centered"></div>
         </div>
       </div>
-
-      <div class="story-video reveal reveal-d1" onclick="window.open('https://youtu.be/xsHEqD3DYl0','_blank')" role="button" aria-label="Watch on YouTube">
-        <div class="sv-overlay">
-          <div class="sv-play"></div>
-          <span class="sv-caption">Watch our story &mdash; Cassia Co-op</span>
-        </div>
+      
+      <!-- Video Caption -->
+      <p class="story-video-caption reveal reveal-d4">Watch our story — 3 min</p>
+      
+      <!-- CTA Buttons -->
+      <div class="story-cta-centered reveal reveal-d4">
+        <a href="#contact" class="btn-primary">Get in Touch</a>
+        <a href="#products" class="btn-secondary">
+          View Products
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
 
     </div>
@@ -1607,26 +1911,23 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 <section class="certs">
   <div class="certs-inner">
     <span class="certs-label">Certified by</span>
-    <div class="certs-list">
-      <div class="cert-item">
-        <span class="cert-icon">🌿</span>
-        <span class="cert-name">Rainforest Alliance</span>
-      </div>
-      <div class="cert-item">
-        <span class="cert-icon">🔒</span>
-        <span class="cert-name">FSSC 22000</span>
-      </div>
-      <div class="cert-item">
-        <span class="cert-icon">🌱</span>
-        <span class="cert-name">Organic Certified</span>
-      </div>
-      <div class="cert-item">
-        <span class="cert-icon">🤝</span>
-        <span class="cert-name">SSI Member</span>
-      </div>
+    <div class="certs-list" id="certificates-container">
+      <!-- Certificates will be dynamically loaded here -->
     </div>
   </div>
 </section>
+
+<!-- Certificate Modal -->
+<div id="certificate-modal" class="cert-modal">
+  <div class="cert-modal-content">
+    <span class="cert-modal-close" onclick="closeCertificateModal()">&times;</span>
+    <img id="cert-modal-image" src="" alt="Certificate">
+    <div class="cert-modal-info">
+      <h3 id="cert-modal-title"></h3>
+      <p id="cert-modal-description"></p>
+    </div>
+  </div>
+</div>
 
 <!-- ==========================================
      CONTACT
@@ -1725,7 +2026,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 <footer class="footer">
   <div class="footer-inner">
     <div class="footer-brand">
-      <div class="footer-logo"><em>Cassia</em> Co-op</div>
+      <div class="footer-logo"><img src="asset/newlogo-black-background.png" alt="Cassia Co-op" style="height: 32px;"></div>
       <p class="footer-tagline">The first cinnamon processor established directly in Kerinci Valley — growing fairly, sourcing responsibly, exporting transparently.</p>
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/cassia-co-op/" target="_blank" rel="noopener" title="LinkedIn">in</a>
@@ -1800,31 +2101,353 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
 // Mobile nav
 const toggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('.nav-links');
 const mobileStyle = document.createElement('style');
 mobileStyle.textContent = `
+  /* Move nav-links out of nav container when open */
   .nav-links.open {
     display: flex !important;
     flex-direction: column;
     position: fixed;
-    inset: 0;
-    background: rgba(250,247,242,0.97);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(250,247,242,0.98);
     backdrop-filter: blur(20px);
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 2rem;
-    z-index: 999;
+    z-index: 9999;
+    padding: 5rem 2rem 2rem;
+    overflow-y: auto;
+    list-style: none;
+    margin: 0;
+    /* Break out of nav container */
+    transform: none !important;
+    clip: none !important;
+    clip-path: none !important;
+  }
+  .nav-links.open li {
+    text-align: center;
+    width: 100%;
   }
   .nav-links.open a {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
     opacity: 1;
     letter-spacing: 0.05em;
+    color: var(--forest);
+    text-align: center;
+    display: block;
+    padding: 1rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  .nav-links.open a:hover {
+    color: var(--cinnamon);
+  }
+  
+  /* Add contact button to mobile menu */
+  .nav-links.open .contact-mobile {
+    display: inline-flex !important;
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    background: var(--forest);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+  }
+  .nav-links.open .contact-mobile:hover {
+    background: var(--forest-mid);
+    transform: translateY(-2px);
+  }
+  
+  /* Mobile menu close button */
+  .mobile-menu-close {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    width: 40px;
+    height: 40px;
+    background: var(--forest);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10000;
+    transition: all 0.3s ease;
+  }
+  .mobile-menu-close:hover {
+    background: var(--forest-mid);
+    transform: scale(1.1);
+  }
+  .mobile-menu-close::before,
+  .mobile-menu-close::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+  }
+  .mobile-menu-close::before {
+    transform: rotate(45deg);
+  }
+  .mobile-menu-close::after {
+    transform: rotate(-45deg);
+  }
+  
+  /* Hide hamburger when menu is open */
+  .nav-toggle.active {
+    opacity: 0;
+    pointer-events: none;
   }
 `;
 document.head.appendChild(mobileStyle);
 
+// Create close button
+const closeButton = document.createElement('button');
+closeButton.className = 'mobile-menu-close';
+closeButton.setAttribute('aria-label', 'Close menu');
+closeButton.style.display = 'none';
+document.body.appendChild(closeButton);
+
 toggle.addEventListener('click', () => {
-  document.querySelector('.nav-links').classList.toggle('open');
+  navLinks.classList.toggle('open');
+  toggle.classList.toggle('active');
+  
+  // Show/hide close button and add contact button
+  if (navLinks.classList.contains('open')) {
+    closeButton.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
+    
+    // Move nav-links to body to break out of nav container
+    if (navLinks.parentNode.classList.contains('nav')) {
+      document.body.appendChild(navLinks);
+    }
+    
+    // Add contact button to mobile menu if not exists
+    if (!navLinks.querySelector('.contact-mobile')) {
+      const contactLi = document.createElement('li');
+      const contactLink = document.createElement('a');
+      contactLink.href = '#contact';
+      contactLink.className = 'contact-mobile';
+      contactLink.textContent = 'Get in Touch';
+      contactLi.appendChild(contactLink);
+      navLinks.appendChild(contactLi);
+    }
+  } else {
+    closeButton.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Move nav-links back to nav container
+    const nav = document.querySelector('.nav');
+    if (nav && !nav.contains(navLinks)) {
+      nav.insertBefore(navLinks, nav.querySelector('.nav-contact'));
+    }
+  }
 });
+
+// Close menu when clicking close button
+closeButton.addEventListener('click', () => {
+  navLinks.classList.remove('open');
+  toggle.classList.remove('active');
+  closeButton.style.display = 'none';
+  document.body.style.overflow = '';
+  
+  // Move nav-links back to nav container
+  const nav = document.querySelector('.nav');
+  if (nav && !nav.contains(navLinks)) {
+    nav.insertBefore(navLinks, nav.querySelector('.nav-contact'));
+  }
+});
+
+// Close menu when clicking on links
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    toggle.classList.remove('active');
+    closeButton.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Move nav-links back to nav container
+    const nav = document.querySelector('.nav');
+    if (nav && !nav.contains(navLinks)) {
+      nav.insertBefore(navLinks, nav.querySelector('.nav-contact'));
+    }
+  });
+});
+
+// Close menu when clicking outside (only on desktop)
+document.addEventListener('click', (e) => {
+  if (navLinks.classList.contains('open') && 
+      !navLinks.contains(e.target) && 
+      !toggle.contains(e.target) &&
+      !closeButton.contains(e.target) &&
+      window.innerWidth > 768) {
+    navLinks.classList.remove('open');
+    toggle.classList.remove('active');
+    closeButton.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Move nav-links back to nav container
+    const nav = document.querySelector('.nav');
+    if (nav && !nav.contains(navLinks)) {
+      nav.insertBefore(navLinks, nav.querySelector('.nav-contact'));
+    }
+  }
+});
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768 && navLinks.classList.contains('open')) {
+    navLinks.classList.remove('open');
+    toggle.classList.remove('active');
+    closeButton.style.display = 'none';
+    document.body.style.overflow = '';
+    
+    // Move nav-links back to nav container
+    const nav = document.querySelector('.nav');
+    if (nav && !nav.contains(navLinks)) {
+      nav.insertBefore(navLinks, nav.querySelector('.nav-contact'));
+    }
+  }
+});
+
+// Video play function
+function playVideo() {
+  const overlay = document.getElementById('video-overlay');
+  const iframe = document.getElementById('youtube-embed');
+  const container = document.getElementById('video-container');
+  
+  // Hide overlay
+  overlay.style.display = 'none';
+  
+  // Show and play video
+  iframe.style.display = 'block';
+  iframe.src = iframe.src + '&autoplay=1';
+  
+  // Prevent container clicks
+  container.onclick = null;
+}
+
+// Certificate loading system
+const certificateFiles = [
+  'ORG USA.png',
+  'RA banner.jpg', 
+  'FSSC Black.png',
+  'ORG EU black.jpg',
+  'FSA.png',
+  'KLBD.png',
+  'UEBT_Label-Horizontal.png'
+];
+
+// Smart certificate name extraction
+function extractCertificateName(filename) {
+  const nameMap = {
+    'ORG USA.png': 'Organic USDA',
+    'RA banner.jpg': 'Rainforest Alliance',
+    'FSSC Black.png': 'FSSC 22000',
+    'ORG EU black.jpg': 'Organic EU',
+    'FSA.png': 'Food Safety Alliance',
+    'KLBD.png': 'KLBD Kosher',
+    'UEBT_Label-Horizontal.png': 'UEBT'
+  };
+  
+  return nameMap[filename] || 'Certified Standard';
+}
+
+// Generate certificate description
+function generateCertificateDescription(name) {
+  const descriptions = {
+    'Organic USDA': 'USDA National Organic Program certification - highest standard for organic agriculture',
+    'Rainforest Alliance': 'Sustainable agriculture and biodiversity conservation certification',
+    'FSSC 22000': 'Food Safety System Certification - internationally recognized standard',
+    'Organic EU': 'European Union organic certification standards',
+    'Food Safety Alliance': 'Comprehensive food safety and quality management certification',
+    'KLBD Kosher': 'Kosher certification for global Jewish markets',
+    'UEBT': 'Union for Ethical BioTrade - sourcing with respect'
+  };
+  
+  return descriptions[name] || 'Professional certification demonstrating compliance with industry standards';
+}
+
+// Load certificates dynamically
+function loadCertificates() {
+  const container = document.getElementById('certificates-container');
+  if (!container) return;
+  
+  // Create certificate items
+  certificateFiles.forEach(filename => {
+    const name = extractCertificateName(filename);
+    const description = generateCertificateDescription(name);
+    
+    const certItem = document.createElement('div');
+    certItem.className = 'cert-item reveal';
+    certItem.onclick = () => openCertificateModal({
+      file: filename,
+      name: name,
+      description: description
+    });
+    
+    certItem.innerHTML = `
+      <img src="asset/photo/certificate/${filename}" alt="${name}" class="cert-thumbnail">
+      <span class="cert-name">${name}</span>
+    `;
+    
+    container.appendChild(certItem);
+  });
+  
+  // Re-observe new elements for scroll reveal
+  document.querySelectorAll('.cert-item.reveal').forEach(el => observer.observe(el));
+}
+
+// Certificate modal functions
+function openCertificateModal(certificate) {
+  const modal = document.getElementById('certificate-modal');
+  const modalImage = document.getElementById('cert-modal-image');
+  const modalTitle = document.getElementById('cert-modal-title');
+  const modalDescription = document.getElementById('cert-modal-description');
+  
+  modalImage.src = `asset/photo/certificate/${certificate.file}`;
+  modalImage.alt = certificate.name;
+  modalTitle.textContent = certificate.name;
+  modalDescription.textContent = certificate.description;
+  
+  modal.style.display = 'block';
+  document.body.style.overflow = 'hidden';
+}
+
+function closeCertificateModal() {
+  const modal = document.getElementById('certificate-modal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modal = document.getElementById('certificate-modal');
+  if (event.target === modal) {
+    closeCertificateModal();
+  }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeCertificateModal();
+  }
+});
+
+// Initialize certificates when DOM is loaded
+document.addEventListener('DOMContentLoaded', loadCertificates);
 </script>
 
 </body>

@@ -155,15 +155,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   padding: 1rem 3rem;
 }
 .nav-logo {
-  font-family: var(--font-display);
-  font-size: 1.6rem;
-  font-weight: 300;
-  color: var(--cream);
   text-decoration: none;
-  letter-spacing: 0.05em;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: inline-block;
 }
-.nav-logo strong {
-  font-weight: 700;
+
+.logo-image {
+  height: 40px;
+  width: auto;
+  display: block;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-logo:hover {
+  transform: translateY(-2px);
+}
+
+.nav-logo:hover .logo-image {
+  filter: drop-shadow(0 4px 20px rgba(196, 122, 58, 0.3));
 }
 .nav-links {
   display: flex;
@@ -179,21 +189,30 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   color: var(--cream);
   text-decoration: none;
   opacity: 0.7;
-  transition: opacity 0.3s;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
+  padding: 4px 0;
 }
 .nav-links a::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
+  bottom: 0;
+  left: 50%;
   width: 0;
-  height: 1px;
-  background: var(--cinnamon-glow);
-  transition: width 0.3s;
+  height: 2px;
+  background: linear-gradient(90deg, var(--cinnamon-glow), var(--gold-light));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
 }
-.nav-links a:hover { opacity: 1; }
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { 
+  opacity: 1; 
+  color: var(--cinnamon-glow);
+  transform: translateY(-1px);
+}
+.nav-links a:hover::after { 
+  width: 100%; 
+  box-shadow: 0 0 10px rgba(196, 122, 58, 0.5);
+}
 
 .nav-cta {
   font-family: var(--font-body);
@@ -253,6 +272,74 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
     var(--cinnamon-deep) 100%
   );
   overflow: hidden;
+}
+
+/* Spotlight Layer */
+.hero-spotlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: all 0.2s ease-out;
+  
+  /* Image inside spotlight */
+  background: url('asset/photo/Raw material (a).jpg') center/cover no-repeat;
+  
+  /* Blur for balanced focus and diffusion */
+  filter: blur(6px);
+  
+  /* Natural cinematic light with focus core gradient mask */
+  mask-image: radial-gradient(
+    circle 500px at calc(var(--x, 50%)*0.85) calc(var(--y, 50%)*1.05),
+    rgba(255,255,255,0.20) 0%,
+    rgba(255,255,255,0.14) 15%,
+    rgba(255,255,255,0.12) 30%,
+    rgba(255,255,255,0.06) 50%,
+    rgba(255,255,255,0.02) 70%,
+    transparent 100%
+  );
+  
+  -webkit-mask-image: radial-gradient(
+    circle 500px at calc(var(--x, 50%)*0.85) calc(var(--y, 50%)*1.05),
+    rgba(255,255,255,0.20) 0%,
+    rgba(255,255,255,0.14) 15%,
+    rgba(255,255,255,0.12) 30%,
+    rgba(255,255,255,0.06) 50%,
+    rgba(255,255,255,0.02) 70%,
+    transparent 100%
+  );
+}
+
+/* Secondary light layer to break perfection */
+.hero-spotlight::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: 
+    linear-gradient(120deg,
+      rgba(196,122,58,0.08),
+      transparent 60%
+    ),
+    radial-gradient(circle 500px at calc(var(--x, 50%)*0.85) calc(var(--y, 50%)*1.05),
+      rgba(196,122,58,0.08),
+      transparent 70%
+    ),
+    radial-gradient(circle 900px at calc(var(--x, 50%)*0.85) calc(var(--y, 50%)*1.05),
+      rgba(196,122,58,0.10),
+      transparent 70%
+    );
+  mix-blend-mode: soft-light;
+}
+
+.hero:hover .hero-spotlight {
+  opacity: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
 }
 
 /* Decorative circle */
@@ -459,18 +546,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 .manifesto-img-placeholder {
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--cinnamon-deep) 0%, var(--bark-medium) 100%);
+  background: url('asset/photo/Production Crushing (a).jpg') center/cover no-repeat;
   position: relative;
   overflow: hidden;
-}
-.manifesto-img-placeholder::before {
-  content: '🌿';
-  position: absolute;
-  font-size: 8rem;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.3;
 }
 .manifesto-img-placeholder .placeholder-text {
   position: absolute;
@@ -482,9 +560,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--cream);
-  opacity: 0.6;
-  border-top: 1px solid rgba(255,255,255,0.2);
-  padding-top: 1rem;
+  background: rgba(26, 14, 6, 0.85);
+  padding: 1rem;
+  border-top: 2px solid var(--cinnamon-glow);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  backdrop-filter: blur(10px);
 }
 
 .manifesto-stats {
@@ -806,50 +886,96 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 .products-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  gap: 48px;
+  margin-top: var(--space-xl);
 }
 
 .product-card {
-  background: var(--bark-medium);
-  padding: var(--space-lg) var(--space-md);
-  position: relative;
+  background: rgba(20, 10, 5, 0.95);
+  border-radius: 16px;
   overflow: hidden;
-  transition: background 0.4s;
+  padding: 0;
+  position: relative;
+  transition: all 0.3s ease;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196,122,58,0.1);
 }
 .product-card:hover {
-  background: var(--cinnamon-deep);
+  transform: translateY(-8px);
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  background: rgba(25, 12, 6, 0.98);
+  border-color: rgba(196,122,58,0.2);
+}
+
+.product-image {
+  width: 100%;
+  height: 280px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.product-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(
+    to top,
+    rgba(20,10,5,0.6),
+    transparent 100%
+  );
+  pointer-events: none;
 }
 
 .product-icon {
-  font-size: 3rem;
-  margin-bottom: var(--space-md);
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
   display: block;
-  transition: transform 0.4s;
+  transition: transform 0.3s ease;
 }
 .product-card:hover .product-icon {
   transform: scale(1.15) rotate(-5deg);
 }
 
+.product-card:hover .product-image {
+  transform: scale(1.04);
+}
+
+.product-content {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
 .product-card h3 {
-  font-size: 1.4rem;
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
   color: var(--cream);
-  margin-bottom: var(--space-xs);
-  font-weight: 400;
+  margin-bottom: var(--space-sm);
+  font-weight: 300;
+  line-height: 1.2;
 }
 
 .product-card .product-type {
-  font-size: 0.65rem;
-  letter-spacing: 0.2em;
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   color: var(--cinnamon-glow);
   margin-bottom: var(--space-sm);
+  font-weight: 500;
 }
 
 .product-card p {
-  font-size: 0.85rem;
-  line-height: 1.7;
-  color: var(--cinnamon-light);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--cream);
   opacity: 0.7;
+  margin-bottom: 0;
 }
 
 /* ============================================
@@ -864,13 +990,13 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--space-lg);
+  text-align: center;
 }
 
 .cert-text {
-  flex: 1;
+  max-width: 600px;
 }
 .cert-text h3 {
   font-size: 1.8rem;
@@ -884,37 +1010,47 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 }
 
 .cert-badges {
-  display: flex;
-  gap: var(--space-md);
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2rem;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 3rem;
 }
 
 .cert-badge {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: var(--white);
-  border: 2px solid rgba(26, 14, 6, 0.08);
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.95);
+  border: 1px solid rgba(196,122,58,0.15);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.55rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--cinnamon-deep);
-  text-align: center;
-  line-height: 1.3;
-  padding: 0.5rem;
-  transition: all 0.3s;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+  position: relative;
+  overflow: hidden;
 }
+
 .cert-badge:hover {
-  border-color: var(--cinnamon-glow);
-  transform: translateY(-3px);
-  box-shadow: 0 5px 20px rgba(196, 122, 58, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+  border-color: rgba(196,122,58,0.3);
 }
+
+.cert-badge img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.cert-badge:hover img {
+  transform: scale(1.05);
+}
+
 .cert-badge-icon {
   font-size: 1.3rem;
   margin-bottom: 0.3rem;
@@ -937,15 +1073,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   background: radial-gradient(ellipse at 70% 50%, rgba(74, 107, 74, 0.3), transparent 60%);
 }
 
+.origin-content {
+  flex: 1;
+  max-width: 550px;
+}
+
 .origin-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
+  display: flex;
   align-items: center;
-  position: relative;
-  z-index: 1;
+  gap: 4rem;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .origin h2 {
@@ -976,14 +1114,116 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 }
 
 .origin-map {
+  width: 50%;
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+  transform: rotate(-1deg);
+  transition: all 0.4s ease;
+  background: rgba(196, 122, 58, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(196, 122, 58, 0.15);
+}
+
+.origin-map:hover {
+  transform: rotate(-1deg) scale(1.03);
+  box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+  border-color: rgba(196,122,58,0.25);
+}
+
+.origin-map img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.origin-map:hover img {
+  transform: scale(1.02);
+}
+
+.map-link {
+  display: block;
   position: relative;
-  background: rgba(0,0,0,0.2);
-  border-radius: 8px;
-  aspect-ratio: 4/3;
+  text-decoration: none;
+  color: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+
+/* Image Modal */
+.image-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.modal-content img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.close-modal {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: var(--cream);
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: all 0.3s ease;
+  background: rgba(0, 0, 0, 0.5);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.close-modal:hover {
+  color: var(--cinnamon-glow);
+  background: rgba(0, 0, 0, 0.8);
+  transform: scale(1.1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .map-placeholder {
@@ -1175,6 +1415,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 
+@media (max-width: 1024px) {
+  .origin-inner { 
+    flex-direction: column; 
+    text-align: center; 
+    gap: 3rem; 
+  }
+  .origin-content {
+    max-width: 100%;
+  }
+  .origin-map {
+    width: 100%;
+    max-width: 420px;
+    transform: none;
+  }
+  .origin-map:hover {
+    transform: scale(1.03);
+  }
+}
+
 @media (max-width: 768px) {
   .nav { padding: 1rem 1.5rem; }
   .nav-links { display: none; }
@@ -1185,15 +1444,33 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   .hero-scroll { display: none; }
   .hero-actions { flex-direction: column; align-items: flex-start; }
   
+  /* Disable spotlight on mobile for touch devices */
+  .hero-spotlight { display: none; }
+  
   section { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
   
   .pillars { grid-template-columns: 1fr; }
   .chain-steps { grid-template-columns: 1fr; }
-  .products-grid { grid-template-columns: 1fr; }
+  .products-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 32px;
+  }
   .products-header { flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+  .product-image { height: 220px; }
+  .product-content { padding: 1.5rem; }
   
+  .origin-inner { 
+    gap: 2.5rem; 
+  }
   .cert-inner { flex-direction: column; text-align: center; }
-  .cert-badges { justify-content: center; }
+  .cert-badges { 
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .cert-badge {
+    width: 100px;
+    height: 100px;
+  }
   
   .manifesto-stats { flex-direction: column; gap: var(--space-md); }
   
@@ -1254,7 +1531,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
      NAVIGATION
      ========================================== -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-logo"><strong>Cassia</strong> Co-op</a>
+  <a href="#" class="nav-logo">
+    <img src="asset/newlogo-black-background.png" alt="Cassia Co-op" class="logo-image" />
+  </a>
   <ul class="nav-links">
     <li><a href="#story">Our Story</a></li>
     <li><a href="#process">Process</a></li>
@@ -1273,6 +1552,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 <section class="hero" id="hero">
   <div class="hero-circle"></div>
   <div class="hero-lines"></div>
+  <div class="hero-spotlight"></div>
   
   <div class="hero-content">
     <p class="hero-eyebrow">Kerinci Valley, Sumatra &mdash; Est. at the Source</p>
@@ -1319,7 +1599,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
     
     <div class="manifesto-visual reveal reveal-delay-2">
       <div class="manifesto-img-placeholder">
-        <div class="placeholder-text">Photo: Cinnamon harvest in Kerinci Valley &mdash; replace with Patrick's content</div>
+        <div class="placeholder-text">Production: Cinnamon crushing process at our Kerinci facility</div>
       </div>
     </div>
   </div>
@@ -1365,8 +1645,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
   <h2 class="reveal reveal-delay-1">A journey to the <em>source</em></h2>
   <p class="video-subtitle reveal reveal-delay-2">From the volcanic slopes of Mount Kerinci to your production line. Follow the bark from harvest to export.</p>
   
-  <div class="video-container reveal reveal-delay-3" onclick="window.open('https://youtu.be/xsHEqD3DYl0','_blank')" role="button" aria-label="Watch video on YouTube">
-    <div class="video-placeholder">
+  <div class="video-container reveal reveal-delay-3" id="video-player" role="button" aria-label="Watch video">
+    <div class="video-placeholder" id="video-placeholder">
       <div class="play-btn"></div>
       <span class="video-caption">Watch our story &mdash; 3 min</span>
     </div>
@@ -1420,22 +1700,28 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
     
     <div class="products-grid">
       <div class="product-card reveal">
-        <span class="product-icon">🪵</span>
-        <div class="product-type">Cassia / Cinnamon</div>
-        <h3>Broken &amp; Cleaned</h3>
-        <p>Sorted and cleaned cassia bark, ready for further processing or grinding. Available in various grades to match your specifications.</p>
+        <div class="product-image" style="background-image: url('asset/photo/Product Cut & Sifted (a).jpg');"></div>
+        <div class="product-content">
+          <div class="product-type">Cassia / Cinnamon</div>
+          <h3>Cut & Sifted</h3>
+          <p>Premium cut and sifted cassia bark, perfectly sized for industrial use. Consistent quality and flavor profile.</p>
+        </div>
       </div>
       <div class="product-card reveal reveal-delay-1">
-        <span class="product-icon">📏</span>
-        <div class="product-type">Cassia / Cinnamon</div>
-        <h3>Short &amp; Long Sticks</h3>
-        <p>Premium cassia sticks, hand-selected for consistency. Perfect for retail packaging, food service, and specialty markets.</p>
+        <div class="product-image" style="background-image: url('asset/photo/Product Tea Bag Cut (a).jpg');"></div>
+        <div class="product-content">
+          <div class="product-type">Cassia / Cinnamon</div>
+          <h3>Tea Bag Cut</h3>
+          <p>Specially cut for tea bag applications. Uniform particle size ensures consistent brewing and flavor extraction.</p>
+        </div>
       </div>
       <div class="product-card reveal reveal-delay-2">
-        <span class="product-icon">🌿</span>
-        <div class="product-type">Essential Oils</div>
-        <h3>Patchouli Oil</h3>
-        <p>Kerinci is also the world's largest producer of high-quality patchouli. Pure essential oil, distilled locally.</p>
+        <div class="product-image" style="background-image: url('asset/photo/Product powder (a).jpg');"></div>
+        <div class="product-content">
+          <div class="product-type">Cassia / Cinnamon</div>
+          <h3>Ground Powder</h3>
+          <p>Fine cinnamon powder for food manufacturing and spice blends. Excellent solubility and rich aroma.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1452,20 +1738,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
     </div>
     <div class="cert-badges">
       <div class="cert-badge reveal reveal-delay-1">
-        <span class="cert-badge-icon">🌿</span>
-        Rainforest<br>Alliance
+        <img src="asset/photo/certificate/FSA.png" alt="FSA Certification">
       </div>
       <div class="cert-badge reveal reveal-delay-2">
-        <span class="cert-badge-icon">🔒</span>
-        FSSC<br>22000
+        <img src="asset/photo/certificate/FSSC Black.png" alt="FSSC 22000 Certification">
       </div>
       <div class="cert-badge reveal reveal-delay-3">
-        <span class="cert-badge-icon">🌱</span>
-        Organic<br>Certified
+        <img src="asset/photo/certificate/KLBD.png" alt="KLBD Certification">
       </div>
       <div class="cert-badge reveal reveal-delay-4">
-        <span class="cert-badge-icon">🤝</span>
-        SSI<br>Member
+        <img src="asset/photo/certificate/ORG EU white.jpg" alt="Organic EU Certification">
+      </div>
+      <div class="cert-badge reveal reveal-delay-5">
+        <img src="asset/photo/certificate/ORG USA.png" alt="Organic USA Certification">
+      </div>
+      <div class="cert-badge reveal reveal-delay-6">
+        <img src="asset/photo/certificate/UEBT_Label-Horizontal.png" alt="UEBT Certification">
+      </div>
+      <div class="cert-badge reveal reveal-delay-7">
+        <img src="asset/photo/certificate/RA banner.jpg" alt="Rainforest Alliance Certification">
       </div>
     </div>
   </div>
@@ -1487,11 +1778,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
     </div>
     
     <div class="origin-map reveal reveal-delay-2">
-      <div class="map-ping"></div>
-      <div class="map-placeholder">
-        <div class="map-icon">🗺️</div>
-        <p>Kerinci Valley, Jambi Province<br>Sumatra, Indonesia</p>
-      </div>
+      <button class="map-link" onclick="openImageModal('asset/Map 1.png')" title="Click to view full size map">
+        <img src="asset/Map 1.png" alt="Origin Map" />
+      </button>
     </div>
   </div>
 </section>
@@ -1517,7 +1806,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
 <footer class="footer">
   <div class="footer-inner">
     <div>
-      <div class="footer-brand"><strong>Cassia</strong> Co-op</div>
+      <div class="footer-brand"><img src="asset/newlogo-black-background.png" alt="Cassia Co-op" style="height: 32px;"></div>
       <p class="footer-tagline">The first and only cassia processor established in Kerinci, the heart of the world's largest cinnamon plantation. Built with sustainability at its core.</p>
     </div>
     <div class="footer-col">
@@ -1554,16 +1843,69 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 300; }
      SCRIPTS
      ========================================== -->
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
+// Simple reveal animations
+const reveals = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+}, { threshold: 0.1 });
 
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+reveals.forEach(reveal => revealObserver.observe(reveal));
+
+// Hero Spotlight Effect
+const hero = document.querySelector('.hero');
+const spotlight = document.querySelector('.hero-spotlight');
+let isHovering = false;
+let mouseX = 0;
+let mouseY = 0;
+let currentX = 0;
+let currentY = 0;
+
+// Update spotlight position with delayed, natural movement
+function updateSpotlightPosition() {
+  if (!isHovering) return;
+  
+  // Slower easing for light drifting effect (not locked to cursor)
+  currentX += (mouseX - currentX) * 0.05;
+  currentY += (mouseY - currentY) * 0.05;
+  
+  // Update CSS variables for mask and glow
+  const xPercent = (currentX / hero.offsetWidth) * 100;
+  const yPercent = (currentY / hero.offsetHeight) * 100;
+  
+  spotlight.style.setProperty('--x', `${xPercent}%`);
+  spotlight.style.setProperty('--y', `${yPercent}%`);
+  
+  requestAnimationFrame(updateSpotlightPosition);
+}
+
+// Mouse tracking
+hero.addEventListener('mouseenter', (e) => {
+  isHovering = true;
+  const rect = hero.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+  currentX = mouseX;
+  currentY = mouseY;
+  updateSpotlightPosition();
+});
+
+hero.addEventListener('mousemove', (e) => {
+  if (!isHovering) return;
+  const rect = hero.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+});
+
+hero.addEventListener('mouseleave', () => {
+  isHovering = false;
+  // Reset variables
+  spotlight.style.setProperty('--x', '50%');
+  spotlight.style.setProperty('--y', '50%');
+});
 
 // Nav scroll
 const nav = document.getElementById('nav');
@@ -1607,7 +1949,74 @@ style.textContent = `
   }
 `;
 document.head.appendChild(style);
+
+// Video player functionality
+const videoPlayer = document.getElementById('video-player');
+const videoPlaceholder = document.getElementById('video-placeholder');
+
+if (videoPlayer && videoPlaceholder) {
+  videoPlayer.addEventListener('click', function() {
+    // Create iframe for YouTube video
+    const iframe = document.createElement('iframe');
+    iframe.src = 'https://www.youtube.com/embed/xsHEqD3DYl0?autoplay=1&rel=0&modestbranding=1';
+    iframe.setAttribute('frameborder', '0');
+    iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.style.width = '100%';
+    iframe.style.height = '100%';
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0';
+    iframe.style.left = '0';
+    iframe.style.borderRadius = 'var(--border-radius-lg)';
+    
+    // Replace placeholder with iframe
+    videoPlayer.innerHTML = '';
+    videoPlayer.appendChild(iframe);
+    
+    // Remove click handler after video loads
+    videoPlayer.style.cursor = 'default';
+    videoPlayer.removeEventListener('click', arguments.callee);
+  });
+}
+
+// Image Modal Functions
+function openImageModal(imageSrc) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  modal.style.display = 'block';
+  modalImg.src = imageSrc;
+  document.body.style.overflow = 'hidden'; // Prevent background scrolling
+}
+
+function closeImageModal() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto'; // Restore scrolling
+}
+
+// Close modal when clicking outside the image
+window.onclick = function(event) {
+  const modal = document.getElementById('imageModal');
+  if (event.target == modal) {
+    closeImageModal();
+  }
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    closeImageModal();
+  }
+});
 </script>
+
+<!-- Image Modal -->
+<div id="imageModal" class="image-modal">
+  <div class="modal-content">
+    <span class="close-modal" onclick="closeImageModal()">&times;</span>
+    <img id="modalImage" src="" alt="Full size map" />
+  </div>
+</div>
 
 </body>
 </html>
