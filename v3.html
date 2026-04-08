@@ -2021,13 +2021,10 @@ h4 { font-family: var(--font-body); font-weight: 600; }
         <a href="#contact" class="btn-dark reveal d3" style="margin-top:1rem; display:inline-block;">Visit the Factory</a>
       </div>
       <div class="factory-img reveal d2" id="factory-video-container" role="button" aria-label="Watch factory video">
-        <video id="factory-video" style="width: 100%; height: 100%; object-fit: cover; display: none;" controls>
-          <source src="https://www.youtube.com/watch?v=xsHEqD3DYl0" type="video/youtube">
-          Your browser does not support the video tag.
-        </video>
+        <iframe id="factory-video" src="https://www.youtube.com/embed/xsHEqD3DYl0" style="width: 100%; height: 100%; border: none; display: none;" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <div class="fv-overlay" id="video-overlay">
           <div class="fv-play"></div>
-          <span class="fv-caption">Cassia Co-op &mdash; Processing at the Source</span>
+          <div class="fv-caption">Play Factory Tour Video</div>
         </div>
       </div>
     </div>
@@ -2284,16 +2281,8 @@ if (videoContainer && video && videoOverlay) {
       video.style.display = 'block';
       videoOverlay.style.display = 'none';
       
-      // For YouTube video, we need to use iframe embed
-      video.innerHTML = `
-        <iframe 
-          src="https://www.youtube.com/embed/xsHEqD3DYl0?autoplay=1&rel=0" 
-          style="width: 100%; height: 100%; border: none;"
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
-      `;
+      // Update iframe src to autoplay
+      video.src = 'https://www.youtube.com/embed/xsHEqD3DYl0?autoplay=1&rel=0';
     }
   });
 }
