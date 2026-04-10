@@ -1646,6 +1646,30 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 </section>
 
 <!-- ==========================================
+     VIDEO
+     ========================================== -->
+<section class="story" style="padding-top: var(--space-lg); padding-bottom: var(--space-lg);">
+  <div class="story-inner">
+    <div class="story-layout-centered">
+      <div class="story-video-centered reveal" id="video-container">
+        <iframe
+          id="youtube-embed"
+          src="https://www.youtube.com/embed/xsHEqD3DYl0?enablejsapi=1&rel=0&showinfo=0&modestbranding=1&playsinline=1"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+          style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: var(--radius-lg); display: none;">
+        </iframe>
+        <div class="sv-overlay-centered" id="video-overlay" onclick="playVideo()">
+          <div class="sv-play-centered"></div>
+        </div>
+      </div>
+      <p class="story-video-caption reveal reveal-d1">Watch our story — 3 min</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==========================================
      ABOUT US
      ========================================== -->
 <section class="about" id="about">
@@ -1659,26 +1683,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     <div class="about-text">
       <p class="section-tag reveal">About Us</p>
       <h2 class="reveal reveal-d1">The first cinnamon co-op <em>at the source</em></h2>
-      <p class="lead reveal reveal-d2">Cassia Co-op is the first and only cinnamon processing and exporting company established directly in Kerinci, Sumatra — the beating heart of the world's largest cinnamon plantation.</p>
-      <p class="reveal reveal-d3">50% of the world's cinnamon originates from Indonesia. Most of it grows in one unique area on the island of Sumatra, called Kerinci. We created a fair and efficient supply chain while generating a sustainable, positive impact on the local community.</p>
-      <p class="reveal reveal-d3">No middlemen. No guesswork. Just a direct line from over 1,000 partner farmers to your production facility — with full traceability at every step.</p>
+      <p class="lead reveal reveal-d2">At Cassia Co-op, we do not claim to be changing the world or transforming the lives of every resident of Sungai Penuh, the main town in Kerinci, Sumatra. What we can confidently say, however, is that we are making a positive and tangible contribution at the very source of the cassia supply chain.</p>
+      <p class="reveal reveal-d3">For us, a supply chain is truly sustainable only when it is fair to all stakeholders - from farmers to end users - and pragmatic from a logistical standpoint.</p>
+      <p class="reveal reveal-d3">Cassia Co-op has developed a state-of-the-art grinding facility located at the heart of the largest cassia-producing region in the world. The facility meets the highest GFSI food safety standards, including FSSC 22000 certification, ensuring rigorous quality control and full compliance with international requirements.</p>
+      <p class="reveal reveal-d3">We are the first and only processor-exporter of cassia powder to establish operations directly in Kerinci, Sumatra, allowing us to work in direct contact with farmers and ensure full traceability from origin to the end user.</p>
 
       <div class="about-keypoints reveal reveal-d4">
         <div class="keypoint">
-          <div class="kp-label">Founded</div>
-          <div class="kp-value">At the Source</div>
+          <div class="kp-label">Supply Chain</div>
+          <div class="kp-value">Fair, Efficient &amp; Fully Certified</div>
         </div>
         <div class="keypoint">
-          <div class="kp-label">Location</div>
-          <div class="kp-value">Kerinci, Jambi</div>
+          <div class="kp-label">Sustainability</div>
+          <div class="kp-value">More than a label — our daily reality</div>
         </div>
         <div class="keypoint">
-          <div class="kp-label">Mission</div>
-          <div class="kp-value">Fair &amp; Transparent</div>
+          <div class="kp-label">Distribution</div>
+          <div class="kp-value">Global bulk shipping from Indonesia</div>
         </div>
         <div class="keypoint">
-          <div class="kp-label">Export</div>
-          <div class="kp-value">Europe &amp; USA</div>
+          <div class="kp-label">Local Offices</div>
+          <div class="kp-value">The Netherlands &amp; United States</div>
         </div>
       </div>
     </div>
@@ -1749,7 +1774,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     <div class="products-header">
       <div class="ph-left">
         <p class="section-tag reveal">Our Products</p>
-        <h2 class="reveal reveal-d1">Premium <em>Cassia</em> &amp; Spices</h2>
+        <h2 class="reveal reveal-d1">Premium <em>Cassia</em></h2>
       </div>
       <p class="ph-right reveal reveal-d2">All products sourced directly from our partner farmers in Kerinci, processed on-site and exported to your specifications.</p>
     </div>
@@ -1811,24 +1836,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
       
       <!-- Supporting Text -->
       <p class="story-supporting reveal reveal-d2">"We didn't choose the location. The cinnamon chose it, thousands of years ago. We just set up where it makes sense."</p>
-      
-      <!-- Video Container -->
-      <div class="story-video-centered reveal reveal-d3" id="video-container">
-        <iframe 
-          id="youtube-embed"
-          src="https://www.youtube.com/embed/xsHEqD3DYl0?enablejsapi=1&rel=0&showinfo=0&modestbranding=1&playsinline=1"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-          style="width: 100%; height: 100%; position: absolute; top: 0; left: 0; border-radius: var(--radius-lg); display: none;">
-        </iframe>
-        <div class="sv-overlay-centered" id="video-overlay" onclick="playVideo()">
-          <div class="sv-play-centered"></div>
-        </div>
-      </div>
-      
-      <!-- Video Caption -->
-      <p class="story-video-caption reveal reveal-d4">Watch our story — 3 min</p>
       
       <!-- CTA Buttons -->
       <div class="story-cta-centered reveal reveal-d4">
