@@ -1652,11 +1652,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   <div style="max-width: 1100px; margin: 0 auto; text-align: center;">
     <p class="section-tag reveal" style="justify-content: center;">Discover Cassia Co-op</p>
     <p class="reveal reveal-d1" style="font-size: 0.95rem; color: var(--text-muted); margin: 1rem 0 2rem; line-height: 1.8;">Sustainability is more than a label — it's our daily reality. We welcome you to visit and see for yourself.</p>
-    <div class="story-video-centered reveal reveal-d2" id="video-container" onclick="playVideo()" style="cursor:pointer;">
-      <img src="https://img.youtube.com/vi/xsHEqD3DYl0/maxresdefault.jpg" alt="Watch our story" style="width:100%;height:100%;position:absolute;top:0;left:0;object-fit:cover;border-radius:var(--radius-lg);">
-      <div class="sv-overlay-centered" id="video-overlay">
-        <div class="sv-play-centered"></div>
-      </div>
+    <div class="reveal reveal-d2" style="position:relative;width:100%;max-width:1100px;aspect-ratio:16/9;margin:0 auto 1rem;border-radius:var(--radius-lg);overflow:hidden;box-shadow:0 25px 80px rgba(26,14,6,0.2);">
+      <iframe
+        src="https://www.youtube.com/embed/xsHEqD3DYl0?rel=0&modestbranding=1&playsinline=1"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        style="width:100%;height:100%;border:0;border-radius:var(--radius-lg);">
+      </iframe>
     </div>
     <p class="story-video-caption reveal reveal-d3">Watch our story — 3 min</p>
   </div>
@@ -2258,15 +2261,6 @@ window.addEventListener('resize', () => {
   }
 });
 
-// Video play function — creates iframe on click for iOS compatibility
-function playVideo() {
-  var container = document.getElementById('video-container');
-  if (!container) return;
-  // Replace entire container content with a live iframe
-  container.innerHTML = '<iframe src="https://www.youtube.com/embed/xsHEqD3DYl0?autoplay=1&playsinline=1&rel=0&modestbranding=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="width:100%;height:100%;position:absolute;top:0;left:0;border-radius:var(--radius-lg);"></iframe>';
-  container.onclick = null;
-  container.style.cursor = 'default';
-}
 
 // Certificate loading system
 const certificateFiles = [
