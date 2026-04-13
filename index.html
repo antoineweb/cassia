@@ -1842,6 +1842,43 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 }
 
 /* ============================================
+   ORIGIN MAP
+   ============================================ */
+.origin-map {
+  padding: var(--space-xl) var(--space-md);
+  background: var(--white);
+  text-align: center;
+}
+.origin-map-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.origin-map-inner h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: var(--forest);
+  margin: 1rem 0 0.5rem;
+}
+.origin-map-inner h2 em {
+  font-style: italic;
+  color: var(--cinnamon);
+}
+.origin-map-inner > p {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin: 0 auto 2.5rem;
+  max-width: 600px;
+  line-height: 1.7;
+}
+.origin-map img {
+  max-width: 100%;
+  width: 600px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* ============================================
    GALLERY
    ============================================ */
 .gallery {
@@ -1910,6 +1947,78 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 @media (max-width: 900px) {
   .gallery-grid { grid-template-columns: 1fr; gap: 1.25rem; }
   .gallery-item { aspect-ratio: 16/10; }
+}
+
+/* ============================================
+   LIGHTBOX
+   ============================================ */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(10, 18, 10, 0.94);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(8px);
+  animation: fadeIn 0.3s ease;
+}
+.lightbox.open { display: flex; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.lightbox-img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 100px rgba(0,0,0,0.5);
+}
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.2s, transform 0.2s;
+  user-select: none;
+}
+.lightbox-close:hover,
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+.lightbox-close { top: 1.5rem; right: 1.5rem; }
+.lightbox-prev { left: 1.5rem; top: 50%; transform: translateY(-50%); }
+.lightbox-next { right: 1.5rem; top: 50%; transform: translateY(-50%); }
+.lightbox-prev:hover,
+.lightbox-next:hover { transform: translateY(-50%) scale(1.05); }
+.lightbox-counter {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--white);
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  background: rgba(255,255,255,0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+}
+@media (max-width: 700px) {
+  .lightbox-prev, .lightbox-next { width: 40px; height: 40px; }
+  .lightbox-prev { left: 0.75rem; }
+  .lightbox-next { right: 0.75rem; }
+  .lightbox-close { top: 1rem; right: 1rem; }
 }
 </style>
 </head>
@@ -2062,6 +2171,18 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 </section>
 
 <!-- ==========================================
+     ORIGIN MAP
+     ========================================== -->
+<section class="origin-map">
+  <div class="origin-map-inner">
+    <p class="section-tag reveal" style="justify-content: center;">Origin</p>
+    <h2 class="reveal reveal-d1">From farmer<br>to <em>end user</em></h2>
+    <p class="reveal reveal-d2">Single origin, fully traceable, certified organic Korintje cinnamon from the Kerinci Highlands of Sumatra.</p>
+    <img src="asset/Map 1.png" alt="Cassia Co-op origin map — Kerinci, Sumatra" class="reveal reveal-d3">
+  </div>
+</section>
+
+<!-- ==========================================
      PROMISES
      ========================================== -->
 <section class="promises" id="promises">
@@ -2177,25 +2298,40 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 <section class="gallery" id="gallery">
   <div class="gallery-inner">
     <div class="gallery-header">
-      <p class="section-tag reveal">Behind the Scenes</p>
+      <p class="section-tag reveal" style="justify-content: center;">Behind the Scenes</p>
       <h2 class="reveal reveal-d1">Inside our <em>facility</em></h2>
     </div>
-    <div class="gallery-grid">
-      <div class="gallery-item reveal">
-        <img src="asset/gallery/Production Crushing (a).jpg" alt="Production — Crushing">
+    <div class="gallery-grid" id="gallery-grid">
+      <div class="gallery-item reveal" data-src="asset/gallery/Production Crushing (a).jpg" data-caption="Crushing — Kerinci facility">
+        <img src="asset/gallery/Production Crushing (a).jpg" alt="Production — Crushing" loading="lazy">
         <div class="gallery-caption">Crushing — Kerinci facility</div>
       </div>
-      <div class="gallery-item reveal reveal-d1">
-        <img src="asset/gallery/Production Drying (b).jpg" alt="Production — Drying">
+      <div class="gallery-item reveal reveal-d1" data-src="asset/gallery/Production Drying (b).jpg" data-caption="Drying — Kerinci facility">
+        <img src="asset/gallery/Production Drying (b).jpg" alt="Production — Drying" loading="lazy">
         <div class="gallery-caption">Drying — Kerinci facility</div>
       </div>
-      <div class="gallery-item reveal reveal-d2">
-        <img src="asset/gallery/Production Crushing (c).jpg" alt="Production — Crushing">
+      <div class="gallery-item reveal reveal-d2" data-src="asset/gallery/Production Crushing (c).jpg" data-caption="Crushing — Kerinci facility">
+        <img src="asset/gallery/Production Crushing (c).jpg" alt="Production — Crushing" loading="lazy">
         <div class="gallery-caption">Crushing — Kerinci facility</div>
+      </div>
+      <div class="gallery-item reveal reveal-d3" data-src="asset/Map 2 + products.jpg" data-caption="Product range — From Farmer to End User">
+        <img src="asset/Map 2 + products.jpg" alt="Cassia products — Broken &amp; Clean, Powder, Stick" loading="lazy">
+        <div class="gallery-caption">Product range — From Farmer to End User</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ==========================================
+     LIGHTBOX
+     ========================================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image gallery">
+  <div class="lightbox-close" id="lightbox-close" role="button" aria-label="Close">&times;</div>
+  <div class="lightbox-prev" id="lightbox-prev" role="button" aria-label="Previous">&#8249;</div>
+  <img class="lightbox-img" id="lightbox-img" src="" alt="">
+  <div class="lightbox-next" id="lightbox-next" role="button" aria-label="Next">&#8250;</div>
+  <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
 
 <!-- ==========================================
      STORY
@@ -2390,6 +2526,46 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
      SCRIPTS
      ========================================== -->
 <script>
+// Lightbox gallery
+(function() {
+  const items = Array.from(document.querySelectorAll('#gallery-grid .gallery-item'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbCounter = document.getElementById('lightbox-counter');
+  const lbClose = document.getElementById('lightbox-close');
+  const lbPrev = document.getElementById('lightbox-prev');
+  const lbNext = document.getElementById('lightbox-next');
+  let current = 0;
+
+  function show(i) {
+    current = (i + items.length) % items.length;
+    const item = items[current];
+    lbImg.src = item.dataset.src;
+    lbImg.alt = item.dataset.caption || '';
+    lbCounter.textContent = (current + 1) + ' / ' + items.length;
+  }
+  function open(i) {
+    show(i);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function close() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  items.forEach((el, i) => el.addEventListener('click', () => open(i)));
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', (e) => { e.stopPropagation(); show(current - 1); });
+  lbNext.addEventListener('click', (e) => { e.stopPropagation(); show(current + 1); });
+  lightbox.addEventListener('click', (e) => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+
 // Scroll reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
