@@ -809,7 +809,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .promises-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5px;
+  gap: 0.5rem;
 }
 
 .promise-card {
@@ -824,19 +824,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 }
 
 .promise-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: rgba(196, 122, 58, 0.15);
+  width: auto;
+  height: auto;
+  max-width: 140px;
+  max-height: 140px;
+  min-width: 70px;
+  min-height: 70px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   margin-bottom: 1.5rem;
-  transition: background 0.3s;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
-.promise-card:hover .promise-icon {
-  background: rgba(196, 122, 58, 0.28);
+.promise-icon:hover {
+  transform: scale(1.05);
 }
 
 .promise-card h3 {
@@ -850,7 +857,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .promise-card p {
   font-size: 0.875rem;
   line-height: 1.75;
-  color: rgba(255,255,255,0.45);
+  color: rgba(255,255,255,0.70);
+  margin-bottom: 16px;
 }
 
 .promise-tag {
@@ -1848,7 +1856,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     font-size: 0.9rem;
   }
 
-  .products-header { flex-direction: column; gap: 1rem; }
+  .products-header { flex-direction: column; gap: 1rem; align-items: start; }
   .products-header .ph-right { text-align: left; max-width: 100%; }
   .products-grid { grid-template-columns: 1fr; }
 
@@ -1857,6 +1865,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
   .footer-inner { grid-template-columns: 1fr; }
   .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+
+  .promise-icon {
+    max-width: 90px;
+    max-height: 90px;
+    min-width: 45px;
+    min-height: 45px;
+    border-radius: 6px;
+  }
 
 }
 
@@ -2039,6 +2055,57 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   .lightbox-next { right: 0.75rem; }
   .lightbox-close { top: 1rem; right: 1rem; }
 }
+
+/* ============================================
+   LOGO PREVIEW MODAL
+   ============================================ */
+.logo-preview {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(10, 18, 10, 0.95);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.3s ease;
+}
+.logo-preview.open { display: flex; }
+.logo-preview-img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 30px 100px rgba(0,0,0,0.6);
+  background: white;
+  padding: 1rem;
+}
+.logo-preview-close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: var(--white);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.2s, transform 0.2s;
+  user-select: none;
+}
+.logo-preview-close:hover {
+  background: rgba(255,255,255,0.2);
+  transform: scale(1.05);
+}
+@media (max-width: 700px) {
+  .logo-preview-close { top: 1rem; right: 1rem; width: 40px; height: 40px; }
+}
 </style>
 </head>
 <body>
@@ -2144,7 +2211,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         <div class="sv-play-centered"></div>
       </div>
     </div>
-    <p class="story-video-caption reveal reveal-d3">Watch our story — 3 min</p>
+    <p class="story-video-caption reveal reveal-d3">FROM FIELD TO EXPORT — 3 MIN</p>
   </div>
 </section>
 
@@ -2214,40 +2281,26 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
     <div class="promises-grid">
       <div class="promise-card reveal">
-        <div class="promise-icon">🌱</div>
-        <h3>Sustainability First</h3>
-        <p>Every decision we make is evaluated through an environmental lens. From agroforestry practices to biodegradable packaging, we're building a supply chain that protects the Kerinci ecosystem for generations to come.</p>
-        <span class="promise-tag">Rainforest Alliance Certified</span>
+        <div class="promise-icon" style="background-image: url('asset/Cassia leaf.jpg');"></div>
+        <h3>Sustainability</h3>
+        <p><strong>3:1 Replanting Commitment</strong><br>For every tree harvested, we replant more than three—securing a sustainable future supply</p>
+        <p><strong>Local Economic Impact</strong><br>The only industrial cassia processor operating in the region. Our day-to-day operations support the local economy and community through job creation, tax contributions, partnerships with local stakeholders & institutions…</p>
       </div>
       <div class="promise-card reveal reveal-d1">
-        <div class="promise-icon">🤝</div>
-        <h3>Farmer Fairness</h3>
-        <p>We work directly with over 1,000 local farmers, guaranteeing fair prices and eliminating exploitative middlemen. Our CSR program reinvests into community development, education, and better farming infrastructure.</p>
-        <span class="promise-tag">Direct Partnership</span>
+        <div class="promise-icon" style="background-image: url('asset/Cassia bridge.jpg');"></div>
+        <h3>Farmers Fairness & Transparency</h3>
+        <p><strong>Clear Purchasing Standards (SOP)</strong><br>A structured system defines exactly what is expected—sorting and drying.</p>
+        <p><strong>Transparent Pricing</strong><br>No more guesswork or arbitrary negotiations. Both sides know the rules—farmers understand how value is determined. A bit of extra effort on preparation translates into better prices.</p>
+        <p><strong>No More Grey Areas</strong><br>Buying cassia bark becomes clear, consistent, and fair for everyone involved.</p>
       </div>
       <div class="promise-card reveal reveal-d2">
-        <div class="promise-icon">⭐</div>
-        <h3>Uncompromising Quality</h3>
-        <p>Certified to FSSC 22000 and Organic standards, our quality control processes trace every batch from the individual farmer's plot to the shipping container. Consistent grade, every time.</p>
-        <span class="promise-tag">FSSC 22000 · Organic</span>
-      </div>
-      <div class="promise-card reveal reveal-d1">
-        <div class="promise-icon">🔍</div>
+        <div class="promise-icon" style="background-image: url('asset/Cassia circle.jpg');"></div>
         <h3>Full Traceability</h3>
-        <p>Every shipment comes with complete documentation — from which farmer harvested the bark, to the processing date and quality test results. We believe transparency builds lasting partnerships.</p>
-        <span class="promise-tag">Batch-Level Tracking</span>
-      </div>
-      <div class="promise-card reveal reveal-d2">
-        <div class="promise-icon">🚢</div>
-        <h3>Direct Export</h3>
-        <p>As the only processor based in Kerinci, we export directly to Europe, the United States and beyond. Shorter supply chain means fresher product, better pricing, and a smaller carbon footprint.</p>
-        <span class="promise-tag">No Intermediaries</span>
-      </div>
-      <div class="promise-card reveal reveal-d3">
-        <div class="promise-icon">🌍</div>
-        <h3>Community Impact</h3>
-        <p>We measure success not just in export volumes, but in community wellbeing. Our cooperative model ensures that the prosperity of Cassia Co-op is shared with the farmers and families who make it possible.</p>
-        <span class="promise-tag">CSR Program</span>
+        <p><strong>From Field to Facility to Customer</strong><br>Every lot is traced back to the exact field where it was harvested.</p>
+        <p><strong>Pre-Harvest Field Checks</strong> on all certified cassia (RA, UEBT, ORG, FSA). Our ICS team visits farms before harvest to verify conditions on the ground.</p>
+        <p><strong>Barcode Tracking (UPC System)</strong><br>Each batch is recorded upon arrival and tracked throughout our facility.</p>
+        <p><strong>Certified & Non-Certified</strong><br>The same strict traceability applies to all cassia—no exceptions.</p>
+        <p><strong>Control at Every Step</strong><br>Better oversight of quality, consistency, and processing losses.</p>
       </div>
     </div>
 
@@ -2358,9 +2411,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         <img src="asset/gallery/Trees (b).JPG" alt="Cassia plantation" loading="lazy">
         <div class="gallery-caption">Cassia Plantation - Kerinci</div>
       </div>
-      <div class="gallery-item reveal reveal-d1" data-src="asset/photo/Dispatch in Action – Kerinci Facility.JPG" data-caption="Dispatch in Action – Kerinci Facility">
-        <img src="asset/photo/Dispatch in Action – Kerinci Facility.JPG" alt="Dispatch in Action" loading="lazy">
+      <div class="gallery-item reveal reveal-d1" data-src="asset/gallery/Dispatch in Action – Kerinci Facility.JPG" data-caption="Dispatch in Action – Kerinci Facility">
+        <img src="asset/gallery/Dispatch in Action – Kerinci Facility.JPG" alt="Dispatch in Action" loading="lazy">
         <div class="gallery-caption">Dispatch in Action – Kerinci Facility</div>
+      </div>
+      <div class="gallery-item reveal reveal-d2" data-src="asset/gallery/Pallet powder.JPG" data-caption="Ready for Export Powder Pallets - Kerinci Facility">
+        <img src="asset/gallery/Pallet powder.JPG" alt="Ready for Export Powder Pallets" loading="lazy">
+        <div class="gallery-caption">Ready for Export Powder Pallets - Kerinci Facility</div>
+      </div>
+      <div class="gallery-item reveal reveal-d3" data-src="asset/gallery/Jumbo.JPG" data-caption="Ready for Export 1 MT Jumbo Bags – Kerinci Facility">
+        <img src="asset/gallery/Jumbo.JPG" alt="Ready for Export 1 MT Jumbo Bags" loading="lazy">
+        <div class="gallery-caption">Ready for Export 1 MT Jumbo Bags – Kerinci Facility</div>
       </div>
           </div>
   </div>
@@ -2375,6 +2436,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   <img class="lightbox-img" id="lightbox-img" src="" alt="">
   <div class="lightbox-next" id="lightbox-next" role="button" aria-label="Next">&#8250;</div>
   <div class="lightbox-counter" id="lightbox-counter"></div>
+</div>
+
+<!-- ==========================================
+     LOGO PREVIEW MODAL
+     ========================================== -->
+<div class="logo-preview" id="logo-preview" role="dialog" aria-modal="true" aria-label="Logo preview">
+  <div class="logo-preview-close" id="logo-preview-close" role="button" aria-label="Close">&times;</div>
+  <img class="logo-preview-img" id="logo-preview-img" src="" alt="">
 </div>
 
 <!-- ==========================================
@@ -2618,6 +2687,47 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowLeft') show(current - 1);
     if (e.key === 'ArrowRight') show(current + 1);
+  });
+})();
+
+// Logo preview modal
+(function() {
+  const logoIcons = document.querySelectorAll('.promise-icon');
+  const logoPreview = document.getElementById('logo-preview');
+  const logoPreviewImg = document.getElementById('logo-preview-img');
+  const logoPreviewClose = document.getElementById('logo-preview-close');
+
+  function openLogoPreview(imageSrc) {
+    logoPreviewImg.src = imageSrc;
+    logoPreviewImg.alt = 'Logo preview';
+    logoPreview.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLogoPreview() {
+    logoPreview.classList.remove('open');
+    document.body.style.overflow = '';
+    logoPreviewImg.src = '';
+  }
+
+  logoIcons.forEach(icon => {
+    icon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const bgImage = window.getComputedStyle(icon).backgroundImage;
+      const imageSrc = bgImage.slice(5, -2); // Extract URL from "url('path')"
+      if (imageSrc && imageSrc !== 'none') {
+        openLogoPreview(imageSrc);
+      }
+    });
+  });
+
+  logoPreviewClose.addEventListener('click', closeLogoPreview);
+  logoPreview.addEventListener('click', (e) => {
+    if (e.target === logoPreview) closeLogoPreview();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (!logoPreview.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLogoPreview();
   });
 })();
 
