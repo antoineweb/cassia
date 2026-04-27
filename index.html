@@ -947,7 +947,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 }
 
 .product-img-cut-sifted {
-  background-image: url('asset/photo/Product Cut & Sifted (a).jpg');
+  background-image: url('asset/photo/Product Cut & Sifted.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1257,8 +1257,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 2rem;
   flex-wrap: wrap;
 }
@@ -1271,15 +1271,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   color: var(--text-light);
   text-align: center;
   display: block;
-  margin: 0 auto 2.5rem auto;
+  margin: 0 auto 1rem auto;
 }
 
 .certs-list {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: nowrap;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1287,32 +1288,52 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .cert-item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.8rem;
-  padding: 0.8rem 1.2rem;
+  padding: 0.8rem 0;
   background: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(31, 59, 35, 0.1);
+  border: 1px solid rgba(31, 59, 35, 0.08);
   border-radius: 12px;
-  cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   backdrop-filter: blur(8px);
   box-shadow: 0 2px 8px rgba(31, 59, 35, 0.04);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  height: 110px;
+}
+
+.cert-item-paired {
+  flex: none;
+  width: auto;
+  min-width: auto;
+  padding: 0.8rem 1.2rem;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .cert-item:hover {
   border-color: rgba(31, 59, 35, 0.2);
   background: rgba(255, 255, 255, 0.9);
   box-shadow: 0 8px 24px rgba(31, 59, 35, 0.08);
-  transform: translateY(-2px) scale(1.02);
+  transform: translateY(-2px);
 }
 .cert-thumbnail {
-  width: 40px;
-  height: 40px;
+  height: auto;
+  width: auto;
+  max-height: 90px;
+  max-width: 120px;
   object-fit: contain;
   border-radius: 6px;
   background: rgba(255, 255, 255, 0.8);
-  padding: 4px;
+  padding: 6px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 1px 3px rgba(31, 59, 35, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 .cert-name {
   font-size: 0.75rem;
@@ -1324,10 +1345,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   white-space: nowrap;
 }
 
-.cert-item:hover .cert-thumbnail {
-  transform: scale(1.1);
-  box-shadow: 0 2px 8px rgba(31, 59, 35, 0.12);
-}
 
 .cert-item:hover .cert-name {
   color: var(--forest);
@@ -1347,9 +1364,11 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 }
 
 .cert-modal-content {
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: var(--white);
-  margin: 4% auto;
   padding: 0;
   border-radius: 20px;
   width: 90%;
@@ -1357,6 +1376,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   max-height: 92vh;
   overflow: hidden;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.25);
+  z-index: 1001;
 }
 
 .cert-modal-close {
@@ -1394,6 +1414,25 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   box-sizing: border-box;
 }
 
+.cert-modal-logos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 3rem;
+  background: var(--white);
+  border-bottom: 1px solid rgba(31, 59, 35, 0.1);
+  box-sizing: border-box;
+  min-height: 300px;
+}
+
+.cert-modal-logos img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+}
+
 .cert-modal-info {
   padding: 2.5rem;
   text-align: center;
@@ -1403,16 +1442,21 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 .cert-modal-info h3 {
   font-size: 1.75rem;
   color: var(--forest);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   font-weight: 600;
 }
 
-.cert-modal-info p {
-  color: var(--text-muted);
+.cert-modal-numbers {
+  color: var(--text);
   font-size: 1rem;
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
+}
+
+.cert-modal-numbers p {
+  margin: 0.5rem 0;
+  font-weight: 500;
 }
 
 /* ============================================
@@ -1809,16 +1853,27 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   .certs-list {
     gap: 1rem;
     max-width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
   }
   
   .cert-item {
     padding: 0.6rem 1rem;
     gap: 0.6rem;
+    flex: none;
+    width: auto;
+    min-width: 120px;
+    max-width: 150px;
   }
-  
+
+  .cert-item-paired {
+    min-width: 180px;
+    max-width: 220px;
+  }
+    
   .cert-thumbnail {
-    width: 32px;
-    height: 32px;
+    width: 48px;
+    height: 48px;
   }
   
   .cert-name {
@@ -2106,6 +2161,24 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 @media (max-width: 700px) {
   .logo-preview-close { top: 1rem; right: 1rem; width: 40px; height: 40px; }
 }
+
+@media (max-width: 1200px) {
+  .certs-list {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .cert-item {
+    flex: none;
+    width: auto;
+    min-width: 140px;
+  }
+  
+  .cert-item-paired {
+    min-width: 200px;
+  }
+}
 </style>
 </head>
 <body>
@@ -2299,8 +2372,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         <p><strong>From Field to Facility to Customer</strong><br>Every lot is traced back to the exact field where it was harvested.</p>
         <p><strong>Pre-Harvest Field Checks</strong> on all certified cassia (RA, UEBT, ORG, FSA). Our ICS team visits farms before harvest to verify conditions on the ground.</p>
         <p><strong>Barcode Tracking (UPC System)</strong><br>Each batch is recorded upon arrival and tracked throughout our facility.</p>
-        <p><strong>Certified & Non-Certified</strong><br>The same strict traceability applies to all cassia—no exceptions.</p>
-        <p><strong>Control at Every Step</strong><br>Better oversight of quality, consistency, and processing losses.</p>
       </div>
     </div>
 
@@ -2337,7 +2408,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
       <div class="product-card reveal reveal-d2">
-        <div class="product-img" style="background-image: url('asset/photo/12 Cut & Sifted.jpg');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Product Cut & Sifted.jpg');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Cut & Sifted</h3>
@@ -2419,6 +2490,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         <img src="asset/gallery/Pallet powder.JPG" alt="Ready for Export Powder Pallets" loading="lazy">
         <div class="gallery-caption">Ready for Export Powder Pallets - Kerinci Facility</div>
       </div>
+      <div class="gallery-item reveal reveal-d2" data-src="asset/gallery/Vacuum pouch.jpg" data-caption="Vacuum-Sealed Powder – Kerinci Facility">
+        <img src="asset/gallery/Vacuum pouch.jpg" alt="Vacuum-Sealed Powder" loading="lazy">
+        <div class="gallery-caption">Vacuum-Sealed Powder – Kerinci Facility</div>
+      </div>
       <div class="gallery-item reveal reveal-d3" data-src="asset/gallery/Jumbo.JPG" data-caption="Ready for Export 1 MT Jumbo Bags – Kerinci Facility">
         <img src="asset/gallery/Jumbo.JPG" alt="Ready for Export 1 MT Jumbo Bags" loading="lazy">
         <div class="gallery-caption">Ready for Export 1 MT Jumbo Bags – Kerinci Facility</div>
@@ -2480,7 +2555,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
      ========================================== -->
 <section class="certs">
   <div class="certs-inner">
-    <span class="certs-label">Certified by</span>
+    <span class="certs-label">CERTIFICATIONS</span>
     <div class="certs-list" id="certificates-container">
       <!-- Certificates will be dynamically loaded here -->
     </div>
@@ -2491,10 +2566,10 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 <div id="certificate-modal" class="cert-modal">
   <div class="cert-modal-content">
     <span class="cert-modal-close" onclick="closeCertificateModal()">&times;</span>
-    <img id="cert-modal-image" src="" alt="Certificate">
+    <div id="cert-modal-logos" class="cert-modal-logos"></div>
     <div class="cert-modal-info">
       <h3 id="cert-modal-title"></h3>
-      <p id="cert-modal-description"></p>
+      <div id="cert-modal-numbers" class="cert-modal-numbers"></div>
     </div>
   </div>
 </div>
@@ -3007,23 +3082,61 @@ function playVideo() {
 
 // Certificate loading system
 const certificateFiles = [
+  'ORG EU green.jpg',
   'ORG USA.png',
-  '6 RA.png', 
-  'FSSC Black.png',
-  'ORG EU black.jpg',
+  { type: 'paired', files: ['6 RA.png', '3 UEBT.png'], name: 'UEBT & RA' },
+  'FSSC.png',
   'FSA.png',
   'KLBD.png',
-  'UEBT_Label-Horizontal.png',
   '20-HALAL.jpeg'
 ];
+
+// Certificate modal data with specific certifier logos and certification numbers
+const certificateModalData = {
+  'Organic EU': {
+    logos: ['asset/photo/certificate/ACT for EU.png', 'asset/photo/certificate/Skal Certified.jpg'],
+    certificationNumbers: ['Skal no : 026378'],
+    title: 'Organic EU'
+  },
+  'Organic USDA': {
+    logos: ['asset/photo/certificate/ECOCERT LOGO.jpg'],
+    certificationNumbers: [],
+    title: 'Organic USDA'
+  },
+  'UEBT & RA': {
+    logos: ['asset/photo/certificate/UEBT Green.png'],
+    certificationNumbers: ['Certificate Number: UEBT/CERT/2025/0609'],
+    title: 'UEBT & RA'
+  },
+  'FSSC 22000': {
+    logos: ['asset/photo/certificate/bsi.png'],
+    certificationNumbers: ['FSSC22000 No : FSSC 737252'],
+    title: 'FSSC 22000'
+  },
+  'Food Safety Alliance': {
+    logos: ['asset/photo/certificate/FSA.png'],
+    certificationNumbers: [],
+    title: 'Food Safety Alliance'
+  },
+  'KLBD Kosher': {
+    logos: ['asset/photo/certificate/Klbd certified.jpg'],
+    certificationNumbers: ['Company Code: 5248', 'Certificate: 20241012'],
+    title: 'KLBD Kosher'
+  },
+  'HALAL Certified': {
+    logos: ['asset/photo/certificate/MUI Logo.png'],
+    certificationNumbers: [],
+    title: 'HALAL Certified'
+  }
+};
 
 // Smart certificate name extraction
 function extractCertificateName(filename) {
   const nameMap = {
     'ORG USA.png': 'Organic USDA',
     'RA banner.jpg': 'Rainforest Alliance',
-    'FSSC Black.png': 'FSSC 22000',
-    'ORG EU black.jpg': 'Organic EU',
+    'FSSC.png': 'FSSC 22000',
+    'ORG EU green.jpg': 'Organic EU',
     'FSA.png': 'Food Safety Alliance',
     'KLBD.png': 'KLBD Kosher',
     'UEBT_Label-Horizontal.png': 'UEBT',
@@ -3036,13 +3149,14 @@ function extractCertificateName(filename) {
 // Generate certificate description
 function generateCertificateDescription(name) {
   const descriptions = {
-    'Organic USDA': 'USDA National Organic Program certification - highest standard for organic agriculture',
+    'Organic USDA': 'USDA National Organic Program certification for organic agricultural products',
     'Rainforest Alliance': 'Sustainable agriculture and biodiversity conservation certification',
     'FSSC 22000': 'Food Safety System Certification - internationally recognized standard',
     'Organic EU': 'European Union organic certification standards',
     'Food Safety Alliance': 'Comprehensive food safety and quality management certification',
     'KLBD Kosher': 'Kosher certification for global Jewish markets',
     'UEBT': 'Union for Ethical BioTrade - sourcing with respect',
+    'UEBT & RA': 'Twin certifications for sustainable agriculture and ethical bioTrade practices',
     'HALAL Certified': 'HALAL certification ensuring products meet Islamic dietary requirements'
   };
   
@@ -3052,25 +3166,40 @@ function generateCertificateDescription(name) {
 // Load certificates dynamically
 function loadCertificates() {
   const container = document.getElementById('certificates-container');
-  if (!container) return;
   
-  // Create certificate items
-  certificateFiles.forEach(filename => {
-    const name = extractCertificateName(filename);
-    const description = generateCertificateDescription(name);
+  certificateFiles.forEach(item => {
+    let name, description, htmlContent;
+    
+    if (typeof item === 'object' && item.type === 'paired') {
+      // Handle paired certificates
+      name = item.name;
+      description = generateCertificateDescription(name);
+      
+      htmlContent = `
+        <div style="display: flex; gap: 15px; align-items: center; justify-content: center;">
+          <img src="asset/photo/certificate/${item.files[0]}" alt="RA" style="width: 70px; height: 70px; object-fit: contain;">
+          <img src="asset/photo/certificate/${item.files[1]}" alt="UEBT" style="width: 100px; height: 70px; object-fit: contain;">
+        </div>
+      `;
+    } else {
+      // Handle single certificates
+      name = extractCertificateName(item);
+      description = generateCertificateDescription(name);
+      
+      htmlContent = `
+        <img src="asset/photo/certificate/${item}" alt="${name}" class="cert-thumbnail">
+      `;
+    }
     
     const certItem = document.createElement('div');
-    certItem.className = 'cert-item reveal';
+    certItem.className = typeof item === 'object' && item.type === 'paired' ? 'cert-item cert-item-paired reveal' : 'cert-item reveal';
     certItem.onclick = () => openCertificateModal({
-      file: filename,
+      file: typeof item === 'object' ? item.files[0] : item,
       name: name,
       description: description
     });
     
-    certItem.innerHTML = `
-      <img src="asset/photo/certificate/${filename}" alt="${name}" class="cert-thumbnail">
-      <span class="cert-name">${name}</span>
-    `;
+    certItem.innerHTML = htmlContent;
     
     container.appendChild(certItem);
   });
@@ -3082,14 +3211,44 @@ function loadCertificates() {
 // Certificate modal functions
 function openCertificateModal(certificate) {
   const modal = document.getElementById('certificate-modal');
-  const modalImage = document.getElementById('cert-modal-image');
+  const modalLogos = document.getElementById('cert-modal-logos');
   const modalTitle = document.getElementById('cert-modal-title');
-  const modalDescription = document.getElementById('cert-modal-description');
+  const modalNumbers = document.getElementById('cert-modal-numbers');
   
-  modalImage.src = `asset/photo/certificate/${certificate.file}`;
-  modalImage.alt = certificate.name;
-  modalTitle.textContent = certificate.name;
-  modalDescription.textContent = certificate.description;
+  // Always clear previous content first
+  modalLogos.innerHTML = '';
+  modalNumbers.innerHTML = '';
+  modalTitle.textContent = '';
+  
+  // Get certificate data from our new structure
+  const certData = certificateModalData[certificate.name];
+  
+  if (certData) {
+    // Add logos
+    certData.logos.forEach(logoSrc => {
+      const img = document.createElement('img');
+      img.src = logoSrc;
+      img.alt = certData.title;
+      modalLogos.appendChild(img);
+    });
+    
+    // Set title
+    modalTitle.textContent = certData.title;
+    
+    // Add certification numbers
+    certData.certificationNumbers.forEach(number => {
+      const p = document.createElement('p');
+      p.textContent = number;
+      modalNumbers.appendChild(p);
+    });
+  } else {
+    // Fallback handling if certificate data not found
+    modalTitle.textContent = certificate.name || 'Certificate';
+    const fallbackImg = document.createElement('img');
+    fallbackImg.src = `asset/photo/certificate/${certificate.file}`;
+    fallbackImg.alt = certificate.name || 'Certificate';
+    modalLogos.appendChild(fallbackImg);
+  }
   
   modal.style.display = 'block';
   document.body.style.overflow = 'hidden';
