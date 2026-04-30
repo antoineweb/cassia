@@ -961,7 +961,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 }
 
 .product-img-tea-bag {
-  background-image: url('asset/photo/Product Tea Bag Cut (a).jpg');
+  background-image: url('asset/photo/Product Tea Bag Cut.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -1416,15 +1416,17 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
 .cert-modal-logos {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  padding: 3rem;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  min-height: 300px;
   background: var(--white);
   border-bottom: 1px solid rgba(31, 59, 35, 0.1);
   box-sizing: border-box;
-  min-height: 300px;
+  padding: 3rem;
 }
 
 .cert-modal-logos img {
@@ -1433,8 +1435,12 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
   object-fit: contain;
 }
 
+.cert-modal-logos img[src*="Klbd"] {
+  max-height: 400px;
+}
+
 .cert-modal-info {
-  padding: 2.5rem;
+  padding: 1.5rem;
   text-align: center;
   background: var(--white);
 }
@@ -2336,7 +2342,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     <p class="section-tag reveal" style="justify-content: center;">Origin</p>
     <h2 class="reveal reveal-d1">From farmer<br>to <em>end user</em></h2>
     <p class="reveal reveal-d2">Single origin, fully traceable, certified organic Korintje cinnamon from the Kerinci Highlands of Sumatra.</p>
-    <img src="asset/Map 1.png" alt="Cassia Co-op origin map — Kerinci, Sumatra" class="reveal reveal-d3">
+    <img src="asset/Map.png" alt="Cassia Co-op origin map — Kerinci, Sumatra" class="reveal reveal-d3">
   </div>
 </section>
 
@@ -2394,14 +2400,14 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
     <div class="products-grid">
       <div class="product-card reveal">
-        <div class="product-img" style="background-image: url('asset/photo/10 Powder.jpg');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Powder.jpg');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Powder</h3>
         </div>
       </div>
       <div class="product-card reveal reveal-d1">
-        <div class="product-img" style="background-image: url('asset/photo/11 Tea Bag Cut.jpg');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Tea Bag Cut.jpg');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Tea Bag Cut</h3>
@@ -2415,21 +2421,21 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
         </div>
       </div>
       <div class="product-card reveal reveal-d3">
-        <div class="product-img" style="background-image: url('asset/photo/13 Premium Sticks.jpg');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Premium Sticks.jpg');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Premium Sticks</h3>
         </div>
       </div>
       <div class="product-card reveal reveal-d4">
-        <div class="product-img" style="background-image: url('asset/photo/14 Custom Sticks.jpg');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Custom Sticks.jpg');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Custom Sticks</h3>
         </div>
       </div>
       <div class="product-card reveal reveal-d5">
-        <div class="product-img" style="background-image: url('asset/photo/15 Broken & Clean.png');"></div>
+        <div class="product-img" style="background-image: url('asset/photo/Broken & Clean.png');"></div>
         <div class="product-info">
           <div class="product-type">Cassia / Cinnamon</div>
           <h3>Broken & Clean</h3>
@@ -3094,14 +3100,14 @@ const certificateFiles = [
 // Certificate modal data with specific certifier logos and certification numbers
 const certificateModalData = {
   'Organic EU': {
-    logos: ['asset/photo/certificate/ACT for EU.png', 'asset/photo/certificate/Skal Certified.jpg'],
-    certificationNumbers: ['Skal no : 026378'],
+    logos: ['asset/photo/certificate/ACT for EU.png', 'asset/photo/certificate/Skal Certified.png'],
+    certificationNumbers: ['Operator Code No : 097463OC','Skal no : 026378'],
     title: 'Organic EU'
   },
   'Organic USDA': {
-    logos: ['asset/photo/certificate/ECOCERT LOGO.jpg'],
+    logos: ['asset/photo/certificate/ECOCERT LOGO.jpg', 'asset/photo/certificate/Canada Bio.png'],
     certificationNumbers: [],
-    title: 'Organic USDA'
+    title: 'Organic NOP-COR'
   },
   'UEBT & RA': {
     logos: ['asset/photo/certificate/UEBT Green.png'],
