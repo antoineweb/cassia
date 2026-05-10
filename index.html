@@ -2989,8 +2989,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     <div class="contact-form reveal reveal-d2">
       <div class="form-title">Send us a message</div>
       <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-        <!-- Web3Forms config: paste your access_key below (get it free at web3forms.com with sales@cassia.coop) -->
-        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+        <!-- Web3Forms — destination: contact@cassia.coop -->
+        <input type="hidden" name="access_key" value="fa3ac05f-5b40-44b9-b3b5-382663d63720">
         <input type="hidden" name="from_name" value="Cassia Co-op website">
         <input type="hidden" name="subject" value="New contact from cassia.coop">
         <input type="hidden" name="redirect" value="false">
@@ -3971,7 +3971,7 @@ document.addEventListener('DOMContentLoaded', function() {
     } catch (err) {
       if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
       if (note) {
-        note.textContent = "Something went wrong. Please email sales@cassia.coop directly.";
+        note.textContent = "Something went wrong. Please email contact@cassia.coop directly.";
         note.style.color = '#A33';
       }
     }
