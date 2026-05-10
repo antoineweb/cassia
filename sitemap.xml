@@ -3,18 +3,58 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://cassia.coop/</loc>
-    <lastmod>2026-04-26</lastmod>
-    <changefreq>monthly</changefreq>
+    <lastmod>2026-05-10</lastmod>
+    <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://cassia.coop/asset/cover%20video.jpg</image:loc>
+      <image:loc>https://cassia.coop/asset/cover%20video.webp</image:loc>
       <image:title>Cassia Co-op — Mount Kerinci, Sumatra</image:title>
       <image:caption>Origin of Cassia Co-op cinnamon — Kerinci Highlands, Sumatra, Indonesia</image:caption>
     </image:image>
     <image:image>
-      <image:loc>https://cassia.coop/asset/Map%201.png</image:loc>
+      <image:loc>https://cassia.coop/asset/Map.webp</image:loc>
       <image:title>From farmer to end user — Cassia Co-op origin map</image:title>
-      <image:caption>Single origin, fully traceable, certified organic Korintje cinnamon from Sumatra</image:caption>
+      <image:caption>Single origin, fully traceable, certified organic Korintje cinnamon (Cinnamomum burmannii) from Sumatra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/Trees%20%28a%29.webp</image:loc>
+      <image:title>Korintje cassia trees — Kerinci Highlands</image:title>
+      <image:caption>Cinnamomum burmannii single origin cinnamon from Sumatra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/Trees%20%28b%29.webp</image:loc>
+      <image:title>Cassia plantation under rainforest canopy</image:title>
+      <image:caption>Rainforest Alliance certified cinnamon plantation, Sumatra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/Nursery%20%28a%29.webp</image:loc>
+      <image:title>Cassia seedling nursery — Kerinci</image:title>
+      <image:caption>Cassia Co-op replanting programme for partner farmers</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/Production%20Drying%20%28a%29.webp</image:loc>
+      <image:title>Cassia bark drying — Kerinci facility</image:title>
+      <image:caption>Sun-curing cassia bark before grinding, FSSC 22000 facility</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/Production%20Crushing%20%28a%29.webp</image:loc>
+      <image:title>Cassia bark crushing — Kerinci facility</image:title>
+      <image:caption>FSSC 22000 certified processing of cassia in Sumatra</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/gallery/machine.webp</image:loc>
+      <image:title>Cassia processing machine — Kerinci facility</image:title>
+      <image:caption>Cassia Co-op grinding equipment, FSSC 22000 certified</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/photo/Powder.webp</image:loc>
+      <image:title>Cassia powder — Korintje cinnamon</image:title>
+      <image:caption>Bulk cassia powder, single-origin Indonesia</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://cassia.coop/asset/photo/Premium%20Sticks.webp</image:loc>
+      <image:title>Premium cassia sticks — Korintje cinnamon</image:title>
+      <image:caption>Premium-grade cassia cinnamon sticks from Sumatra</image:caption>
     </image:image>
   </url>
   <url>
@@ -45,7 +85,7 @@
   <url>
     <loc>https://cassia.coop/#faq</loc>
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://cassia.coop/#contact</loc>

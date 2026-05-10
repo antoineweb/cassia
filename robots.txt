@@ -1,26 +1,101 @@
+# Cassia Co-op — robots.txt
+# Sustainable Indonesian cassia (Korintje cinnamon, Cinnamomum burmannii)
+# from Kerinci, Sumatra. Bulk supply worldwide.
+
 User-agent: *
 Allow: /
 
-# Allow AI crawlers (Generative Engine Optimization)
+# === AI / LLM crawlers (Generative Engine Optimization) ===
+
+# OpenAI
 User-agent: GPTBot
 Allow: /
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic
 User-agent: ClaudeBot
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
-User-agent: PerplexityBot
-Allow: /
-
-User-agent: Google-Extended
-Allow: /
-
 User-agent: anthropic-ai
 Allow: /
 
+# Google
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Meta AI / Llama
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Amazon Alexa / AWS AI
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl (feeds many AI training sets)
+User-agent: CCBot
+Allow: /
+
+# DuckDuckGo AI assistant
+User-agent: DuckAssistBot
+Allow: /
+
+# Mistral AI
+User-agent: MistralAI-User
+Allow: /
+
+# Cohere AI
+User-agent: cohere-ai
+Allow: /
+
+# You.com search/AI
+User-agent: YouBot
+Allow: /
+
+# Huawei Petal search
+User-agent: PetalBot
+Allow: /
+
+# Diffbot (knowledge graph used by many AI products)
+User-agent: Diffbot
+Allow: /
+
+# Bytespider (TikTok / ByteDance)
+User-agent: Bytespider
+Allow: /
+
+# Sitemap
 Sitemap: https://cassia.coop/sitemap.xml
