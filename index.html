@@ -2988,35 +2988,43 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 
     <div class="contact-form reveal reveal-d2">
       <div class="form-title">Send us a message</div>
-      <form>
+      <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <!-- Web3Forms config: paste your access_key below (get it free at web3forms.com with sales@cassia.coop) -->
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+        <input type="hidden" name="from_name" value="Cassia Co-op website">
+        <input type="hidden" name="subject" value="New contact from cassia.coop">
+        <input type="hidden" name="redirect" value="false">
+        <!-- Honeypot anti-spam (Web3Forms native field) -->
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+
         <div class="form-row">
           <div class="form-group">
             <label for="first-name">First Name</label>
-            <input type="text" id="first-name" placeholder="John">
+            <input type="text" id="first-name" name="first_name" placeholder="John">
           </div>
           <div class="form-group">
             <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" placeholder="Smith">
+            <input type="text" id="last-name" name="last_name" placeholder="Smith">
           </div>
         </div>
         <div class="form-group">
           <label for="email">Email Address *</label>
-          <input type="email" id="email" placeholder="john@company.com" required>
+          <input type="email" id="email" name="email" placeholder="john@company.com" required>
         </div>
         <div class="form-group">
           <label for="company">Company *</label>
-          <input type="text" id="company" placeholder="Your company name" required>
+          <input type="text" id="company" name="company" placeholder="Your company name" required>
         </div>
         <div class="form-group">
           <label for="subject">Subject</label>
-          <input type="text" id="subject" placeholder="Enter your subject...">
+          <input type="text" id="subject" name="topic" placeholder="Enter your subject...">
         </div>
         <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" placeholder="Tell us about your project, volume requirements, or any questions you have…"></textarea>
+          <label for="message">Message *</label>
+          <textarea id="message" name="message" placeholder="Tell us about your project, volume requirements, or any questions you have…" required></textarea>
         </div>
-        <button type="submit" class="form-submit">Send Message</button>
-        <p class="form-note">We'll get back to you within 24 hours.</p>
+        <button type="submit" class="form-submit" id="form-submit-btn">Send Message</button>
+        <p class="form-note" id="form-note">We'll get back to you within 24 hours.</p>
       </form>
     </div>
 
@@ -3928,6 +3936,47 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 5000);
   }
 });
+
+// Contact form: submit via fetch to Web3Forms with inline feedback
+(function() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+  const btn = document.getElementById('form-submit-btn');
+  const note = document.getElementById('form-note');
+  const originalNote = note ? note.textContent : '';
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (note) { note.textContent = ''; note.style.color = ''; }
+
+    const data = new FormData(form);
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      const json = await res.json().catch(() => ({}));
+      if (res.ok && json.success !== false) {
+        form.reset();
+        if (btn) btn.textContent = '✓ Message sent';
+        if (note) {
+          note.textContent = "Thanks — we'll be in touch within 24 hours.";
+          note.style.color = 'var(--forest, #1F3B23)';
+        }
+      } else {
+        throw new Error(json.message || 'Request failed');
+      }
+    } catch (err) {
+      if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+      if (note) {
+        note.textContent = "Something went wrong. Please email sales@cassia.coop directly.";
+        note.style.color = '#A33';
+      }
+    }
+  });
+})();
 </script>
 
 </body>
