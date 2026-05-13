@@ -2561,7 +2561,6 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
     <li><a href="#promises">Promises</a></li>
     <li><a href="#products">Products</a></li>
     <li><a href="#story">Story</a></li>
-    <li><a href="#faq">FAQ</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="#contact" class="nav-contact">Get in Touch</a>
@@ -2944,7 +2943,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; }
 <!-- ==========================================
      FAQ
      ========================================== -->
-<section class="faq" id="faq" itemscope itemtype="https://schema.org/FAQPage">
+<!-- FAQ section hidden visually but kept in DOM for SEO/AI indexing.
+     Primary SEO signal is the FAQPage JSON-LD in <head>. -->
+<section class="faq" id="faq" itemscope itemtype="https://schema.org/FAQPage" style="display: none;" aria-hidden="true">
   <div class="faq-inner">
     <div class="faq-header">
       <p class="section-tag reveal" style="justify-content: center;">FAQ</p>
