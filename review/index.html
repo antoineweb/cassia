@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Website review · Cassia Co-op</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1F3B23;--forest-light:#4A6B4A;--forest-pale:#D6E5D0;--cinnamon:#C47A3A;--cinnamon-pale:#F0DBC8;
+  --cream:#FAF7F2;--cream-warm:#F3EDE4;--cream-border:#E5DDD4;--white:#FFFFFF;--text:#1A2E1A;--text-muted:#5F705F;--err:#9B2C1F;
+  --font-display:'Playfair Display',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--cream);color:var(--text);font:16px/1.5 var(--font-body)}
+main{max-width:720px;margin:0 auto;padding:28px 16px 56px;display:flex;flex-direction:column;gap:18px}
+.brand{font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--cinnamon)}
+h1{font-family:var(--font-display);font-weight:700;font-size:30px;line-height:1.15;margin:4px 0 0;color:var(--forest);text-wrap:balance}
+h2{font-family:var(--font-display);font-weight:700;font-size:21px;margin:0 0 10px;color:var(--forest)}
+p{margin:0}.muted{color:var(--text-muted)}
+.card{background:var(--white);border:1px solid var(--cream-border);border-radius:14px;padding:18px}
+label{display:block;font-weight:600;font-size:14px;margin:12px 0 6px}
+label:first-child{margin-top:0}
+input,select,textarea{width:100%;font:inherit;color:var(--text);background:var(--cream);border:1.5px solid var(--cream-border);border-radius:10px;padding:11px}
+textarea{min-height:190px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--cinnamon);outline-offset:2px}
+.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:14px}
+button{font:inherit;font-weight:600;border-radius:10px;padding:11px 18px;cursor:pointer;border:1.5px solid var(--forest);background:var(--forest);color:var(--cream)}
+button.ghost{background:transparent;color:var(--forest)}
+button:disabled{opacity:.5;cursor:default}
+.status{font-weight:600;font-size:14px}.status.err{color:var(--err)}.status.ok{color:var(--forest-light)}
+details summary{cursor:pointer;font-weight:600;color:var(--forest)}
+.guide ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:8px}
+.ex{margin-top:12px;display:grid;gap:8px}
+.ex div{border-radius:10px;padding:10px 12px;font-size:14px}
+.ex .bad{background:var(--cream-warm);border:1px solid var(--cream-border)}
+.ex .good{background:var(--forest-pale)}
+.ex b{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px}
+.list{display:flex;flex-direction:column;gap:10px;margin:0;padding:0;list-style:none}
+.item{border:1px solid var(--cream-border);border-radius:12px;padding:12px;background:var(--cream)}
+.meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--text-muted);margin-bottom:6px}
+.pill{font-size:12px;font-weight:600;border-radius:999px;padding:2px 9px;background:var(--cinnamon-pale);color:#6b3a10}
+.pill.done{background:var(--forest-pale);color:var(--forest)}
+.pill.rejected{background:var(--cream-warm);color:var(--text-muted)}
+.item p{white-space:pre-wrap;overflow-wrap:anywhere}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand">Cassia Co-op · internal</div>
+    <h1>Request a change to the website</h1>
+  </header>
+
+  <!-- step 1: login -->
+  <section class="card" id="login">
+    <form id="login-form" novalidate>
+      <label for="who">Your name</label>
+      <input id="who" type="text" maxlength="80" autocomplete="name" required>
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+      <div class="row">
+        <button id="login-btn" type="submit">Enter</button>
+        <span class="status" id="login-status" role="status"></span>
+      </div>
+    </form>
+  </section>
+
+  <!-- step 2: request + list -->
+  <div id="app" hidden>
+    <section class="card">
+      <h2>New request</h2>
+      <form id="req-form" novalidate>
+        <label for="section">Which part of the site?</label>
+        <select id="section">
+          <option>Whole site / not sure</option>
+          <option>Top of page (Fair at the Source)</option>
+          <option>About Us</option>
+          <option>Promises and certifications</option>
+          <option>Products</option>
+          <option>Gallery (Inside our facilities)</option>
+          <option>Our Story</option>
+          <option>FAQ</option>
+          <option>Contact</option>
+          <option>Menu or footer</option>
+        </select>
+        <label for="text">What should change?</label>
+        <textarea id="text" maxlength="8000" required></textarea>
+        <div class="row">
+          <button id="send" type="submit">Send request</button>
+          <button class="ghost" id="tpl" type="button">Insert template</button>
+          <span class="status" id="req-status" role="status"></span>
+        </div>
+      </form>
+
+      <details class="guide" style="margin-top:16px">
+        <summary>How to write a request that gets done right the first time</summary>
+        <ol>
+          <li><strong>Say where.</strong> Name the part of the page and the exact item, for example "Products, Powder card" or "Promises, Halal certificate".</li>
+          <li><strong>Quote what is there now.</strong> Copy the current wording so there is no doubt which text you mean.</li>
+          <li><strong>Give the exact new version.</strong> Write the final text, number or link as it should appear, spelling and capitals included.</li>
+          <li><strong>One change per request.</strong> Three small requests are faster to handle than one long message.</li>
+          <li><strong>For a photo or logo,</strong> say which one to replace and where the new file is. This page cannot receive files.</li>
+          <li><strong>For a display problem,</strong> say phone or computer, and what you expected to see.</li>
+        </ol>
+        <div class="ex">
+          <div class="bad"><b>Too vague</b>The certifications part is wrong.</div>
+          <div class="good"><b>Clear</b>Promises, USDA Organic certificate: replace "Organic NOP-COR" with "NOP 7880320638".</div>
+        </div>
+      </details>
+    </section>
+
+    <section class="card">
+      <h2>Requests so far</h2>
+      <p class="muted" id="empty" hidden>No requests yet.</p>
+      <ul class="list" id="list"></ul>
+    </section>
+  </div>
+</main>
+
+<script>
+const BASE = 'https://wsfmnqclycqmrufrjcsx.supabase.co/rest/v1/rpc/';
+const KEY = 'sb_publishable_6wvzY0sTrJChLSCjVCmpoA__Ktl7X7Y'; // publishable key. The password is checked by the database.
+const APP = 'cassia';
+const $ = id => document.getElementById(id);
+let pw = '', who = ''; // kept in memory only, gone on reload
+
+async function rpc(fn, body) {
+  const r = await fetch(BASE + fn, {
+    method: 'POST',
+    headers: { apikey: KEY, Authorization: 'Bearer ' + KEY, 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  const j = await r.json().catch(() => null);
+  if (!r.ok) { const e = new Error((j && j.message) || ('HTTP ' + r.status)); e.badPw = !!(j && j.message === 'invalid_password'); throw e; }
+  return j;
+}
+function set(el, text, cls) { el.textContent = text; el.className = 'status' + (cls ? ' ' + cls : ''); }
+
+const LABEL = { new: 'New', planned: 'Planned', in_progress: 'In progress', done: 'Done', rejected: 'Not planned' };
+function draw(rows) {
+  const ul = $('list'); ul.textContent = '';
+  $('empty').hidden = rows.length > 0;
+  for (const r of rows) {
+    const li = document.createElement('li'); li.className = 'item';
+    const meta = document.createElement('div'); meta.className = 'meta';
+    const pill = document.createElement('span'); pill.className = 'pill ' + (r.status === 'done' || r.status === 'rejected' ? r.status : '');
+    pill.textContent = LABEL[r.status] || r.status;
+    const info = document.createElement('span');
+    const d = new Date(r.created_at);
+    info.textContent = [r.name || 'Someone', r.section, isNaN(d) ? '' : d.toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' })].filter(Boolean).join(' · ');
+    meta.append(pill, info);
+    const p = document.createElement('p'); p.textContent = r.request || '';
+    li.append(meta, p); ul.append(li);
+  }
+}
+async function refresh() { draw(await rpc('feedback_list', { p_app: APP, p_password: pw })); }
+
+$('login-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const st = $('login-status');
+  who = $('who').value.trim(); const tryPw = $('pw').value;
+  if (!who || !tryPw) { set(st, 'Enter your name and the password.', 'err'); return; }
+  $('login-btn').disabled = true; set(st, 'Checking…');
+  try {
+    pw = tryPw; await refresh();
+    $('pw').value = ''; $('login').hidden = true; $('app').hidden = false; $('text').focus();
+  } catch (err) {
+    pw = '';
+    set(st, err.badPw ? 'Wrong password.' : 'Could not connect. Check your connection and try again.', 'err');
+  } finally { $('login-btn').disabled = false; }
+});
+
+$('tpl').addEventListener('click', () => {
+  const t = $('text');
+  if (t.value.trim() && t.value.indexOf('Where:') === 0) return;
+  t.value = 'Where: \nNow it says: \nChange it to: \nWhy (optional): ' + (t.value.trim() ? '\n\n' + t.value.trim() : '');
+  t.focus(); t.setSelectionRange(7, 7);
+});
+
+$('req-form').addEventListener('submit', async e => {
+  e.preventDefault();
+  const st = $('req-status'), text = $('text').value.trim();
+  if (!text) { set(st, 'Write the change first.', 'err'); $('text').focus(); return; }
+  $('send').disabled = true; set(st, 'Sending…');
+  try {
+    await rpc('feedback_submit', { p_app: APP, p_password: pw, p_text: text, p_name: who, p_section: $('section').value });
+    $('text').value = ''; set(st, 'Request saved.', 'ok');
+    await refresh();
+  } catch (err) {
+    set(st, err.badPw ? 'Session expired. Reload the page and log in again.' : 'Could not save. Check your connection and try again.', 'err');
+  } finally { $('send').disabled = false; }
+});
+</script>
+</body>
+</html>
